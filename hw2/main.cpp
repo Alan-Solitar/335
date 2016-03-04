@@ -10,7 +10,7 @@ int main()
 	std::cout<<s3;
 	std::cout<<(s3<s5);
 	std::cout<<endl;
-	s3.merge(s5);
+	s3.Merge(s5);
 	std::cout<<s3;
 
 }

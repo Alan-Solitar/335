@@ -1,6 +1,6 @@
 #ifndef AVL_TREE_H
 #define AVL_TREE_H
-
+#include "SequenceMap.h"
 #include "dsexceptions.h"
 #include <algorithm>
 #include <iostream> 
@@ -184,7 +184,7 @@ class AvlTree
             insert( x, t->right_ );
         else
         {
-        	t->element_.merge(x);
+        	t->element_.Merge(x);
         }
         
         balance( t );
@@ -206,7 +206,7 @@ class AvlTree
             insert( std::move( x ), t->right_ );
         else
         {
-        	t->element_.merge(x);
+        	t->element_.Merge(x);
         }
         balance( t );
     }

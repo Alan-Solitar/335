@@ -19,13 +19,19 @@ void ParseAndBuild(TreeType &a_tree, string &db_filename)
 {
   string db_line="";
   ifstream reader(db_filename);
-  while (getline(reader,db_line)) 
-	{
+  int i=0;
+  
+  //skip the header
+  while(i<10){
+    getline(reader,db_line);
+  }
+
+  while (getline(reader,db_line)) {
 		size_t split = db_line.find('/');
 		string acronym = db_line.substr(0,split);
     string sequence = "";
 		for(size_t i=split;i<db_line.size();i++)
-		{
+	{
 			if(db_line[i]=='/')
 			{
 				//Because of this check we can treat '/' and "//"" the same way
@@ -41,8 +47,6 @@ void ParseAndBuild(TreeType &a_tree, string &db_filename)
 				sequence+=i;
 			}
 		}
-		
-	
 	} 
 }
 // Sample main for program queryTrees
@@ -67,8 +71,9 @@ int main(int argc, char **argv) {
   else if (param_tree == "AVL") 
   {
     cout << "I will run the AVL code" << endl;
-    // Insert code for testing an AVL tree.
+    //Insert code for testing an AVL tree.
     AvlTree<SequenceMap> a_tree;
+    ParseAndBuild(a_tree,db_filename);
     TestQueryTree(a_tree,db_filename);
   }
   else 

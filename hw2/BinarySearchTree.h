@@ -1,6 +1,6 @@
 #ifndef BINARY_SEARCH_TREE_H
 #define BINARY_SEARCH_TREE_H
-
+#include "SequenceMap.h"
 #include "dsexceptions.h"
 #include <algorithm>
 #include <iostream>
@@ -190,7 +190,7 @@ class BinarySearchTree
         else if( t->element_ < x )
             insert( x, t->right_ );
         else
-          t->element_.merge(x);
+          t->element_.Merge(x);
     }
     
     /**
@@ -208,7 +208,7 @@ class BinarySearchTree
         else if( t->element_ < x )
             insert( std::move( x ), t->right_ );
         else
-           t->element_.merge(x);
+           t->element_.Merge(x);
     }
 
     /**

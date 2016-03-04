@@ -1,5 +1,5 @@
-#ifndef SEQUENCEMAP_H
-#define SEQUENCEMAP_H
+#ifndef SEQUENCE_MAP_H
+#define SEQUENCE_MAP_H
 #include <cstddef>
 #include <iostream>
 #include <string>
@@ -23,10 +23,10 @@ public:
 	friend ostream &operator<<(ostream &out, const SequenceMap &rhs);
 
 	bool operator<(const  SequenceMap &rhs) const;
-	void merge(const SequenceMap &other_sequence);
+	void Merge(const SequenceMap &other_sequence);
 
 	//print function to print contents of SequenceMap
-	void print(ostream &out) const;
+	void Print(ostream &out) const;
 
 private:
 	string recognition_sequence_;

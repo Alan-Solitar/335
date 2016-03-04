@@ -10,7 +10,7 @@
 		return (this->recognition_sequence_ < rhs.recognition_sequence_)? true:false;
 	}
 	//merge two sequences if equal
-	void SequenceMap::merge(const SequenceMap &other_sequence)
+	void SequenceMap::Merge(const SequenceMap &other_sequence)
 	{
 		for(auto &i: other_sequence.enzyme_acronym_)
 		{
@@ -19,7 +19,7 @@
 	}
 
 	//print function to print contents of SequenceMap
-	void SequenceMap::print(ostream &out) const
+	void SequenceMap::Print(ostream &out) const
 	{
 		out<< this->recognition_sequence_ << ":";
 		for(auto &i: enzyme_acronym_)
@@ -29,6 +29,6 @@
 	}
 	ostream& operator<<(ostream& out, const SequenceMap& rhs)
 	{
-    	rhs.print(out);
+    	rhs.Print(out);
     	return out;
 	}
