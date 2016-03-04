@@ -23,7 +23,7 @@ public:
 	friend ostream &operator<<(ostream &out, const SequenceMap &rhs);
 
 	bool operator<(const  SequenceMap &rhs) const;
-	void merge(SequenceMap &other_sequence);
+	void merge(const SequenceMap &other_sequence);
 
 	//print function to print contents of SequenceMap
 	void print(ostream &out) const;
@@ -34,5 +34,3 @@ private:
 };
 
 #endif
-
-

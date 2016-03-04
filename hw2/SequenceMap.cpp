@@ -1,4 +1,3 @@
-
 	#include "SequenceMap.h"
 	//constructors
 	SequenceMap::SequenceMap(): recognition_sequence_{""}	{}
@@ -11,7 +10,7 @@
 		return (this->recognition_sequence_ < rhs.recognition_sequence_)? true:false;
 	}
 	//merge two sequences if equal
-	void SequenceMap::merge(SequenceMap &other_sequence)
+	void SequenceMap::merge(const SequenceMap &other_sequence)
 	{
 		for(auto &i: other_sequence.enzyme_acronym_)
 		{

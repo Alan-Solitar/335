@@ -6,8 +6,7 @@
 using namespace std;
 
 // Sample main for program testTrees
-int
-main(int argc, char **argv) {
+int main(int argc, char **argv) {
   if (argc != 4) {
     cout << "Usage: " << argv[0] << " <databasefilename> <queryfilename> <tree-type>" << endl;
     return 0;
@@ -21,34 +20,6 @@ main(int argc, char **argv) {
     cout << "I will run the BST code " << endl;
     // Insert code for testing a BST tree.
     // ...
-	BinarySearchTree bTree();
-	string db_line;
-	size_t end;
-	string sequence;
-	ifstream reader(db_filename);
-	while (getline(reader,db_line)) 
-	{
-		end = db_line.find("//");
-		size_t split = db_line.find('/');
-		string acronym = db_line.substr(0,split);
-		for(int i=split;i<db_line.size();i++)
-		{
-			if(db_line[i]=='/')
-			{
-				//Because of this check we can treat '/' and "//"" the same way
-				if(!sequence.empty())
-				{
-				SequenceMap new_sequence_map(sequence,acronym);
-					bTree.insert(new_sequence_map);
-				}
-				sequence = "";
-			}
-			else
-			{
-				sequence+=i;
-			}
-		}
-		
 	
 	} 
   else if (param_tree == "AVL")\

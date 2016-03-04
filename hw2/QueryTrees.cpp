@@ -8,18 +8,23 @@
 using namespace std;
 
 template <typename TreeType>
-void TestQueryTree(const TreeType &a_tree, const string &db_filename) 
+void TestQueryTree( const TreeType &a_tree, const string &db_filename) 
 {
   // Code for testing
-  
   a_tree.printTree();
+}
+
+template <typename TreeType>
+void ParseAndBuild(TreeType &a_tree, string &db_filename) 
+{
+  string db_line="";
   ifstream reader(db_filename);
   while (getline(reader,db_line)) 
 	{
-		end = db_line.find("//");
 		size_t split = db_line.find('/');
 		string acronym = db_line.substr(0,split);
-		for(int i=split;i<db_line.size();i++)
+    string sequence = "";
+		for(size_t i=split;i<db_line.size();i++)
 		{
 			if(db_line[i]=='/')
 			{
@@ -27,7 +32,7 @@ void TestQueryTree(const TreeType &a_tree, const string &db_filename)
 				if(!sequence.empty())
 				{
 				SequenceMap new_sequence_map(sequence,acronym);
-					bTree.insert(new_sequence_map);
+				a_tree.insert(new_sequence_map);
 				}
 				sequence = "";
 			}
@@ -56,6 +61,7 @@ int main(int argc, char **argv) {
     cout << "I will run the BST code" << endl;
     // Insert code for testing a BST tree.
     BinarySearchTree<SequenceMap> a_tree;
+    ParseAndBuild(a_tree,db_filename);
     TestQueryTree(a_tree, db_filename);
   } 
   else if (param_tree == "AVL") 
@@ -63,8 +69,8 @@ int main(int argc, char **argv) {
     cout << "I will run the AVL code" << endl;
     // Insert code for testing an AVL tree.
     AvlTree<SequenceMap> a_tree;
-	TestQueryTree(a_tree,db_filename);
-  
+    TestQueryTree(a_tree,db_filename);
+  }
   else 
   {
     cout << "Uknown tree type " << param_tree << " (User should provide BST, or AVL)" << endl;
