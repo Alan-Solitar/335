@@ -21,11 +21,12 @@
 	//print function to print contents of SequenceMap
 	void SequenceMap::Print(ostream &out) const
 	{
-		out<< this->recognition_sequence_ << ":";
+		out<< this->recognition_sequence_ << " : ";
 		for(auto &i: enzyme_acronym_)
 		{
 			out<< " " <<i;
 		}
+		out<<"\n";
 	}
 	ostream& operator<<(ostream& out, const SequenceMap& rhs)
 	{
