@@ -29,29 +29,24 @@ void ParseAndBuild(TreeType &a_tree, string &db_filename)
 		size_t split = db_line.find('/');
 		string acronym = db_line.substr(0,split);
     string sequence = "";
-		for(size_t i=split;i<db_line.size();i++)
-	{
-			if(db_line[i]=='/')
-			{
+		for(size_t i=split;i<db_line.size();i++){
+			if(db_line[i]=='/'){
 				//Because of this check we can treat '/' and "//"" the same way
-				if(!sequence.empty())
-				{
-				SequenceMap new_sequence_map(sequence,acronym);
-				a_tree.insert(new_sequence_map);
+				if(!sequence.empty()){
+				  SequenceMap new_sequence_map(sequence,acronym);
+				  a_tree.insert(new_sequence_map);
+          //cout<<new_sequence_map;
 				}
 				sequence = "";
-			}
-			else
-			{
-				sequence+=i;
+			}else {
+				sequence+=db_line[i];
 			}
 		}
 	} 
 }
 // Sample main for program queryTrees
 int main(int argc, char **argv) {
-  if (argc != 3)
-  {
+  if (argc != 3) {
     cout << "Usage: " << argv[0] << " <databasefilename> <tree-type>" << endl;
     return 0;
   }
@@ -66,6 +61,8 @@ int main(int argc, char **argv) {
     BinarySearchTree<SequenceMap> a_tree;
     ParseAndBuild(a_tree,db_filename);
     TestQueryTree(a_tree, db_filename);
+    int nodes = a_tree.CalculateNodes();
+    cout<<endl<<nodes;
   } 
   else if (param_tree == "AVL") 
   {

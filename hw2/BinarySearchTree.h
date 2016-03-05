@@ -157,6 +157,11 @@ class BinarySearchTree
         remove( x, root_ );
     }
 
+    int CalculateNodes()
+    {
+        return CalculateNodes(root_);
+    }
+
 
   private:
     struct BinaryNode
@@ -332,6 +337,28 @@ class BinarySearchTree
         else
             return new BinaryNode{ t->element_, clone( t->left_ ), clone( t->right_ ) };
     }
+
+    /**
+    * Internal method to find number of nodes
+    */
+    int CalculateNodes(BinaryNode* t)
+    {
+        if(t==nullptr)
+        {
+            return 0;
+        }
+        int nodes = CalculateNodes(t->right_) + CalculateNodes(t->left_) + 1;
+        return nodes;
+    }
+
+    int CalculateDepth(BinaryNode* t, int counter, int currentDepth)
+    {
+       total_depth+=
+        CalculateNodes(t->left_)
+
+    }
+
+
 };
 
 #endif
