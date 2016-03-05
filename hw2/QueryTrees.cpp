@@ -61,8 +61,8 @@ int main(int argc, char **argv) {
     BinarySearchTree<SequenceMap> a_tree;
     ParseAndBuild(a_tree,db_filename);
     TestQueryTree(a_tree, db_filename);
-    int nodes = a_tree.CalculateNodes();
-    cout<<endl<<nodes;
+    int average_depth = a_tree.CalculateAverageDepth();
+    cout<<average_depth;
   } 
   else if (param_tree == "AVL") 
   {
