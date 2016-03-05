@@ -20,9 +20,8 @@ void ParseAndBuild(TreeType &a_tree, string &db_filename)
   string db_line="";
   ifstream reader(db_filename);
   int i=0;
-  
   //skip the header
-  while(i<10){
+  while(++i<=10){
     getline(reader,db_line);
   }
 
