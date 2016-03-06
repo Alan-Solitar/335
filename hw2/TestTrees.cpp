@@ -14,6 +14,19 @@ void TestQueryTree( const TreeType &a_tree, const string &db_filename) {
   a_tree.printTree();
 }
 template <typename TreeType>
+void query( TreeType &a_tree, const string &query_filename) {
+  string db_line="";
+  int recursion_counter=0, sucessful_queries=0;
+  ifstream reader(query_filename);
+  while(getline(reader,db_line)) {
+    SequenceMap new_sequence_map(db_line,"");
+    bool is_found = a_tree.contains(new_sequence_map,recursion_counter);
+    if(is_found)
+      ++sucessful_queries;
+  }
+  cout<< "Recursion Counter: "<<recursion_counter<<endl;
+}
+template <typename TreeType>
 void CalculateAverageDepth(TreeType &a_tree) {
   int nodes = a_tree.CalculateNodes();
   cout<<"Nodes: "<<nodes<<endl;
@@ -54,7 +67,8 @@ void ParseAndBuild(TreeType &a_tree, string &db_filename) {
         sequence+=db_line[i];
       }
     }
-  } 
+  }
+  reader.close(); 
 }
 // Sample main for program testTrees
 int main(int argc, char **argv) {
@@ -75,6 +89,7 @@ int main(int argc, char **argv) {
     //double average_depth = a_tree.CalculateAverageDepth();
     //cout<<average_depth;
     CalculateAverageDepth(a_tree);
+    query(a_tree,query_filename);
 	} else if (param_tree == "AVL"){
     cout << "I will run the AVL code " << endl;
     // Insert code for testing an AVL tree.
