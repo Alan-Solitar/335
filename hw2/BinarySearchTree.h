@@ -26,39 +26,33 @@ template <typename Comparable>
 class BinarySearchTree
 {
   public:
-    BinarySearchTree( ) : root_{ nullptr }
-    {
-    }
+    BinarySearchTree( ) : root_{ nullptr } {}
 
     /**
      * Copy constructor
      */
-    BinarySearchTree( const BinarySearchTree & rhs ) : root_{ nullptr }
-    {
+    BinarySearchTree( const BinarySearchTree & rhs ) : root_{ nullptr } {
         root_ = clone( rhs.root_ );
     }
 
     /**
      * Move constructor
      */
-    BinarySearchTree( BinarySearchTree && rhs ) : root_{ rhs.root_ }
-    {
+    BinarySearchTree( BinarySearchTree && rhs ) : root_{ rhs.root_ } {
         rhs.root_ = nullptr;
     }
     
     /**
      * Destructor for the tree
      */
-    ~BinarySearchTree( )
-    {
+    ~BinarySearchTree( ) {
         makeEmpty( );
     }
 
     /**
      * Copy assignment
      */
-    BinarySearchTree & operator=( const BinarySearchTree & rhs )
-    {
+    BinarySearchTree & operator=( const BinarySearchTree & rhs ) {
         BinarySearchTree copy = rhs;
         std::swap( *this, copy );
         return *this;
@@ -67,8 +61,7 @@ class BinarySearchTree
     /**
      * Move assignment
      */
-    BinarySearchTree & operator=( BinarySearchTree && rhs )
-    {
+    BinarySearchTree & operator=( BinarySearchTree && rhs ) {
         std::swap( root_, rhs.root_ );       
         return *this;
     }
@@ -78,8 +71,7 @@ class BinarySearchTree
      * Find the smallest item in the tree.
      * Throw UnderflowException if empty.
      */
-    const Comparable & findMin( ) const
-    {
+    const Comparable & findMin( ) const {
         if( isEmpty( ) )
             throw UnderflowException{ };
         return findMin( root_ )->element_;
@@ -89,8 +81,7 @@ class BinarySearchTree
      * Find the largest item in the tree.
      * Throw UnderflowException if empty.
      */
-    const Comparable & findMax( ) const
-    {
+    const Comparable & findMax( ) const {
         if( isEmpty( ) )
             throw UnderflowException{ };
         return findMax( root_ )->element_;
@@ -99,8 +90,7 @@ class BinarySearchTree
     /**
      * Returns true if x is found in the tree.
      */
-    bool contains( const Comparable & x ) const
-    {
+    bool contains( const Comparable & x ) const {
         return contains( x, root_ );
     }
 
@@ -108,16 +98,14 @@ class BinarySearchTree
      * Test if the tree is logically empty.
      * Return true if empty, false otherwise.
      */
-    bool isEmpty( ) const
-    {
+    bool isEmpty( ) const {
         return root_ == nullptr;
     }
 
     /**
      * Print the tree contents in sorted order.
      */
-    void printTree( ostream & out = cout ) const
-    {
+    void printTree( ostream & out = cout ) const {
         if( isEmpty( ) )
             out << "Empty tree" << endl;
         else
@@ -128,56 +116,48 @@ class BinarySearchTree
     /**
      * Make the tree logically empty.
      */
-    void makeEmpty( )
-    {
+    void makeEmpty( ) {
         makeEmpty( root_ );
     }
 
     /**
      * Insert x into the tree; duplicates are ignored.
      */
-    void insert( const Comparable & x )
-    {
+    void insert( const Comparable & x ) {
         insert( x, root_ );
     }
      
     /**
      * Insert x into the tree; duplicates are ignored.
      */
-    void insert( Comparable && x )
-    {
+    void insert( Comparable && x ) {
         insert( std::move( x ), root_ );
     }
     
     /**
      * Remove x from the tree. Nothing is done if x is not found.
      */
-    void remove( const Comparable & x )
-    {
+    void remove( const Comparable & x ) {
         remove( x, root_ );
     }
 
-    int CalculateNodes()
-    {
+    int CalculateNodes() {
         return CalculateNodes(root_);
     }
-    int CalculateDepth()
-    {
+    int CalculateDepth() {
         int total_depth=0;
         int current_depth=0;
         total_depth = CalculateDepth(root_,current_depth,total_depth);
         return total_depth; 
     }
-    int CalculateAverageDepth()
-    {
+    double CalculateAverageDepth() {
         int nodes = CalculateNodes();
         cout<<nodes<<endl;
         int total_depth = CalculateDepth();
         cout << total_depth<<endl;
         double average_depth = (double)total_depth/nodes;
+        return average_depth;
     }
-
-
   private:
     struct BinaryNode
     {
@@ -201,8 +181,7 @@ class BinarySearchTree
      * t is the node that root_s the subtree.
      * Set the new root of the subtree.
      */
-    void insert( const Comparable & x, BinaryNode * & t )
-    {
+    void insert( const Comparable & x, BinaryNode * & t ) {
         if( t == nullptr )
             t = new BinaryNode{ x, nullptr, nullptr };
         else if( x < t->element_ )
@@ -219,8 +198,7 @@ class BinarySearchTree
      * t is the node that roots the subtree.
      * Set the new root of the subtree.
      */
-    void insert( Comparable && x, BinaryNode * & t )
-    {
+    void insert( Comparable && x, BinaryNode * & t ) {
         if( t == nullptr )
             t = new BinaryNode{ std::move( x ), nullptr, nullptr };
         else if( x < t->element_ )
@@ -237,8 +215,7 @@ class BinarySearchTree
      * t is the node that roots the subtree.
      * Set the new root of the subtree.
      */
-    void remove( const Comparable & x, BinaryNode * & t )
-    {
+    void remove( const Comparable & x, BinaryNode * & t ) {
         if( t == nullptr )
             return;   // Item not found; do nothing
         if( x < t->element_ )
@@ -262,8 +239,7 @@ class BinarySearchTree
      * Internal method to find the smallest item in a subtree t.
      * Return node containing the smallest item.
      */
-    BinaryNode * findMin( BinaryNode *t ) const
-    {
+    BinaryNode * findMin( BinaryNode *t ) const {
         if( t == nullptr )
             return nullptr;
         if( t->left_ == nullptr )
@@ -275,8 +251,7 @@ class BinarySearchTree
      * Internal method to find the largest item in a subtree t.
      * Return node containing the largest item.
      */
-    BinaryNode * findMax( BinaryNode *t ) const
-    {
+    BinaryNode * findMax( BinaryNode *t ) const {
         if( t != nullptr )
             while( t->right_ != nullptr )
                 t = t->right_;
@@ -289,8 +264,7 @@ class BinarySearchTree
      * x is item to search for.
      * t is the node that roots the subtree.
      */
-    bool contains( const Comparable & x, BinaryNode *t ) const
-    {
+    bool contains( const Comparable & x, BinaryNode *t ) const {
         if( t == nullptr )
             return false;
         else if( x < t->element_ )
@@ -318,8 +292,7 @@ class BinarySearchTree
     /**
      * Internal method to make subtree empty.
      */
-    void makeEmpty( BinaryNode * & t )
-    {
+    void makeEmpty( BinaryNode * & t ) {
         if( t != nullptr )
         {
             makeEmpty( t->left_ );
@@ -332,8 +305,7 @@ class BinarySearchTree
     /**
      * Internal method to print a subtree rooted at t in sorted order.
      */
-    void printTree( BinaryNode *t, ostream & out ) const
-    {
+    void printTree( BinaryNode *t, ostream & out ) const {
         if( t != nullptr )
         {
             printTree( t->left_, out );
@@ -345,19 +317,14 @@ class BinarySearchTree
     /**
      * Internal method to clone subtree.
      */
-    BinaryNode * clone( BinaryNode *t ) const
-    {
+    BinaryNode * clone( BinaryNode *t ) const {
         if( t == nullptr )
             return nullptr;
         else
             return new BinaryNode{ t->element_, clone( t->left_ ), clone( t->right_ ) };
     }
 
-    /**
-    * Internal method to find number of nodes
-    */
-    int CalculateNodes(BinaryNode* t)
-    {
+    int CalculateNodes(BinaryNode* t) {
         if(t==nullptr)
         {
             return 0;
@@ -366,14 +333,12 @@ class BinarySearchTree
         return nodes;
     }
 
-    int CalculateDepth(BinaryNode* t, int current_depth, int total_depth)
-    {
-       if(t!=nullptr)
-       {
+    int CalculateDepth(BinaryNode* t, int current_depth, int total_depth) {
+       if(t!=nullptr) {
         current_depth+=1;
         total_depth+=current_depth;
-        total_depth+=CalculateDepth(t->left_,current_depth,total_depth);
-        total_depth+=CalculateDepth(t->right_,current_depth,total_depth);
+        total_depth+=CalculateDepth(t->left_,current_depth,0);
+        total_depth+=CalculateDepth(t->right_,current_depth,0);
         }
         return total_depth;
     }
