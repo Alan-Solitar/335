@@ -3,6 +3,7 @@
 	SequenceMap::SequenceMap(const string &a_rec_seq, const string &an_enz_acro):
 	recognition_sequence_{a_rec_seq},enzyme_acronym_{an_enz_acro} {
 		cout<<this->recognition_sequence_<<endl;
+		cout<<this->enzyme_acronym_[0]<<endl;
 	}
 	
 	//boolean operator

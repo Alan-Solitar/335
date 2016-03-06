@@ -299,8 +299,7 @@ class BinarySearchTree
      * Internal method to make subtree empty.
      */
     void makeEmpty( BinaryNode * & t ) {
-        if( t != nullptr )
-        {
+        if( t != nullptr ) {
             makeEmpty( t->left_ );
             makeEmpty( t->right_ );
             delete t;
@@ -312,8 +311,7 @@ class BinarySearchTree
      * Internal method to print a subtree rooted at t in sorted order.
      */
     void printTree( BinaryNode *t, ostream & out ) const {
-        if( t != nullptr )
-        {
+        if( t != nullptr ) {
             printTree( t->left_, out );
             out << t->element_ << " ";
             printTree( t->right_, out );

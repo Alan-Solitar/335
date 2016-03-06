@@ -17,8 +17,8 @@ void TestQueryTree( const TreeType &a_tree, const string &db_filename) {
 template <typename TreeType>
 void RemoveSequences( TreeType &a_tree, const string &query_filename)
 {
-   string db_line="";
-  int recursion_counter=0, sucessful_removals;
+   string db_line;
+  int recursion_counter=0, successful_removals;
   ifstream reader(query_filename);
   while(getline(reader,db_line)) {
     if(getline(reader,db_line)) {
@@ -27,28 +27,29 @@ void RemoveSequences( TreeType &a_tree, const string &query_filename)
 
     bool is_found = a_tree.contains(new_sequence_map,recursion_counter);
     if(is_found)
-      ++sucessful_removals;
+      ++successful_removals;
     }
   }
   cout<< "Recursion Counter(Remove): "<<recursion_counter<<endl;
-  cout<< "Successful Removals: "<<sucessful_queries<<endl;
+  cout<< "Successful Removals: "<<successful_removals<<endl;
 }
 
 //function to query for the sequences in sequences.txt
 template <typename TreeType>
 void query( TreeType &a_tree, const string &query_filename) {
-  string db_line="";
-  int recursion_counter=0, sucessful_queries=0;
+  string db_line;
+  int recursion_counter=0, successful_queries=0;
   ifstream reader(query_filename);
   while(getline(reader,db_line)) {
     SequenceMap new_sequence_map(db_line," ");
-    //cout << "db_line: "<<db_line<<endl;
+    //cout<<new_sequence_map;
+    cout << "db_line: "<<db_line<<endl;
     bool is_found = a_tree.contains(new_sequence_map,recursion_counter);
     if(is_found)
-      ++sucessful_queries;
+      ++successful_queries;
   }
   cout<< "Recursion Counter(Contains): "<<recursion_counter<<endl;
-  cout<< "Sucessful Queries: "<<sucessful_queries<<endl;
+  cout<< "Sucessful Queries: "<<successful_queries<<endl;
 }
 
 //function to Calculate the Average Depth.
@@ -110,9 +111,6 @@ int main(int argc, char **argv) {
     // Insert code for testing a BST tree.
     BinarySearchTree<SequenceMap> a_tree;
     ParseAndBuild(a_tree,db_filename);
-    //TestQueryTree(a_tree, db_filename);
-    //double average_depth = a_tree.CalculateAverageDepth();
-    //cout<<average_depth;
     CalculateAverageDepth(a_tree);
     //query(a_tree,query_filename);
 	} else if (param_tree == "AVL"){
