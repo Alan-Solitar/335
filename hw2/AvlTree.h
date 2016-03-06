@@ -81,8 +81,8 @@ class AvlTree {
     /**
      * Returns true if x is found in the tree.
      */
-    bool contains( const Comparable & x ) const {
-        return contains( x, root_ );
+    bool contains( const Comparable & x, int &recursion_counter ) const {
+        return contains( x, root_, recursion_counter );
     }
 
     /**
@@ -287,13 +287,17 @@ class AvlTree {
      * x is item to search for.
      * t is the node that roots the tree.
      */
-    bool contains( const Comparable & x, AvlNode *t ) const {
-        if( t == nullptr )
+    bool contains( const Comparable & x, AvlNode *t, int &recursion_counter ) const {
+        if( t == nullptr ) 
             return false;
-        else if( x < t->element_ )
-            return contains( x, t->left_ );
-        else if( t->element_ < x )
-            return contains( x, t->right_ );
+        else if( x < t->element_ ) {
+            ++recursion_counter;
+            return contains( x, t->left_, recursion_counter );
+        }
+        else if( t->element_ < x ) {
+            ++recursion_counter;
+            return contains( x, t->right_,recursion_counter );
+        }
         else
             return true;    // Match
     }

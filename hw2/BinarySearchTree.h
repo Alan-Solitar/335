@@ -276,7 +276,9 @@ class BinarySearchTree
             return contains( x, t->right_ ,recursion_counter);
         }
         else
-            return true;    // Match
+        {
+            return true;   // Match
+        }
     }
 /****** NONRECURSIVE VERSION*************************
     bool contains( const Comparable & x, BinaryNode *t ) const

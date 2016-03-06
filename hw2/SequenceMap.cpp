@@ -1,8 +1,8 @@
 	#include "SequenceMap.h"
 	//constructors
-	SequenceMap::SequenceMap(): recognition_sequence_{""}	{}
 	SequenceMap::SequenceMap(const string &a_rec_seq, const string &an_enz_acro):
-	recognition_sequence_{a_rec_seq},enzyme_acronym_{an_enz_acro} {}
+	recognition_sequence_{a_rec_seq},enzyme_acronym_{an_enz_acro} {
+	}
 	
 	//boolean operator
 	bool SequenceMap::operator<(const  SequenceMap &rhs) const
@@ -12,8 +12,8 @@
 	//merge two sequences if equal
 	void SequenceMap::Merge(const SequenceMap &other_sequence)
 	{
-		for(auto &i: other_sequence.enzyme_acronym_)
-		{
+		for(auto &i: other_sequence.enzyme_acronym_
+)		{
 			this->enzyme_acronym_.push_back(i);
 		}
 	}

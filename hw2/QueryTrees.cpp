@@ -27,7 +27,7 @@ void ParseAndBuild(TreeType &a_tree, string &db_filename) {
 		size_t split = db_line.find('/');
 		string acronym = db_line.substr(0,split);
     string sequence = "";
-		for(size_t i=split;i<db_line.size();i++){
+		for(size_t i=split+1;i<db_line.size();i++){
 			if(db_line[i]=='/'){
 				//Because of this check we can treat '/' and "//"" the same way
 				if(!sequence.empty()){

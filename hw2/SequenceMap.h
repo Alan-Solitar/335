@@ -11,7 +11,6 @@ class SequenceMap
 {
 public:
 	//constructors
-	SequenceMap();
 	SequenceMap(const string &a_rec_seq, const string &an_enz_acro);
 	//all default
 	SequenceMap(const SequenceMap &rhs)=default;
