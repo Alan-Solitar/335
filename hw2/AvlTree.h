@@ -128,8 +128,8 @@ class AvlTree {
     /**
      * Remove x from the tree. Nothing is done if x is not found.
      */
-    void remove( const Comparable & x ) {
-        remove( x, root_ );
+    void remove( const Comparable & x, int &recursion_counter ) {
+        remove( x, root_, recursion_counter );
     }
 
     int heightOfTree() const {
@@ -151,6 +151,11 @@ class AvlTree {
         cout << total_depth<<endl;
         double average_depth = (double)total_depth/nodes;
         return average_depth;
+    }
+    //print all values between two keys
+    void PrintRange(string k1, string k2)
+    {
+        
     }
   private:
     struct AvlNode {
@@ -215,18 +220,18 @@ class AvlTree {
      * t is the node that roots the subtree.
      * Set the new root of the subtree.
      */
-    void remove( const Comparable & x, AvlNode * & t ) {
+    void remove( const Comparable & x, AvlNode * & t, int &recursion_counter ) {
         if( t == nullptr )
             return;   // Item not found; do nothing
         
         if( x < t->element_ )
-            remove( x, t->left_ );
+            remove( x, t->left_, recursion_counter );
         else if( t->element_ < x )
-            remove( x, t->right_ );
+            remove( x, t->right_, recursion_counter );
         else if( t->left_ != nullptr && t->right_ != nullptr ) // Two children
         {
             t->element_ = findMin( t->right_ )->element_;
-            remove( t->element_, t->right_ );
+            remove( t->element_, t->right_, recursion_counter );
         }
         else {
             AvlNode *oldNode = t;
