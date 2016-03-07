@@ -138,7 +138,7 @@ class BinarySearchTree
      * Remove x from the tree. Nothing is done if x is not found.
      */
     bool remove( const Comparable & x, int &recursion_counter ) {
-        remove( x, root_, recursion_counter );
+        return remove( x, root_, recursion_counter );
     }
 
     int CalculateNodes() {
@@ -239,6 +239,7 @@ class BinarySearchTree
             delete oldNode;
             return true;
         }
+        return true;
     }
 
     /**
