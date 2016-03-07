@@ -128,8 +128,8 @@ class AvlTree {
     /**
      * Remove x from the tree. Nothing is done if x is not found.
      */
-    void remove( const Comparable & x, int &recursion_counter ) {
-        remove( x, root_, recursion_counter );
+    bool remove( const Comparable & x, int &recursion_counter ) {
+        return remove( x, root_, recursion_counter );
     }
 
     int heightOfTree() const {
@@ -220,16 +220,21 @@ class AvlTree {
      * t is the node that roots the subtree.
      * Set the new root of the subtree.
      */
-    void remove( const Comparable & x, AvlNode * & t, int &recursion_counter ) {
+    bool remove( const Comparable & x, AvlNode * & t, int &recursion_counter ) {
         if( t == nullptr )
-            return;   // Item not found; do nothing
+            return false;   // Item not found; do nothing
         
-        if( x < t->element_ )
+        if( x < t->element_ ) {
+            ++recursion_counter;
             remove( x, t->left_, recursion_counter );
-        else if( t->element_ < x )
+        }
+        else if( t->element_ < x ) {
+            ++recursion_counter;
             remove( x, t->right_, recursion_counter );
-        else if( t->left_ != nullptr && t->right_ != nullptr ) // Two children
-        {
+        }
+        // Two children
+        else if( t->left_ != nullptr && t->right_ != nullptr ) {
+            ++recursion_counter;
             t->element_ = findMin( t->right_ )->element_;
             remove( t->element_, t->right_, recursion_counter );
         }
@@ -237,6 +242,8 @@ class AvlTree {
             AvlNode *oldNode = t;
             t = ( t->left_ != nullptr ) ? t->left_ : t->right_;
             delete oldNode;
+            balance( t );
+            return true;
         }
         
         balance( t );

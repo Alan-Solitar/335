@@ -17,17 +17,16 @@ void TestQueryTree( const TreeType &a_tree, const string &db_filename) {
 template <typename TreeType>
 void RemoveSequences( TreeType &a_tree, const string &query_filename)
 {
-   string db_line;
-  int recursion_counter=0, successful_removals;
+  string db_line;
+  int recursion_counter=0, successful_removals=0;
   ifstream reader(query_filename);
-  while(getline(reader,db_line)) {
-    if(getline(reader,db_line)) {
-    SequenceMap new_sequence_map(db_line," ");
-    cout << "db_line: "<<db_line<<endl;
-
-    bool is_found = a_tree.contains(new_sequence_map,recursion_counter);
-    if(is_found)
-      ++successful_removals;
+  while(reader >>db_line) {
+    if(reader>>db_line) {
+      SequenceMap new_sequence_map(db_line," ");
+      //cout << "db_line: "<<db_line<<endl;
+      bool is_found = a_tree.remove(new_sequence_map,recursion_counter);
+      if(is_found)
+        ++successful_removals;
     }
   }
   cout<< "Recursion Counter(Remove): "<<recursion_counter<<endl;
@@ -40,7 +39,8 @@ void query( TreeType &a_tree, const string &query_filename) {
   string db_line;
   int recursion_counter=0, successful_queries=0;
   ifstream reader(query_filename);
-  while(getline(reader,db_line)) {
+  while(reader>>db_line) {
+
     SequenceMap new_sequence_map(db_line," ");
     //cout<<new_sequence_map;
     cout << "db_line: "<<db_line<<endl;
@@ -112,7 +112,8 @@ int main(int argc, char **argv) {
     BinarySearchTree<SequenceMap> a_tree;
     ParseAndBuild(a_tree,db_filename);
     CalculateAverageDepth(a_tree);
-    //query(a_tree,query_filename);
+    query(a_tree,query_filename);
+    RemoveSequences(a_tree,query_filename);
 	} else if (param_tree == "AVL"){
     cout << "I will run the AVL code " << endl;
     // Insert code for testing an AVL tree.
@@ -121,6 +122,7 @@ int main(int argc, char **argv) {
     //TestQueryTree(a_tree, db_filename);
     CalculateAverageDepth(a_tree);
     query(a_tree,query_filename);
+    RemoveSequences(a_tree,query_filename);
   } else {
     cout << "Uknown tree type " << param_tree << " (User should provide BST, or AVL)" << endl;
   }
