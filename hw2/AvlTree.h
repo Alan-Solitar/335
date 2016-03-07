@@ -152,9 +152,15 @@ class AvlTree {
         double average_depth = (double)total_depth/nodes;
         return average_depth;
     }
-    //print all values between two keys
-    void PrintRange(string k1, string k2)
-    {
+    //internal print range function 
+    void PrintRange(string k1, string k2) {
+        SequenceMap map1(k1, " ");
+        SequenceMap map2(k2, " ");
+        if( isEmpty( ) )
+            cout << "Empty tree" << endl;
+        else
+            PrintRange( map1, map2, root_ );
+    cout << endl;
         
     }
   private:
@@ -433,12 +439,20 @@ class AvlTree {
 
     int CalculateDepth(AvlNode* t, int current_depth, int total_depth) {
        if(t!=nullptr) {
-        current_depth+=1;
-        total_depth+=current_depth;
-        total_depth+=CalculateDepth(t->left_,current_depth,0);
-        total_depth+=CalculateDepth(t->right_,current_depth,0);
+            current_depth+=1;
+            total_depth+=current_depth;
+            total_depth+=CalculateDepth(t->left_,current_depth,0);
+            total_depth+=CalculateDepth(t->right_,current_depth,0);
         }
         return total_depth;
+    }
+    void PrintRange( SequenceMap map1, SequenceMap map2 ,AvlNode *t ) const{
+        if( t != nullptr ) {
+            PrintRange( map1, map2, t->left_ );
+            if(map1 < t->element_ && t->element_ <map2)
+                cout << t->element_ << " ";
+            PrintRange( map1,map2,t->right_ );
+        }
     }
 };
 
