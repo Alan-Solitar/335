@@ -154,14 +154,14 @@ class AvlTree {
         return average_depth;
     }
     //internal print range function 
-    void PrintRange(string k1, string k2) {
+    void PrintRange(const string k1, const string k2) const {
         SequenceMap map1(k1, " ");
         SequenceMap map2(k2, " ");
         if( isEmpty( ) )
             cout << "Empty tree" << endl;
         else
             PrintRange( map1, map2, root_ );
-    cout << endl;
+        cout << endl;
         
     }
   private:
@@ -348,7 +348,7 @@ class AvlTree {
     /**
      * Internal method to print a subtree rooted at t in sorted order.
      */
-    void printTree( AvlNode *t ) const{
+    void printTree( AvlNode *t ) const {
         if( t != nullptr ) {
             printTree( t->left_ );
             cout << t->element_ << " ";
@@ -445,11 +445,12 @@ class AvlTree {
         }
         return total_depth;
     }
-    void PrintRange( SequenceMap map1, SequenceMap map2 ,AvlNode *t ) const{
+    void PrintRange( const SequenceMap map1, const SequenceMap map2 ,AvlNode *t ) const {
         if( t != nullptr ) {
             PrintRange( map1, map2, t->left_ );
-            if(map1 < t->element_ && t->element_ <map2)
+            if( (map1 < t->element_) && (t->element_ < map2)) {
                 cout << t->element_ << " ";
+            }
             PrintRange( map1,map2,t->right_ );
         }
     }

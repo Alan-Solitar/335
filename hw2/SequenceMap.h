@@ -32,4 +32,5 @@ private:
 	vector<string> enzyme_acronym_;
 };
 
+#include "SequenceMap.cpp"
 #endif
