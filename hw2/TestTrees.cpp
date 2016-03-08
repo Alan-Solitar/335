@@ -24,8 +24,9 @@ void RemoveSequences( TreeType &a_tree, const string &query_filename)
     if(reader>>db_line) {
       SequenceMap new_sequence_map(db_line," ");
       //cout << "db_line: "<<db_line<<endl;
-      bool is_found = a_tree.remove(new_sequence_map,recursion_counter);
-      if(is_found)
+      bool removed=false;
+      a_tree.remove(new_sequence_map,recursion_counter, removed);
+      if(removed==true)
         ++successful_removals;
     }
   }
@@ -119,7 +120,7 @@ int main(int argc, char **argv) {
     // Insert code for testing an AVL tree.
     AvlTree<SequenceMap> a_tree;
     ParseAndBuild(a_tree,db_filename);
-    //TestQueryTree(a_tree, db_filename);
+    TestQueryTree(a_tree, db_filename);
     CalculateAverageDepth(a_tree);
     query(a_tree,query_filename);
     RemoveSequences(a_tree,query_filename);
