@@ -14,6 +14,7 @@ void TestQueryTree( const TreeType &a_tree, const string &db_filename) {
   a_tree.printTree();
 }
 
+//function to remove every other sequence
 template <typename TreeType>
 void RemoveSequences( TreeType &a_tree, const string &query_filename)
 {
@@ -23,7 +24,6 @@ void RemoveSequences( TreeType &a_tree, const string &query_filename)
   while(reader >>db_line) {
     if(reader>>db_line) {
       SequenceMap new_sequence_map(db_line," ");
-      //cout << "db_line: "<<db_line<<endl;
       bool removed=false;
       a_tree.remove(new_sequence_map,recursion_counter, removed);
       if(removed==true)
@@ -31,7 +31,7 @@ void RemoveSequences( TreeType &a_tree, const string &query_filename)
     }
   }
   cout<< "Recursion Counter(Remove): "<<recursion_counter<<endl;
-  cout<< "Successful Removals: "<<successful_removals<<endl;
+  cout<< "Successful Removals: "<<successful_removals<<endl<<endl;
 }
 
 //function to query for the sequences in sequences.txt
@@ -41,16 +41,13 @@ void query( TreeType &a_tree, const string &query_filename) {
   int recursion_counter=0, successful_queries=0;
   ifstream reader(query_filename);
   while(reader>>db_line) {
-
     SequenceMap new_sequence_map(db_line," ");
-    //cout<<new_sequence_map;
-   // cout << "db_line: "<<db_line<<endl;
     bool is_found = a_tree.contains(new_sequence_map,recursion_counter);
     if(is_found)
       ++successful_queries;
   }
   cout<< "Recursion Counter(Contains): "<<recursion_counter<<endl;
-  cout<< "Sucessful Queries: "<<successful_queries<<endl;
+  cout<< "Sucessful Queries: "<<successful_queries<<endl<<endl;
 }
 
 //function to Calculate the Average Depth.
@@ -65,9 +62,10 @@ void CalculateAverageDepth(TreeType &a_tree) {
   double log_two = log2(nodes);
   cout<<"Log2(Nodes): "<<log_two<<endl;
   double depth_to_log2 = average_depth/log_two; 
-  cout<<"Average Depth to Log2(Nodes): "<<depth_to_log2<<endl;
+  cout<<"Average Depth to Log2(Nodes): "<<depth_to_log2<<endl<<endl;
 }
 
+//build tree
 template <typename TreeType>
 void ParseAndBuild(TreeType &a_tree, string &db_filename) {
   string db_line="";
@@ -90,7 +88,8 @@ void ParseAndBuild(TreeType &a_tree, string &db_filename) {
           a_tree.insert(new_sequence_map);
         }
         sequence = "";
-      }else {
+     } 
+      else {
         sequence+=db_line[i];
       }
     }
@@ -115,15 +114,16 @@ int main(int argc, char **argv) {
     CalculateAverageDepth(a_tree);
     query(a_tree,query_filename);
     RemoveSequences(a_tree,query_filename);
+    CalculateAverageDepth(a_tree);
 	} else if (param_tree == "AVL"){
     cout << "I will run the AVL code " << endl;
     // Insert code for testing an AVL tree.
     AvlTree<SequenceMap> a_tree;
     ParseAndBuild(a_tree,db_filename);
-    TestQueryTree(a_tree, db_filename);
     CalculateAverageDepth(a_tree);
     query(a_tree,query_filename);
     RemoveSequences(a_tree,query_filename);
+    CalculateAverageDepth(a_tree);
   } else {
     cout << "Uknown tree type " << param_tree << " (User should provide BST, or AVL)" << endl;
   }

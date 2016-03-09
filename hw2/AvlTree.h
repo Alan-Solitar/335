@@ -136,16 +136,19 @@ class AvlTree {
     int heightOfTree() const {
       return heightOfNode(root_);
     }
+
+    //Calculate the total nodes in the tree
     int CalculateNodes() {
         return CalculateNodes(root_);
     }
-    //public method to calcualte total depth of the tree
+    
+    //Calculate the total depth of the tree
     int CalculateDepth() {
         int total_depth=0;
         total_depth = CalculateDepth(root_,total_depth);
         return total_depth; 
     }
-    //internal print range function 
+    //Print all of the Sequences between two keys
     void PrintRange(const string k1, const string k2) const {
         SequenceMap map1(k1, " ");
         SequenceMap map2(k2, " ");
@@ -258,7 +261,8 @@ class AvlTree {
                 rotateWithLeftChild( t );
             else
                 doubleWithLeftChild( t );
-        } else if( heightOfNode( t->right_ ) - heightOfNode( t->left_ ) > ALLOWED_IMBALANCE ) {
+        } 
+        else if( heightOfNode( t->right_ ) - heightOfNode( t->left_ ) > ALLOWED_IMBALANCE ) {
             if( heightOfNode( t->right_->right_ ) >= heightOfNode( t->right_->left_ ) )
                 rotateWithRightChild( t );
             else
@@ -419,6 +423,7 @@ class AvlTree {
         rotateWithRightChild( k1 );
     }
 
+    //Internal
     int CalculateNodes(AvlNode* t) {
         if(t==nullptr)
         {
@@ -428,6 +433,7 @@ class AvlTree {
         return nodes;
     }
 
+    //Internal
     int CalculateDepth(AvlNode* t, int depth) {
         if (t == nullptr) {
             return 0;
@@ -437,6 +443,7 @@ class AvlTree {
         }
     }
     
+    //Internal
     void PrintRange( const SequenceMap map1, const SequenceMap map2 ,AvlNode *t ) const {
         if( t != nullptr ) {
             PrintRange( map1, map2, t->left_ );

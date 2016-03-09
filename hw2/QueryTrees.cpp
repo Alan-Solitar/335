@@ -13,6 +13,7 @@ void TestQueryTree( const TreeType &a_tree, const string &db_filename) {
   // Code for testing
   a_tree.printTree();
 }
+//build the tree
 template <typename TreeType>
 void ParseAndBuild(TreeType &a_tree, string &db_filename) {
   string db_line="";
@@ -41,6 +42,7 @@ void ParseAndBuild(TreeType &a_tree, string &db_filename) {
 			}
 		}
 	} 
+  reader.close();
 }
 // Sample main for program queryTrees
 int main(int argc, char **argv) {

@@ -142,9 +142,12 @@ class BinarySearchTree
         remove( x, root_, recursion_counter, removed);
     }
 
+    //Calculate the total nodes in the tree
     int CalculateNodes() {
         return CalculateNodes(root_);
     }
+
+    //Calculate the total depth of the tree
     int CalculateDepth() {
         int total_depth=0;
         total_depth = CalculateDepth(root_,total_depth);
@@ -327,6 +330,7 @@ class BinarySearchTree
             return new BinaryNode{ t->element_, clone( t->left_ ), clone( t->right_ ) };
     }
 
+    //internal
     int CalculateNodes(BinaryNode* t) {
         if(t==nullptr)
         {
@@ -336,6 +340,7 @@ class BinarySearchTree
         return nodes;
     }
 
+    //internal
     int CalculateDepth(BinaryNode* t, int depth) {
         if(t==nullptr) {
         return 0;

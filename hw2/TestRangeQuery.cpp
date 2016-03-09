@@ -4,6 +4,8 @@
 #include "AvlTree.h"
 
 using namespace std;
+
+//build the tree
 template <typename TreeType>
 void ParseAndBuild(TreeType &a_tree, string &db_filename) {
   string db_line="";
