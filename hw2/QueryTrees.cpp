@@ -8,9 +8,12 @@
 
 using namespace std;
 
+//Written by Alan Solitar
+
 template <typename TreeType>
 void TestQueryTree( const TreeType &a_tree, const string &db_filename) {
   // Code for testing
+  cout << "Sequence: Acronyms\n" << endl;
   a_tree.printTree();
 }
 //build the tree
@@ -34,10 +37,10 @@ void ParseAndBuild(TreeType &a_tree, string &db_filename) {
 				if(!sequence.empty()) {
 				  SequenceMap new_sequence_map(sequence,acronym);
 				  a_tree.insert(new_sequence_map);
-          //cout<<new_sequence_map;
 				}
 				sequence = "";
-			}else {
+			}
+      else {
 				sequence+=db_line[i];
 			}
 		}

@@ -5,6 +5,8 @@
 
 using namespace std;
 
+//written by Alan Solitar
+
 //build the tree
 template <typename TreeType>
 void ParseAndBuild(TreeType &a_tree, string &db_filename) {
@@ -20,8 +22,8 @@ void ParseAndBuild(TreeType &a_tree, string &db_filename) {
     size_t split = db_line.find('/');
     string acronym = db_line.substr(0,split);
     string sequence = "";
-    for(size_t i=split+1;i<db_line.size();i++){
-      if(db_line[i]=='/'){
+    for(size_t i=split+1; i<db_line.size(); i++) {
+      if(db_line[i] =='/'){
         //Because of this check we can treat '/' and "//"" the same way
         if(!sequence.empty()){
           SequenceMap new_sequence_map(sequence,acronym);
@@ -48,6 +50,7 @@ int main(int argc, char **argv) {
   cout << "String 1 is " << str1 << "   and string 2 is " << str2 << endl;
   AvlTree<SequenceMap> a_tree;
   ParseAndBuild(a_tree, db_filename);
+  cout << "\nSequences between key1 and key2" << endl;
   a_tree.PrintRange(str1, str2);
 
   return 0;

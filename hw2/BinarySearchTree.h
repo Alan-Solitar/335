@@ -22,6 +22,8 @@ using namespace std;
 // ******************ERRORS********************************
 // Throws UnderflowException as warranted
 
+
+//Written by Alan Solitar
 template <typename Comparable>
 class BinarySearchTree
 {
@@ -139,6 +141,7 @@ class BinarySearchTree
      * Remove x from the tree. Nothing is done if x is not found.
      */
     void remove( const Comparable & x, int &recursion_counter, bool &removed ) {
+        ++recursion_counter;
         remove( x, root_, recursion_counter, removed);
     }
 

@@ -7,8 +7,8 @@
 
 using namespace std;
 
-class SequenceMap
-{
+//Written by Alan Solitar
+class SequenceMap {
 public:
 	//constructors
 	SequenceMap(const string &a_rec_seq, const string &an_enz_acro);

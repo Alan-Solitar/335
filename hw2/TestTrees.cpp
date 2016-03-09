@@ -8,6 +8,9 @@
 
 using namespace std;
 
+
+//Written by Alan Solitar
+
 template <typename TreeType>
 void TestQueryTree( const TreeType &a_tree, const string &db_filename) {
   // Code for testing
@@ -30,8 +33,8 @@ void RemoveSequences( TreeType &a_tree, const string &query_filename)
         ++successful_removals;
     }
   }
-  cout<< "Recursion Counter(Remove): "<<recursion_counter<<endl;
-  cout<< "Successful Removals: "<<successful_removals<<endl<<endl;
+  cout << "Recursion Counter(Remove): "<< recursion_counter << endl;
+  cout << "Successful Removals: " << successful_removals << endl << endl;
 }
 
 //function to query for the sequences in sequences.txt
@@ -46,23 +49,23 @@ void query( TreeType &a_tree, const string &query_filename) {
     if(is_found)
       ++successful_queries;
   }
-  cout<< "Recursion Counter(Contains): "<<recursion_counter<<endl;
-  cout<< "Sucessful Queries: "<<successful_queries<<endl<<endl;
+  cout << "Recursion Counter(Contains): " << recursion_counter << endl;
+  cout << "Sucessful Queries: "<<successful_queries << endl << endl;
 }
 
 //function to Calculate the Average Depth.
 template <typename TreeType>
 void CalculateAverageDepth(TreeType &a_tree) {
   int nodes = a_tree.CalculateNodes();
-  cout<<"Nodes: "<<nodes<<endl;
+  cout << "\nNodes: " <<nodes << endl;
   int total_depth = a_tree.CalculateDepth();
-  cout <<"Total Depth: "<< total_depth<<endl;
+  cout <<"Total Depth: "<< total_depth << endl;
   double average_depth = (double)total_depth/nodes;
-  cout<<"Average Depth: "<<average_depth<<endl;
+  cout <<"Average Depth: "<< average_depth << endl;
   double log_two = log2(nodes);
-  cout<<"Log2(Nodes): "<<log_two<<endl;
+  cout <<"Log2(Nodes): "<< log_two << endl;
   double depth_to_log2 = average_depth/log_two; 
-  cout<<"Average Depth to Log2(Nodes): "<<depth_to_log2<<endl<<endl;
+  cout <<"Average Depth to Log2(Nodes): "<<depth_to_log2 << endl << endl;
 }
 
 //build tree
@@ -72,7 +75,7 @@ void ParseAndBuild(TreeType &a_tree, string &db_filename) {
   ifstream reader(db_filename);
   int i=0;
   //skip the header
-  while(++i<=10){
+  while(++i<=10) {
     getline(reader,db_line);
   }
 
@@ -80,10 +83,10 @@ void ParseAndBuild(TreeType &a_tree, string &db_filename) {
     size_t split = db_line.find('/');
     string acronym = db_line.substr(0,split);
     string sequence = "";
-    for(size_t i=split+1;i<db_line.size();i++){
+    for(size_t i=split+1;i<db_line.size();i++) {
       if(db_line[i]=='/'){
         //Because of this check we can treat '/' and "//"" the same way
-        if(!sequence.empty()){
+        if(!sequence.empty()) {
           SequenceMap new_sequence_map(sequence,acronym);
           a_tree.insert(new_sequence_map);
         }
