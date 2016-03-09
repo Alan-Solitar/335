@@ -147,18 +147,10 @@ class BinarySearchTree
     }
     int CalculateDepth() {
         int total_depth=0;
-        int current_depth=0;
-        total_depth = CalculateDepth(root_,current_depth,total_depth);
+        total_depth = CalculateDepth(root_,total_depth);
         return total_depth; 
     }
-    double CalculateAverageDepth() {
-        int nodes = CalculateNodes();
-        cout<<nodes<<endl;
-        int total_depth = CalculateDepth();
-        cout << total_depth<<endl;
-        double average_depth = (double)total_depth/nodes;
-        return average_depth;
-    }
+   
   private:
     struct BinaryNode
     {
@@ -344,14 +336,13 @@ class BinarySearchTree
         return nodes;
     }
 
-    int CalculateDepth(BinaryNode* t, int current_depth, int total_depth) {
-       if(t!=nullptr) {
-        current_depth+=1;
-        total_depth+=current_depth;
-        total_depth+=CalculateDepth(t->left_,current_depth,0);
-        total_depth+=CalculateDepth(t->right_,current_depth,0);
+    int CalculateDepth(BinaryNode* t, int depth) {
+        if(t==nullptr) {
+        return 0;
         }
-        return total_depth;
+       else {
+        return depth + CalculateDepth(t->left_,depth+1)+ CalculateDepth(t->right_,depth+1);
+        }
     }
 
 

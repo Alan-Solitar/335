@@ -44,7 +44,7 @@ void query( TreeType &a_tree, const string &query_filename) {
 
     SequenceMap new_sequence_map(db_line," ");
     //cout<<new_sequence_map;
-    cout << "db_line: "<<db_line<<endl;
+   // cout << "db_line: "<<db_line<<endl;
     bool is_found = a_tree.contains(new_sequence_map,recursion_counter);
     if(is_found)
       ++successful_queries;

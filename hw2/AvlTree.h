@@ -139,19 +139,11 @@ class AvlTree {
     int CalculateNodes() {
         return CalculateNodes(root_);
     }
+    //public method to calcualte total depth of the tree
     int CalculateDepth() {
         int total_depth=0;
-        int current_depth=0;
-        total_depth = CalculateDepth(root_,current_depth,total_depth);
+        total_depth = CalculateDepth(root_,total_depth);
         return total_depth; 
-    }
-    double CalculateAverageDepth() {
-        int nodes = CalculateNodes();
-        cout<<nodes<<endl;
-        int total_depth = CalculateDepth();
-        cout << total_depth<<endl;
-        double average_depth = (double)total_depth/nodes;
-        return average_depth;
     }
     //internal print range function 
     void PrintRange(const string k1, const string k2) const {
@@ -436,15 +428,15 @@ class AvlTree {
         return nodes;
     }
 
-    int CalculateDepth(AvlNode* t, int current_depth, int total_depth) {
-       if(t!=nullptr) {
-            current_depth+=1;
-            total_depth+=current_depth;
-            total_depth+=CalculateDepth(t->left_,current_depth,0);
-            total_depth+=CalculateDepth(t->right_,current_depth,0);
+    int CalculateDepth(AvlNode* t, int depth) {
+        if (t == nullptr) {
+            return 0;
         }
-        return total_depth;
+        else {
+            return depth + CalculateDepth(t->left_, depth+1) + CalculateDepth(t->right_, depth+1);
+        }
     }
+    
     void PrintRange( const SequenceMap map1, const SequenceMap map2 ,AvlNode *t ) const {
         if( t != nullptr ) {
             PrintRange( map1, map2, t->left_ );
