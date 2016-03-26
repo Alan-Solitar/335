@@ -1,7 +1,7 @@
 // Implements Separate Chaining.
 
 template <typename HashedObj>
-bool HashTable<HashedObj>::Contains(const HashedObj &x) const {
+bool SeparateHashTable<HashedObj>::Contains(const HashedObj &x) const {
   // Find the appropriate list.
   auto &which_list = the_lists_[InternalHash(x)];
   // Search within the list.
@@ -9,13 +9,13 @@ bool HashTable<HashedObj>::Contains(const HashedObj &x) const {
 }
   
 template <typename HashedObj>
-void HashTable<HashedObj>::MakeEmpty() {
+void SeparateHashTable<HashedObj>::MakeEmpty() {
   for (auto &this_list : the_lists_)
     this_list.clear();
 }
   
 template <typename HashedObj>
-bool HashTable<HashedObj>::Insert(const HashedObj & x) {
+bool SeparateHashTable<HashedObj>::Insert(const HashedObj & x) {
   // Find the appropriate list.
   auto &which_list = the_lists_[InternalHash(x)];
   // Search within the list.
@@ -30,7 +30,7 @@ bool HashTable<HashedObj>::Insert(const HashedObj & x) {
 }
     
 template <typename HashedObj>
-bool HashTable<HashedObj>::Insert(HashedObj && x) {
+bool SeparateHashTable<HashedObj>::Insert(HashedObj && x) {
   // Find the appropriate list.
   auto &which_list = the_lists_[InternalHash(x)];
   // Search within the list.
@@ -45,7 +45,7 @@ bool HashTable<HashedObj>::Insert(HashedObj && x) {
 }
 
 template <typename HashedObj>
-bool HashTable<HashedObj>::Remove(const HashedObj & x) {
+bool SeparateHashTable<HashedObj>::Remove(const HashedObj & x) {
   // Find the appropriate list.
   auto &which_list = the_lists_[InternalHash(x)];
   // Search within the list.
@@ -59,7 +59,7 @@ bool HashTable<HashedObj>::Remove(const HashedObj & x) {
 }
 
 template <typename HashedObj>
-void HashTable<HashedObj>::Rehash() {
+void SeparateHashTable<HashedObj>::Rehash() {
   vector<list<HashedObj>> old_lists = the_lists_;
   // Create new double-sized, empty table.
   the_lists_.resize(NextPrime(2 * the_lists_.size()));

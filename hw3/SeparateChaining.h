@@ -9,6 +9,7 @@ using namespace std;
 
 // Unnamed namespace for stand-alone functions.
 // Place them in cpp file when using one.
+
 namespace {
 // Internal method to test if a positive number is prime.
 // Not an efficient algorithm.
@@ -38,7 +39,7 @@ int NextPrime(int n) {
 // Assumes that there is a class hash<HashedObj> that overloads
 // the () operator returning a size_t.
 // Sample usage:
-//  HashTable<string> a_hash_table;
+//  SeparateHashTable<string> a_hash_table;
 //  while (..getting string a_string..)
 //    a_hash_table.Insert(a_string);
 //  const b_string = "A given string";
@@ -53,16 +54,16 @@ int NextPrime(int n) {
 //    cout << c_string << " Not in the table" << endl;
 // a_hash_table.MakeEmpty();  // Clears everything.
 template <typename HashedObj>
-class HashTable {
+class SeparateHashTable {
  public:
-  explicit HashTable(int size = 101) : current_size_{0} 
+  explicit SeparateHashTable(int size = 101) : current_size_{0} 
   { the_lists_.resize(101); }
 
-  HashTable(const HashTable &a_hash_table) = default;
-  HashTable(HashTable &&a_hash_table) = default;
-  HashTable &operator=(const HashTable &a_hash_table) = default;
-  HashTable &operator=(HashTable &&a_hash_table) = default;
-  ~HashTable() = default;
+  SeparateHashTable(const SeparateHashTable &a_hash_table) = default;
+  SeparateHashTable(SeparateHashTable &&a_hash_table) = default;
+  SeparateHashTable &operator=(const SeparateHashTable &a_hash_table) = default;
+  SeparateHashTable &operator=(SeparateHashTable &&a_hash_table) = default;
+  ~SeparateHashTable() = default;
   
   // @param x: A given item.
   // @return true if item is in the hash table and false otherwise.
