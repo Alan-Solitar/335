@@ -83,6 +83,9 @@ class HashTable {
   //   hash table.
   bool Remove(const HashedObj & x);
 
+  int Size();
+  int TableSize();
+
  protected:
   // Each hash entry contains the item and its type.
   struct HashEntry {

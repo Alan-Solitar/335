@@ -47,6 +47,15 @@ bool HashTable<HashedObj>::Insert(HashedObj && x) {
 }
 
 template <typename HashedObj>
+int HashTable<HashedObj>::Size() {
+  return current_size_;
+}
+
+template <typename HashedObj>
+int HashTable<HashedObj>::TableSize() {
+  return array_.capacity();
+}
+template <typename HashedObj>
 bool HashTable<HashedObj>::Remove(const HashedObj & x) {
   int current_pos = FindPos(x);
   if (!IsActive(current_pos))

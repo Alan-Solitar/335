@@ -33,7 +33,7 @@ int NextPrime(int n) {
 }
 
 }  // namespace
-
+*/
 
 // SeparateChaining Hash table class. 
 // Assumes that there is a class hash<HashedObj> that overloads
