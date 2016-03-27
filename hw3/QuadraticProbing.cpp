@@ -55,6 +55,10 @@ template <typename HashedObj>
 int HashTable<HashedObj>::TableSize() {
   return array_.capacity();
 }
+template<typename HashedObj>
+int HashTable<HashedObj>::getCollisions() {
+  return number_collisions_;
+}
 template <typename HashedObj>
 bool HashTable<HashedObj>::Remove(const HashedObj & x) {
   int current_pos = FindPos(x);
@@ -66,23 +70,27 @@ bool HashTable<HashedObj>::Remove(const HashedObj & x) {
 }
 
 template <typename HashedObj>
-int HashTable<HashedObj>::FindPos(const HashedObj & x) const {
+int HashTable<HashedObj>::FindPos(const HashedObj & x) {
   int offset = 1;
   int current_pos = InternalHash(x);
-  
+  bool isCollision = false;
   while (array_[current_pos].info_ != kEmpty &&
 	 array_[current_pos].element_ != x ) {
     // Compute ith probe.
+    isCollision=true;
     current_pos += offset;  
     offset += 2;
       if (current_pos >= array_.size())
 	current_pos -= array_.size( );
     }
+  if(isCollision)
+      ++number_collisions_;
   return current_pos;
 }
 
 template <typename HashedObj>
 void HashTable<HashedObj>::Rehash() {
+  int collisions_temp = number_collisions_;
   vector<HashEntry> old_array = array_;
   // Create new double-sized, empty table.
   array_.resize(NextPrime(2 * old_array.size()));
@@ -94,4 +102,5 @@ void HashTable<HashedObj>::Rehash() {
   for (auto & entry : old_array)
     if (entry.info_ == kActive)
       Insert(std::move(entry.element_));
+  number_collisions_ = collisions_temp;
 }

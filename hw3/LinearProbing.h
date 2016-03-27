@@ -8,11 +8,24 @@ using namespace std;
 template <typename HashedObj>
 class LinearHashTable: public HashTable<HashedObj> {
 
-public:
-  retsomething(int x)
-  {
-    return x;
-  }
+protected:
+int FindPos(const HashedObj & x) override {
+  int offset = 1;
+  int current_pos = this->InternalHash(x);
+  bool isCollision=false;
+  while (this->array_[current_pos].info_ != this->kEmpty &&
+	this->array_[current_pos].element_ != x ) {
+    // Compute ith probe.
+    isCollision=true;
+    current_pos += offset;  
+      if (current_pos >= this->array_.size())
+	current_pos -= this->array_.size( );
+    }
+  if(isCollision)
+      ++this->number_collisions_;
+  return current_pos;
+}
+
 
 
 };

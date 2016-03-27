@@ -85,6 +85,7 @@ class HashTable {
 
   int Size();
   int TableSize();
+  int getCollisions();
 
  protected:
   // Each hash entry contains the item and its type.
@@ -101,6 +102,8 @@ class HashTable {
   vector<HashEntry> array_;
   // Number of elements in the hash table.
   int current_size_;
+  //Number of collisions - does not include collisions that occur during rehashing
+  int number_collisions_;
 
   // @param current_pos: position in the hash table.
   // @return true if item in that position is kActive,
@@ -116,7 +119,7 @@ class HashTable {
   //   and info_ being kActive). If x is not in the 
   //   hash table, the function returns the position of
   //   insertion of x.
-  int FindPos(const HashedObj & x) const;
+  virtual int FindPos(const HashedObj & x);
 
   // Performs rehashing by creating a new hash table having
   // size being equal to the next prime greater than or equal

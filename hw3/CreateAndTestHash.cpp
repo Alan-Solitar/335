@@ -13,9 +13,12 @@ template <typename HashTableType>
 void CreateHashTable(HashTableType &hash_table, const string &words_filename, const string &query_filename) {
   ifstream reader(words_filename);
   string line = "";
+  int total_inserts=0;
   while(getline(reader,line)) {
     hash_table.Insert(line);
+    ++total_inserts;
   }
+  cout << total_inserts <<endl;
   /*
   for(auto &i: hash_table) {
     cout << i <<endl;
@@ -26,9 +29,12 @@ void CreateHashTable(HashTableType &hash_table, const string &words_filename, co
 template <typename HashTableType> 
 void PrintStatistics(HashTableType &hash_table) {
     int elements = hash_table.Size(), table_size = hash_table.TableSize();
+    int collisions = hash_table.getCollisions();
     cout << "Number of Elements in Table: " <<elements<<endl;
     cout << "Table Size: " <<table_size<<endl;
-    cout << "Load Factor: " <<double(elements)/table_size;
+    cout << "Load Factor: " <<double(elements)/table_size << endl;
+    cout << "Collisions: " << collisions << endl;
+    cout << "Average Collisions: " << double(collisions)/elements;
 
 }
 
@@ -62,11 +68,13 @@ int main(int argc, char **argv) {
     cout << "I will run the quadratic hashing code " << endl;
     HashTable<string> quadratic_probing_table;
     CreateHashTable(quadratic_probing_table,words_filename,query_filename);
-    TestFunctionForHashTable(quadratic_probing_table, words_filename, query_filename);    
+    PrintStatistics(quadratic_probing_table);
+    //TestFunctionForHashTable(quadratic_probing_table, words_filename, query_filename);    
   } else if (param_flag == "double") {
     cout << "I will run the double hashing code " << endl;
     DoubleHashTable<string> double_hashing_table;
     CreateHashTable(double_hashing_table,words_filename,query_filename);
+    PrintStatistics(double_hashing_table);
 
     // ..code for double Hash
     // ..By calling TestFunctionForHashTable()
