@@ -22,6 +22,8 @@ bool SeparateHashTable<HashedObj>::Insert(const HashedObj & x) {
   if (find(begin(which_list), end(which_list), x) != end(which_list))
     return false;
   // Insert at the end of the list.
+  if(!which_list.empty())
+    ++number_collisions_;
   which_list.push_back(x);
   // Rehash; see Section 5.5
   if (++current_size_ > the_lists_.size())
@@ -37,11 +39,25 @@ bool SeparateHashTable<HashedObj>::Insert(HashedObj && x) {
   if (find(begin(which_list), end(which_list), x) != end(which_list))
     return false;
   // Insert at the end of the list, using rvalue reference.
+  if(!which_list.empty())
+    ++number_collisions_;
   which_list.push_back(std::move(x));
   // Rehash; see Section 5.5
   if (++current_size_ > the_lists_.size())
     Rehash();
   return true;
+}
+template <typename HashedObj>
+int SeparateHashTable<HashedObj>::Size() {
+  return current_size_;
+}
+template <typename HashedObj>
+int SeparateHashTable<HashedObj>::TableSize() {
+  return the_lists_.size();
+}
+template <typename HashedObj>
+int SeparateHashTable<HashedObj>::getCollisions() {
+  return number_collisions_;
 }
 
 template <typename HashedObj>
@@ -60,6 +76,7 @@ bool SeparateHashTable<HashedObj>::Remove(const HashedObj & x) {
 
 template <typename HashedObj>
 void SeparateHashTable<HashedObj>::Rehash() {
+  int temp_collisions = number_collisions_;
   vector<list<HashedObj>> old_lists = the_lists_;
   // Create new double-sized, empty table.
   the_lists_.resize(NextPrime(2 * the_lists_.size()));
@@ -73,4 +90,5 @@ void SeparateHashTable<HashedObj>::Rehash() {
     for (auto & x : this_list )
       Insert(std::move(x));
   }
+  number_collisions_=temp_collisions;
 }

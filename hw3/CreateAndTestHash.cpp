@@ -1,7 +1,7 @@
 #include "QuadraticProbing.h"
 #include "LinearProbing.h"
 #include "DoubleHashing.h"
-//#include "SeparateChaining.h"
+#include "SeparateChaining.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -80,8 +80,9 @@ int main(int argc, char **argv) {
     // ..By calling TestFunctionForHashTable()
   } else if (param_flag == "chaining") {
     cout << "I will run the seperate chaining hashing code " << endl;
-    //SeparateHashTable<string> seperate_hashing_table;
-    //CreateHashTable(separate_hashing_table)
+    SeparateHashTable<string> separate_hashing_table;
+    CreateHashTable(separate_hashing_table,words_filename,query_filename);
+    PrintStatistics(separate_hashing_table);
   } else {
     cout << "Uknown tree type " << param_flag << " (User should provide linear, quadratic, or double)" << endl;
   }

@@ -4,15 +4,17 @@
 
 #include <vector>
 #include <list>
+#include <algorithm>
 using namespace std;
 
 
 // Unnamed namespace for stand-alone functions.
 // Place them in cpp file when using one.
-
+/*
 namespace {
 // Internal method to test if a positive number is prime.
 // Not an efficient algorithm.
+
 bool IsPrime(int n) {
   if (n == 2 || n == 3)
     return true;
@@ -85,13 +87,16 @@ class SeparateHashTable {
   // @return true if succesfull, false if x is not found in the
   //   hash table.
   bool Remove(const HashedObj & x);
-
+  int Size();
+  int TableSize();
+  int getCollisions();
  private:
   // The vector of lists. 
   // TableSize is the_lists_.size().
   vector<list<HashedObj>> the_lists_;   
   // The number of elements in the hash table.
   int  current_size_;
+  int number_collisions_;
 
   // Performs rehashing by creating a new hash table having
   // size being equal to the next prime greater than or equal
