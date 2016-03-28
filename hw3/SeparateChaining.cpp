@@ -50,19 +50,19 @@ bool SeparateHashTable<HashedObj>::Insert(HashedObj && x) {
   return true;
 }
 template <typename HashedObj>
-int SeparateHashTable<HashedObj>::Size() {
+unsigned int SeparateHashTable<HashedObj>::Size() {
   return current_size_;
 }
 template <typename HashedObj>
-int SeparateHashTable<HashedObj>::TableSize() {
+unsigned int SeparateHashTable<HashedObj>::TableSize() {
   return the_lists_.size();
 }
 template <typename HashedObj>
-int SeparateHashTable<HashedObj>::getCollisions() {
+unsigned int SeparateHashTable<HashedObj>::getCollisions() {
   return number_collisions_;
 }
 template <typename HashedObj>
-int SeparateHashTable<HashedObj>::getProbes() {
+unsigned int SeparateHashTable<HashedObj>::getProbes() {
   return number_probes_;
 }
 

@@ -83,10 +83,10 @@ class HashTable {
   //   hash table.
   bool Remove(const HashedObj & x);
 
-  int Size();
-  int TableSize();
-  int getCollisions();
-  int getProbes();
+  unsigned int Size();
+  unsigned int TableSize();
+  unsigned int getCollisions();
+  unsigned int getProbes();
  protected:
   // Each hash entry contains the item and its type.
   struct HashEntry {
@@ -101,11 +101,11 @@ class HashTable {
   // The hash table.
   vector<HashEntry> array_;
   // Number of elements in the hash table.
-  int current_size_;
+  unsigned int current_size_;
   //Number of collisions - does not include collisions that occur during rehashing
-  int number_collisions_;
+  unsigned int number_collisions_;
   //Number of Probes
-  int number_probes_;
+  unsigned int number_probes_;
   // @param current_pos: position in the hash table.
   // @return true if item in that position is kActive,
   //    false otherwise.

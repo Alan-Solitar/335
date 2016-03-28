@@ -88,18 +88,18 @@ class SeparateHashTable {
   // @return true if succesfull, false if x is not found in the
   //   hash table.
   bool Remove(const HashedObj & x);
-  int Size();
-  int TableSize();
-  int getCollisions();
-  int getProbes();
+  unsigned int Size();
+  unsigned int TableSize();
+  unsigned int getCollisions();
+  unsigned int getProbes();
  private:
   // The vector of lists. 
   // TableSize is the_lists_.size().
   vector<list<HashedObj>> the_lists_;   
   // The number of elements in the hash table.
-  int  current_size_;
-  int number_collisions_;
-  int number_probes_;
+  unsigned int  current_size_;
+  unsigned int number_collisions_;
+  unsigned int number_probes_;
 
   // Performs rehashing by creating a new hash table having
   // size being equal to the next prime greater than or equal

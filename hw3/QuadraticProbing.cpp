@@ -47,20 +47,20 @@ bool HashTable<HashedObj>::Insert(HashedObj && x) {
 }
 
 template <typename HashedObj>
-int HashTable<HashedObj>::Size() {
+unsigned int HashTable<HashedObj>::Size() {
   return current_size_;
 }
 
 template <typename HashedObj>
-int HashTable<HashedObj>::TableSize() {
+unsigned int HashTable<HashedObj>::TableSize() {
   return array_.capacity();
 }
 template<typename HashedObj>
-int HashTable<HashedObj>::getCollisions() {
+unsigned int HashTable<HashedObj>::getCollisions() {
   return number_collisions_;
 }
 template<typename HashedObj>
-int HashTable<HashedObj>::getProbes() {
+unsigned int HashTable<HashedObj>::getProbes() {
   return number_probes_;
 }
 template <typename HashedObj>
