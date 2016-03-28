@@ -10,11 +10,11 @@ using namespace std;
 
 // Unnamed namespace for stand-alone functions.
 // Place them in cpp file when using one.
-/*
+
 namespace {
 // Internal method to test if a positive number is prime.
 // Not an efficient algorithm.
-
+/*
 bool IsPrime(int n) {
   if (n == 2 || n == 3)
     return true;
@@ -33,9 +33,10 @@ int NextPrime(int n) {
     for( ;!IsPrime(n); n += 2) ;
     return n;
 }
+*/
 
 }  // namespace
-*/
+
 
 // SeparateChaining Hash table class. 
 // Assumes that there is a class hash<HashedObj> that overloads
@@ -69,7 +70,7 @@ class SeparateHashTable {
   
   // @param x: A given item.
   // @return true if item is in the hash table and false otherwise.
-  bool Contains(const HashedObj &x) const;
+  bool Contains(const HashedObj &x);
 
   // Empties the hash table.
   void MakeEmpty();
@@ -90,6 +91,7 @@ class SeparateHashTable {
   int Size();
   int TableSize();
   int getCollisions();
+  int getProbes();
  private:
   // The vector of lists. 
   // TableSize is the_lists_.size().
@@ -97,6 +99,7 @@ class SeparateHashTable {
   // The number of elements in the hash table.
   int  current_size_;
   int number_collisions_;
+  int number_probes_;
 
   // Performs rehashing by creating a new hash table having
   // size being equal to the next prime greater than or equal
@@ -112,6 +115,18 @@ class SeparateHashTable {
     static hash<HashedObj> hf;
     return hf(x) % the_lists_.size( );
   }
+  template<class InputIterator, class T, class H>
+  friend InputIterator FindAndCountProbes (H &hashtable, InputIterator first, InputIterator last, const T& val)
+  {
+    hashtable.number_probes_ = 0;
+    while (first!=last) {
+      ++hashtable.number_probes_;
+      if (*first==val) return first;
+      ++first;
+  }
+    return last;  
+  }
+  
 };
 
 #include "SeparateChaining.cpp"  // For template compilation.

@@ -27,6 +27,28 @@ void CreateHashTable(HashTableType &hash_table, const string &words_filename, co
   reader.close();
 }
 template <typename HashTableType> 
+void QueryTable(HashTableType &hash_table, const string &words_filename, const string &query_filename) {
+  ifstream reader(query_filename);
+  string line = "";
+  bool found = false;
+  int total_inserts=0;
+  while(getline(reader,line)) {
+    found = hash_table.Contains(line);
+    cout << "Probes" <<hash_table.getProbes()<<endl;
+    if(found)
+      cout<<"found"<<endl;
+    else
+      cout<<"not found" <<endl;
+  }
+  //cout << total_inserts <<endl;
+  /*
+  for(auto &i: hash_table) {
+    cout << i <<endl;
+  }
+  */
+  reader.close();
+}
+template <typename HashTableType> 
 void PrintStatistics(HashTableType &hash_table) {
     int elements = hash_table.Size(), table_size = hash_table.TableSize();
     int collisions = hash_table.getCollisions();
@@ -63,12 +85,14 @@ int main(int argc, char **argv) {
     LinearHashTable<string> linear_probing_table;
     CreateHashTable(linear_probing_table,words_filename,query_filename);
     PrintStatistics(linear_probing_table);
+    QueryTable(linear_probing_table,words_filename,query_filename);
     // Run the linear table.
   } else if (param_flag == "quadratic") {
     cout << "I will run the quadratic hashing code " << endl;
     HashTable<string> quadratic_probing_table;
     CreateHashTable(quadratic_probing_table,words_filename,query_filename);
     PrintStatistics(quadratic_probing_table);
+    QueryTable(quadratic_probing_table,words_filename,query_filename);
     //TestFunctionForHashTable(quadratic_probing_table, words_filename, query_filename);    
   } else if (param_flag == "double") {
     cout << "I will run the double hashing code " << endl;
@@ -83,6 +107,7 @@ int main(int argc, char **argv) {
     SeparateHashTable<string> separate_hashing_table;
     CreateHashTable(separate_hashing_table,words_filename,query_filename);
     PrintStatistics(separate_hashing_table);
+    QueryTable(separate_hashing_table,words_filename,query_filename);
   } else {
     cout << "Uknown tree type " << param_flag << " (User should provide linear, quadratic, or double)" << endl;
   }

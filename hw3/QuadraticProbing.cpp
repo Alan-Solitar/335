@@ -1,7 +1,7 @@
 // Implements Quadratic Probing.
 
 template <typename HashedObj>
-bool HashTable<HashedObj>::Contains(const HashedObj & x) const {
+bool HashTable<HashedObj>::Contains(const HashedObj & x) {
   return IsActive(FindPos(x));
 }
 
@@ -59,6 +59,10 @@ template<typename HashedObj>
 int HashTable<HashedObj>::getCollisions() {
   return number_collisions_;
 }
+template<typename HashedObj>
+int HashTable<HashedObj>::getProbes() {
+  return number_probes_;
+}
 template <typename HashedObj>
 bool HashTable<HashedObj>::Remove(const HashedObj & x) {
   int current_pos = FindPos(x);
@@ -74,17 +78,19 @@ int HashTable<HashedObj>::FindPos(const HashedObj & x) {
   int offset = 1;
   int current_pos = InternalHash(x);
   bool isCollision = false;
+  number_probes_=1;
   while (array_[current_pos].info_ != kEmpty &&
 	 array_[current_pos].element_ != x ) {
     // Compute ith probe.
+    ++number_probes_;
     isCollision=true;
     current_pos += offset;  
     offset += 2;
-      if (current_pos >= array_.size())
-	current_pos -= array_.size( );
+    if (current_pos >= array_.size())
+	   current_pos -= array_.size( );
     }
   if(isCollision)
-      ++number_collisions_;
+    ++number_collisions_;
   return current_pos;
 }
 

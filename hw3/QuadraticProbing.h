@@ -64,7 +64,7 @@ class HashTable {
 
   // @param x: A given item.
   // @return true if item is in the hash table and false otherwise.
-  bool Contains(const HashedObj & x) const;
+  bool Contains(const HashedObj & x);
 
   // Empties the hash table.
   void MakeEmpty();
@@ -86,7 +86,7 @@ class HashTable {
   int Size();
   int TableSize();
   int getCollisions();
-
+  int getProbes();
  protected:
   // Each hash entry contains the item and its type.
   struct HashEntry {
@@ -104,7 +104,8 @@ class HashTable {
   int current_size_;
   //Number of collisions - does not include collisions that occur during rehashing
   int number_collisions_;
-
+  //Number of Probes
+  int number_probes_;
   // @param current_pos: position in the hash table.
   // @return true if item in that position is kActive,
   //    false otherwise.
