@@ -87,6 +87,16 @@ class BinomialQueue {
     BinomialQueue one_item_queue{std::move(x)}; 
     Merge(one_item_queue); 
   }
+
+/*
+  void InsertEfficiently(const Comparable & x) {
+
+  }
+
+  void InsertEfficiently(const Comparable && x) {
+    
+  }
+  */
     
   // Remove the smallest item from the priority queue.
   // Throws UnderflowException if empty.
