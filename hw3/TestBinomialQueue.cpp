@@ -10,7 +10,7 @@ using namespace std;
 
 void TestBinomialQueue(const string input_filename, int flag) {
   cout << "Input is " << input_filename << endl;
-  cout << "Flag is " << flag << endl;
+  cout << "Flag is" << flag << "\n"<< endl;
 
   ifstream reader(input_filename);
   int  num = 0;
@@ -26,7 +26,8 @@ void TestBinomialQueue(const string input_filename, int flag) {
       input_queue.DeleteMin();
       cout << "Deleted " <<num<<endl;
     }
-  } else {
+  } else if(flag==1) {
+    
   string line; 
   int number_of_lines;
   while (getline(reader, line))
@@ -44,7 +45,16 @@ void TestBinomialQueue(const string input_filename, int flag) {
   while(reader >> num) {
     bq2.Insert(num);
   } 
+  bq1.Merge(bq2);
+  int i=0, counter=10;
+  while(i++ < counter) {
+    num= bq1.FindMin();
+    bq1.DeleteMin();
+    cout << "Deleted " <<num<<endl;
+  }
+
 }
+
 }
 
 void TestTime(const string input_filename, int flag) {
