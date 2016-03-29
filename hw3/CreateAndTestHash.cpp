@@ -18,7 +18,7 @@ void CreateHashTable(HashTableType &hash_table, const string &words_filename, co
     hash_table.Insert(line);
     ++total_inserts;
   }
-  cout << total_inserts <<endl;
+  //cout << total_inserts <<endl;
   /*
   for(auto &i: hash_table) {
     cout << i <<endl;
@@ -34,11 +34,12 @@ void QueryTable(HashTableType &hash_table, const string &words_filename, const s
   int total_inserts=0;
   while(getline(reader,line)) {
     found = hash_table.Contains(line);
-    cout << "Probes" <<hash_table.getProbes()<<endl;
+    cout << line << " ";
     if(found)
-      cout<<"found"<<endl;
+      cout<<"found ";
     else
-      cout<<"not found" <<endl;
+      cout<<"not found ";
+    cout << "in "<<hash_table.getProbes()<<" probes"<<endl;
   }
   //cout << total_inserts <<endl;
   /*
@@ -52,11 +53,11 @@ template <typename HashTableType>
 void PrintStatistics(HashTableType &hash_table) {
     int elements = hash_table.Size(), table_size = hash_table.TableSize();
     int collisions = hash_table.getCollisions();
-    cout << "Number of Elements in Table: " <<elements<<endl;
+    cout << "\nNumber of Elements in Table: " <<elements<<endl;
     cout << "Table Size: " <<table_size<<endl;
     cout << "Load Factor: " <<double(elements)/table_size << endl;
     cout << "Collisions: " << collisions << endl;
-    cout << "Average Collisions: " << double(collisions)/elements;
+    cout << "Average Collisions: " << double(collisions)/elements<<"\n"<<endl;
 
 }
 
@@ -99,6 +100,7 @@ int main(int argc, char **argv) {
     DoubleHashTable<string> double_hashing_table;
     CreateHashTable(double_hashing_table,words_filename,query_filename);
     PrintStatistics(double_hashing_table);
+    QueryTable(double_hashing_table,words_filename,query_filename);
 
     // ..code for double Hash
     // ..By calling TestFunctionForHashTable()

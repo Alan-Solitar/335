@@ -77,20 +77,17 @@ template <typename HashedObj>
 int HashTable<HashedObj>::FindPos(const HashedObj & x) {
   int offset = 1;
   int current_pos = InternalHash(x);
-  bool isCollision = false;
   number_probes_=1;
   while (array_[current_pos].info_ != kEmpty &&
 	 array_[current_pos].element_ != x ) {
     // Compute ith probe.
     ++number_probes_;
-    isCollision=true;
+    ++number_collisions_;
     current_pos += offset;  
     offset += 2;
     if (current_pos >= array_.size())
 	   current_pos -= array_.size( );
     }
-  if(isCollision)
-    ++number_collisions_;
   return current_pos;
 }
 

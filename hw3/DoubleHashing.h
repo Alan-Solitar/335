@@ -12,31 +12,32 @@ class DoubleHashTable: public HashTable<HashedObj> {
 protected:
 
 int FindPos(const HashedObj & x) override {
-  int offset = hash2(x,this->TableSize());
+  int R=7;
+  int offset = hash2(x,R);
   int current_pos = this->InternalHash(x);
-  int start_pos = current_pos;
-  bool isCollision=false;
+  int i = 1;
+  this->number_probes_=1;
   while (this->array_[current_pos].info_ != this->kEmpty &&
 	this->array_[current_pos].element_ != x ) {
-    // Compute ith probe.
-    isCollision=true;
-    current_pos += offset;  
-      if (current_pos >= this->array_.size())
-	current_pos -= this->array_.size( );
-    }
-  if(isCollision)
-      ++this->number_collisions_;
-  if(current_pos==start_pos) {
-  	this->Rehash();
+  // Compute ith probe.
+  current_pos += i*offset; 
+  ++this->number_probes_; 
+  ++i;
+  if (current_pos >= this->array_.size())
+	   current_pos -= this->array_.size( );
   }
+  this->number_collisions_+=this->number_probes_-1;
   return current_pos;
+
 }
 private:
-	int hash2(const string &key, int table_size) {
-		size_t hash_value = 0;
-		for (char ch : key)
-			hash_value = 37 * hash_value + ch;
-		return hash_value % table_size;
+	int hash2(const string &key, int R) {
+		//size_t hash_value = 0;
+		//for (char ch : key)
+		//	hash_value = 37 * hash_value + ch;
+		//return 7 - hash_value %7;
+    static hash<HashedObj> hf;
+    return R - (hf(key) % R);
 	}
  	
 
