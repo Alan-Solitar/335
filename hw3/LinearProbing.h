@@ -17,11 +17,11 @@ int FindPos(const HashedObj & x) override {
 	this->array_[current_pos].element_ != x ) {
     // Compute ith probe.
     ++this->number_probes_;
-    ++this->number_collisions_;
     current_pos += offset;  
-      if (current_pos >= this->array_.size())
-	current_pos -= this->array_.size( );
-    }
+    if (current_pos >= this->array_.size())
+    	current_pos -= this->array_.size( );
+  }
+  this->number_collisions_+=this->number_probes_-1;
   return current_pos;
 }
 

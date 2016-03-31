@@ -13,17 +13,9 @@ template <typename HashTableType>
 void CreateHashTable(HashTableType &hash_table, const string &words_filename, const string &query_filename) {
   ifstream reader(words_filename);
   string line = "";
-  int total_inserts=0;
   while(getline(reader,line)) {
     hash_table.Insert(line);
-    ++total_inserts;
   }
-  //cout << total_inserts <<endl;
-  /*
-  for(auto &i: hash_table) {
-    cout << i <<endl;
-  }
-  */
   reader.close();
 }
 template <typename HashTableType> 
@@ -31,7 +23,7 @@ void QueryTable(HashTableType &hash_table, const string &words_filename, const s
   ifstream reader(query_filename);
   string line = "";
   bool found = false;
-  int total_inserts=0;
+  //int total_inserts=0;
   while(getline(reader,line)) {
     found = hash_table.Contains(line);
     cout << line << " ";

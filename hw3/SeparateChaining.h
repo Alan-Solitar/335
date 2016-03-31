@@ -60,7 +60,7 @@ template <typename HashedObj>
 class SeparateHashTable {
  public:
   explicit SeparateHashTable(int size = 101) : current_size_{0} 
-  { the_lists_.resize(101); }
+  { MakeEmpty(); the_lists_.resize(101); }
 
   SeparateHashTable(const SeparateHashTable &a_hash_table) = default;
   SeparateHashTable(SeparateHashTable &&a_hash_table) = default;

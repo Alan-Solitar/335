@@ -8,6 +8,8 @@ bool HashTable<HashedObj>::Contains(const HashedObj & x) {
 template <typename HashedObj>
 void HashTable<HashedObj>::MakeEmpty() {
   current_size_ = 0;
+  number_collisions_=0;
+  number_probes_=0;
   for (auto & entry : array_)
     entry.info_ = kEmpty;
 }
@@ -82,18 +84,18 @@ int HashTable<HashedObj>::FindPos(const HashedObj & x) {
 	 array_[current_pos].element_ != x ) {
     // Compute ith probe.
     ++number_probes_;
-    ++number_collisions_;
     current_pos += offset;  
     offset += 2;
     if (current_pos >= array_.size())
 	   current_pos -= array_.size( );
     }
+    number_collisions_+=number_probes_- 1;
   return current_pos;
 }
 
 template <typename HashedObj>
 void HashTable<HashedObj>::Rehash() {
-  int collisions_temp = number_collisions_;
+  unsigned int collisions_temp = number_collisions_;
   vector<HashEntry> old_array = array_;
   // Create new double-sized, empty table.
   array_.resize(NextPrime(2 * old_array.size()));

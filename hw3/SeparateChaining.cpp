@@ -10,6 +10,8 @@ bool SeparateHashTable<HashedObj>::Contains(const HashedObj &x) {
   
 template <typename HashedObj>
 void SeparateHashTable<HashedObj>::MakeEmpty() {
+  number_probes_=0;
+  number_collisions_=0;
   for (auto &this_list : the_lists_)
     this_list.clear();
 }
@@ -82,7 +84,7 @@ bool SeparateHashTable<HashedObj>::Remove(const HashedObj & x) {
 
 template <typename HashedObj>
 void SeparateHashTable<HashedObj>::Rehash() {
-  int temp_collisions = number_collisions_;
+  unsigned int temp_collisions = number_collisions_;
   vector<list<HashedObj>> old_lists = the_lists_;
   // Create new double-sized, empty table.
   the_lists_.resize(NextPrime(2 * the_lists_.size()));
