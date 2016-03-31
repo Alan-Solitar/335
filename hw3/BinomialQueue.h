@@ -92,16 +92,32 @@ class BinomialQueue {
   void InsertEfficiently(const Comparable & x) {
     BinomialQueue one_item_queue{x}; 
     current_size_+=1;
-    BinomialNode *t1 = the_trees_[the_trees_.size()];
-    BinomialNode *t2 = one_item_queue.the_trees_[1];
-    CombineTrees(t1,t2);
-  }
+    if (current_size_ > Capacity()) {
+      int old_number_of_trees = the_trees_.size();
+      int new_number_of_trees = the_trees_.size()*2;
+      the_trees_.resize(new_number_of_trees);
+      for (int i = old_number_of_trees; i < new_number_of_trees; ++i) {
+        the_trees_[i] = nullptr;
+      }
 
+    //BinomialNode *carry = nullptr;
+    BinomialNode *t1 = nullptr;
+    BinomialNode *t2 = one_item_queue.the_trees_[0];
+    for(int i=0 ;i<the_trees_.size();i++) {
+      if(the_trees_[i]==nullptr) {
+        the_trees_[i] = t2;
+        break;
+      } else {
+        t1 = the_trees_[i];
+        t2 = CombineTrees(t1,t2);
+        the_trees_[i]=nullptr;
+      }
+    }
+  }
+}
   void InsertEfficiently(const Comparable && x) {
     
   }
-  
-    
   // Remove the smallest item from the priority queue.
   // Throws UnderflowException if empty.
   void DeleteMin() {

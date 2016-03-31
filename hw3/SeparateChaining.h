@@ -115,11 +115,13 @@ class SeparateHashTable {
     static hash<HashedObj> hf;
     return hf(x) % the_lists_.size( );
   }
+
   template<class InputIterator, class T, class H>
   friend InputIterator FindAndCountProbes (H &hashtable, InputIterator first, InputIterator last, const T& val) {
     hashtable.number_probes_ = 1;
     while (first!=last) {
-      if (*first==val) return first;
+      if (*first==val) 
+        return first;
       ++first;
       ++hashtable.number_collisions_;
       ++hashtable.number_probes_;

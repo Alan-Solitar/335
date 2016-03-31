@@ -6,7 +6,7 @@
 #include <chrono>
 
 using namespace std;
-enum Routine {ROUTINE_A,ROUTINE_B, ROUTINE_c};
+enum Routine {ROUTINE_A,ROUTINE_B, ROUTINE_C};
 
 void TestFlagZero(const string input_filename, BinomialQueue<int> &q, Routine r) {
 
@@ -109,11 +109,12 @@ int main(int argc, char **argv) {
 
   if(flag==0) {
     //A
+    cout<<"Route A"<<endl;
     BinomialQueue<int> input_queue;
     TestTime(input_filename, TestFlagZero, input_queue, ROUTINE_A);
     ContinualDelete(input_queue,flag);
     //B
-    cout <<"Routin B" <<endl;
+    cout <<"\nRoute B" <<endl;
     BinomialQueue<int> input_queue1;
     TestTime(input_filename,TestFlagZero,input_queue1,ROUTINE_B);
     ContinualDelete(input_queue1,flag);

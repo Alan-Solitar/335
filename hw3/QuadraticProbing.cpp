@@ -8,8 +8,6 @@ bool HashTable<HashedObj>::Contains(const HashedObj & x) {
 template <typename HashedObj>
 void HashTable<HashedObj>::MakeEmpty() {
   current_size_ = 0;
-  number_collisions_=0;
-  number_probes_=0;
   for (auto & entry : array_)
     entry.info_ = kEmpty;
 }
@@ -30,7 +28,6 @@ bool HashTable<HashedObj>::Insert(const HashedObj & x) {
   
   return true;
 }
-    
 template <typename HashedObj>
 bool HashTable<HashedObj>::Insert(HashedObj && x) {
   // Insert x as active.
@@ -79,23 +76,26 @@ template <typename HashedObj>
 int HashTable<HashedObj>::FindPos(const HashedObj & x) {
   int offset = 1;
   int current_pos = InternalHash(x);
+  bool isCollision = false;
   number_probes_=1;
   while (array_[current_pos].info_ != kEmpty &&
 	 array_[current_pos].element_ != x ) {
     // Compute ith probe.
     ++number_probes_;
+    isCollision=true;
     current_pos += offset;  
     offset += 2;
     if (current_pos >= array_.size())
 	   current_pos -= array_.size( );
     }
-    number_collisions_+=number_probes_- 1;
+  if(isCollision)
+    ++number_collisions_;
   return current_pos;
 }
 
 template <typename HashedObj>
 void HashTable<HashedObj>::Rehash() {
-  unsigned int collisions_temp = number_collisions_;
+  int collisions_temp = number_collisions_;
   vector<HashEntry> old_array = array_;
   // Create new double-sized, empty table.
   array_.resize(NextPrime(2 * old_array.size()));

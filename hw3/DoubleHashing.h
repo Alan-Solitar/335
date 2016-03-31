@@ -15,14 +15,12 @@ int FindPos(const HashedObj & x) override {
   int R=7;
   int offset = hash2(x,R);
   int current_pos = this->InternalHash(x);
-  int i = 1;
   this->number_probes_=1;
   while (this->array_[current_pos].info_ != this->kEmpty &&
 	this->array_[current_pos].element_ != x ) {
   // Compute ith probe.
-  current_pos += i*offset; 
+  current_pos += offset;
   ++this->number_probes_; 
-  ++i;
   if (current_pos >= this->array_.size())
 	   current_pos -= this->array_.size( );
   }
@@ -36,7 +34,7 @@ private:
 		//for (char ch : key)
 		//hash_value = 37 * hash_value + ch;
 		//return 7 - hash_value %7;
-    static hash<HashedObj> hf;
+    static hash<HashedO1bj> hf;
     return R - (hf(key) % R);
 	}
  	
