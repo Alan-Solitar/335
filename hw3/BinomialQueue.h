@@ -88,15 +88,19 @@ class BinomialQueue {
     Merge(one_item_queue); 
   }
 
-/*
-  void InsertEfficiently(const Comparable & x) {
 
+  void InsertEfficiently(const Comparable & x) {
+    BinomialQueue one_item_queue{x}; 
+    current_size_+=1;
+    BinomialNode *t1 = the_trees_[the_trees_.size()];
+    BinomialNode *t2 = one_item_queue.the_trees_[1];
+    CombineTrees(t1,t2);
   }
 
   void InsertEfficiently(const Comparable && x) {
     
   }
-  */
+  
     
   // Remove the smallest item from the priority queue.
   // Throws UnderflowException if empty.

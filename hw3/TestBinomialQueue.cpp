@@ -6,18 +6,27 @@
 #include <chrono>
 
 using namespace std;
+enum Routine {ROUTINE_A,ROUTINE_B, ROUTINE_c};
 
+void TestFlagZero(const string input_filename, BinomialQueue<int> &q, Routine r) {
 
-void TestFlagZero(const string input_filename, BinomialQueue<int> &q) {
-
-
+  
   ifstream reader(input_filename);
   int  num = 0;
-  while(reader >>num) {
-    q.Insert(num);
+  if(r == ROUTINE_A) {
+    while(reader >>num) {
+      q.Insert(num);
    //cout<<"Inserted " <<num <<endl;
     }
+  } else if (r==ROUTINE_B) {
+      while(reader >>num) {
+      q.InsertEfficiently(num);
+   //cout<<"Inserted " <<num <<endl;
+    }
+
   }
+}
+
 
 void ContinualDelete(BinomialQueue<int> &q, int flag) {
     int num=0;
@@ -38,7 +47,7 @@ void ContinualDelete(BinomialQueue<int> &q, int flag) {
      } 
     }
    
-void TestFlagOne(const string input_filename, BinomialQueue<int> &q) {
+void TestFlagOne(const string input_filename, BinomialQueue<int> &q, Routine r) {
   string line; 
   int number_of_lines;
   int num =0;
@@ -50,12 +59,23 @@ void TestFlagOne(const string input_filename, BinomialQueue<int> &q) {
   reader.seekg(0,ios::beg);
   BinomialQueue<int> bq1;
   BinomialQueue<int> bq2;
-  for(size_t i=0; i <number_of_lines/4; ++i) {
-    reader >> num;
-    bq1.Insert(num);
-  }
-  while(reader >> num) {
-    bq2.Insert(num);
+  if(r==ROUTINE_A) {
+    for(size_t i=0; i <number_of_lines/4; ++i) {
+      reader >> num;
+      bq1.Insert(num);
+    }
+    while(reader >> num) {
+      bq2.Insert(num);
+    } 
+  } else if (r==ROUTINE_B) {
+    for(size_t i=0; i <number_of_lines/4; ++i) {
+      reader >> num;
+      bq1.InsertEfficiently(num);
+    }
+    while(reader >> num) {
+      bq2.InsertEfficiently(num);
+    } 
+
   } 
   bq1.Merge(bq2);
   q = bq1;
@@ -63,10 +83,10 @@ void TestFlagOne(const string input_filename, BinomialQueue<int> &q) {
 }
 
 template<typename function>
-void TestTime(const string input_filename, function func, BinomialQueue<int> &q) {
+void TestTime(const string input_filename, function func, BinomialQueue<int> &q,Routine r) {
   cout << "Test Timing" << endl;
   const auto begin = chrono::high_resolution_clock::now();
-  func(input_filename, q);
+  func(input_filename, q, r);
   const auto end = chrono::high_resolution_clock::now();
     
   cout << chrono::duration_cast<chrono::nanoseconds>(end-begin).count() << "ns" << endl;
@@ -88,14 +108,24 @@ int main(int argc, char **argv) {
   cout << "Flag is " << flag << "\n"<< endl;
 
   if(flag==0) {
+    //A
     BinomialQueue<int> input_queue;
-    TestTime(input_filename, TestFlagZero, input_queue);
+    TestTime(input_filename, TestFlagZero, input_queue, ROUTINE_A);
     ContinualDelete(input_queue,flag);
-
+    //B
+    cout <<"Routin B" <<endl;
+    BinomialQueue<int> input_queue1;
+    TestTime(input_filename,TestFlagZero,input_queue1,ROUTINE_B);
+    ContinualDelete(input_queue1,flag);
   } else {
     BinomialQueue<int> input_queue;
-    TestTime(input_filename, TestFlagOne, input_queue);
+    TestTime(input_filename, TestFlagOne, input_queue, ROUTINE_A);
     ContinualDelete(input_queue,flag);
+    //B
+    BinomialQueue<int> input_queue1;
+    TestTime(input_filename, TestFlagOne, input_queue1, ROUTINE_B);
+    ContinualDelete(input_queue,flag);
+
   }
   //TestTime(input_filename, flag);
   return 0;
