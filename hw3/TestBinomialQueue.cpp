@@ -30,7 +30,7 @@ void TestFlagZero(const string input_filename, BinomialQueue<int> &q, Routine r)
 
 void ContinualDelete(BinomialQueue<int> &q, int flag) {
     int num=0;
-    cout << "flag is " <<flag;
+    //cout << "flag is " <<flag;
     if(flag==0) {
       while(!q.IsEmpty()) {
         num = q.FindMin();
@@ -90,7 +90,7 @@ void TestTime(const string input_filename, function func, BinomialQueue<int> &q,
   const auto end = chrono::high_resolution_clock::now();
     
   cout << chrono::duration_cast<chrono::nanoseconds>(end-begin).count() << "ns" << endl;
-  cout << chrono::duration_cast<chrono::milliseconds>(end-begin).count() << "ms" << endl;
+  cout << chrono::duration_cast<chrono::milliseconds>(end-begin).count() << "ms\n" << endl;
 }
 
 
@@ -109,20 +109,22 @@ int main(int argc, char **argv) {
 
   if(flag==0) {
     //A
-    cout<<"Route A"<<endl;
+    cout<<"Part A"<<endl;
     BinomialQueue<int> input_queue;
     TestTime(input_filename, TestFlagZero, input_queue, ROUTINE_A);
     ContinualDelete(input_queue,flag);
     //B
-    cout <<"\nRoute B" <<endl;
+    cout <<"\nPart B" <<endl;
     BinomialQueue<int> input_queue1;
     TestTime(input_filename,TestFlagZero,input_queue1,ROUTINE_B);
     ContinualDelete(input_queue1,flag);
   } else {
+    cout <<"Part A" <<endl;
     BinomialQueue<int> input_queue;
     TestTime(input_filename, TestFlagOne, input_queue, ROUTINE_A);
     ContinualDelete(input_queue,flag);
     //B
+    cout <<"\nPart B" <<endl;
     BinomialQueue<int> input_queue1;
     TestTime(input_filename, TestFlagOne, input_queue1, ROUTINE_B);
     ContinualDelete(input_queue1,flag);

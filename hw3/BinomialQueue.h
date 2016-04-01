@@ -283,6 +283,11 @@ class BinomialQueue {
     rhs.current_size_ = 0;
   }  // End of Merge Routine.
 
+  void MergeTwo(BinomialQueue & rhs) {
+    if( this == &rhs )    // Avoid aliasing problems
+      return;
+
+   }
 
   private:
   struct BinomialNode {
