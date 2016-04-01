@@ -125,7 +125,7 @@ int main(int argc, char **argv) {
     //B
     BinomialQueue<int> input_queue1;
     TestTime(input_filename, TestFlagOne, input_queue1, ROUTINE_B);
-    ContinualDelete(input_queue,flag);
+    ContinualDelete(input_queue1,flag);
 
   }
   //TestTime(input_filename, flag);

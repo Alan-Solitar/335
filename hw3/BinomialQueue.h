@@ -90,31 +90,88 @@ class BinomialQueue {
 
 
   void InsertEfficiently(const Comparable & x) {
-    BinomialQueue one_item_queue{x}; 
-    current_size_+=1;
+    /*
+    ++current_size_;
+      if (current_size_ > Capacity()) {
+        size_t old_number_of_trees = the_trees_.size();
+        the_trees_.resize(old_number_of_trees*2);
+        for (size_t i = old_number_of_trees; i < old_number_of_trees*2; ++i)
+          the_trees_[i] = nullptr;
+      }
+    BinomialNode *item_to_insert = new BinomialNode{x, nullptr, nullptr};
+  int i = 0;
+  while (the_trees_[i] != nullptr) {
+    item_to_insert = CombineTrees(item_to_insert, the_trees_[i]);
+    the_trees_[i] = nullptr;
+    ++i;
+  }
+  the_trees_[i] = item_to_insert;
+*/
+    
+   // BinomialQueue one_item_queue{x}; 
+  /*
+    ++current_size_;
     if (current_size_ > Capacity()) {
-      int old_number_of_trees = the_trees_.size();
-      int new_number_of_trees = the_trees_.size()*2;
+      size_t old_number_of_trees = the_trees_.size();
+      size_t new_number_of_trees = the_trees_.size()*2;
       the_trees_.resize(new_number_of_trees);
-      for (int i = old_number_of_trees; i < new_number_of_trees; ++i) {
+      for (size_t i = old_number_of_trees; i < new_number_of_trees; ++i) {
         the_trees_[i] = nullptr;
       }
 
-    //BinomialNode *carry = nullptr;
-    BinomialNode *t1 = nullptr;
-    BinomialNode *t2 = one_item_queue.the_trees_[0];
+
+    BinomialNode *t2 = new BinomialNode{x, nullptr, nullptr};
     for(int i=0 ;i<the_trees_.size();i++) {
       if(the_trees_[i]==nullptr) {
         the_trees_[i] = t2;
         break;
+        cout<<"\nWill never happen"<<endl;
       } else {
-        t1 = the_trees_[i];
-        t2 = CombineTrees(t1,t2);
-        the_trees_[i]=nullptr;
+        t2 = CombineTrees(t2,the_trees_[i]);
+        the_trees_[i]= nullptr;
       }
     }
   }
-}
+  */
+
+    BinomialQueue one_item_queue{x}; 
+
+    current_size_+=1;
+    int i = 0;
+
+    if (current_size_ > Capacity()) {
+
+      int old_number_of_trees = the_trees_.size();
+
+      int new_number_of_trees = the_trees_.size()*2;
+
+      the_trees_.resize(new_number_of_trees);
+
+      for (int i = old_number_of_trees; i < new_number_of_trees; ++i) {
+
+        the_trees_[i] = nullptr;
+      }
+
+      }
+
+    //BinomialNode *carry = nullptr;
+
+    BinomialNode *t1 = nullptr;
+
+    BinomialNode *t2 = one_item_queue.the_trees_[0];
+
+    while(the_trees_[i]!=nullptr) {
+
+        t2 = CombineTrees(t2,the_trees_[i]);
+        the_trees_[i]= nullptr;
+        ++i;
+      }
+
+    the_trees_[i] = t2;
+    one_item_queue.the_trees_[0] = nullptr;
+
+  }
+
   void InsertEfficiently(const Comparable && x) {
     
   }
