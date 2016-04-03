@@ -178,7 +178,6 @@ class BinomialQueue {
     Comparable x;
     DeleteMin(x);
   }
-
   // Remove the minimum item and place it in min_item.
   // Throws UnderflowException if empty.
   void DeleteMin(Comparable & min_item) {
@@ -299,10 +298,10 @@ class BinomialQueue {
 
     for (int i = 0, j = 1; j <= current_size_; ++i, j *= 2) {
 
-      if(carry == nullptr && rhs_size_counter==0) {
-        cout<<"breaking"<<endl;
-        break;
-      }
+     // if(carry == nullptr && rhs_size_counter==0) {
+     //   cout<<"breaking"<<endl;
+      //  break;
+     // }
 
       BinomialNode *t1 = the_trees_[i];
       BinomialNode *t2 = i < rhs.the_trees_.size() ? rhs.the_trees_[ i ] : nullptr;

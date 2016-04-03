@@ -37,17 +37,19 @@ void ContinualDelete(BinomialQueue<int> &q, int flag) {
     //cout << "flag is " <<flag;
     if(flag==0) {
       while(!q.IsEmpty()) {
-        //num = q.FindMin();
+        num = q.FindMin();
         q.DeleteMin();
-        //cout << "Deleted " <<num<<endl;
+        cout << "Deleted " <<num<<endl;
      }
     } else {
       int i=0, counter=10;
         while(i++ < counter) {
-       // num= q.FindMin();
-        q.DeleteMin();
-        //cout << "Deleted " <<num<<endl;
-        }
+        if(!q.IsEmpty()) {
+          q.DeleteMin();
+          num= q.FindMin();
+          cout << "Deleted " <<num<<endl;
+      }
+      }
      } 
     }
    
@@ -71,6 +73,8 @@ void TestFlagOne(const string input_filename, BinomialQueue<int> &q, Routine r) 
     while(reader >> num) {
       bq2.Insert(num);
     } 
+    bq2.Merge(bq1);
+    q = bq2;
   } else if (r==ROUTINE_B) {
     for(size_t i=0; i <number_of_lines/4; ++i) {
       reader >> num;
@@ -79,11 +83,20 @@ void TestFlagOne(const string input_filename, BinomialQueue<int> &q, Routine r) 
     while(reader >> num) {
       bq2.InsertEfficiently(num);
     } 
+    bq2.Merge(bq1);
+    q = bq2;
 
-  } 
-  bq2.Merge(bq1);
-  q = bq2;
-  
+  } else {
+     for(size_t i=0; i <number_of_lines/4; ++i) {
+      reader >> num;
+      bq1.InsertMerge2(num);
+    }
+    while(reader >> num) {
+      bq2.InsertMerge2(num);
+    }
+    bq2.MergeTwo(bq1);
+    q = bq2; 
+    }
 }
 
 template<typename function>
