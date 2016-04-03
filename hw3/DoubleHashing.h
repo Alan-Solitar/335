@@ -34,7 +34,7 @@ private:
 		//for (char ch : key)
 		//hash_value = 37 * hash_value + ch;
 		//return 7 - hash_value %7;
-    static hash<HashedO1bj> hf;
+    static hash<HashedObj> hf;
     return R - (hf(key) % R);
 	}
  	
