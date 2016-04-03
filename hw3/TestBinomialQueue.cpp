@@ -19,9 +19,13 @@ void TestFlagZero(const string input_filename, BinomialQueue<int> &q, Routine r)
    //cout<<"Inserted " <<num <<endl;
     }
   } else if (r==ROUTINE_B) {
-      while(reader >>num) {
-      q.InsertEfficiently(num);
+    while(reader >> num) {
+    q.InsertEfficiently(num);
    //cout<<"Inserted " <<num <<endl;
+    }
+  } else {
+    while(reader >> num) {
+      q.InsertMerge2(num);
     }
 
   }
@@ -33,16 +37,16 @@ void ContinualDelete(BinomialQueue<int> &q, int flag) {
     //cout << "flag is " <<flag;
     if(flag==0) {
       while(!q.IsEmpty()) {
-        num = q.FindMin();
+        //num = q.FindMin();
         q.DeleteMin();
-        cout << "Deleted " <<num<<endl;
+        //cout << "Deleted " <<num<<endl;
      }
     } else {
       int i=0, counter=10;
         while(i++ < counter) {
-        num= q.FindMin();
+       // num= q.FindMin();
         q.DeleteMin();
-        cout << "Deleted " <<num<<endl;
+        //cout << "Deleted " <<num<<endl;
         }
      } 
     }
@@ -77,8 +81,8 @@ void TestFlagOne(const string input_filename, BinomialQueue<int> &q, Routine r) 
     } 
 
   } 
-  bq1.Merge(bq2);
-  q = bq1;
+  bq2.Merge(bq1);
+  q = bq2;
   
 }
 
@@ -109,16 +113,23 @@ int main(int argc, char **argv) {
 
   if(flag==0) {
     //A
-    cout<<"Part A"<<endl;
+    cout << "Part A" << endl;
     BinomialQueue<int> input_queue;
     TestTime(input_filename, TestFlagZero, input_queue, ROUTINE_A);
     ContinualDelete(input_queue,flag);
     //B
-    cout <<"\nPart B" <<endl;
+    cout <<"\nPart B" << endl;
     BinomialQueue<int> input_queue1;
     TestTime(input_filename,TestFlagZero,input_queue1,ROUTINE_B);
     ContinualDelete(input_queue1,flag);
+    //C
+    cout << "Part C" <<  endl;
+    BinomialQueue<int> input_queue2;
+    TestTime(input_filename,TestFlagZero,input_queue2,ROUTINE_C);
+    ContinualDelete(input_queue2,flag);
+     
   } else {
+    //A
     cout <<"Part A" <<endl;
     BinomialQueue<int> input_queue;
     TestTime(input_filename, TestFlagOne, input_queue, ROUTINE_A);
@@ -128,6 +139,11 @@ int main(int argc, char **argv) {
     BinomialQueue<int> input_queue1;
     TestTime(input_filename, TestFlagOne, input_queue1, ROUTINE_B);
     ContinualDelete(input_queue1,flag);
+    //C
+    cout << "Part C" <<  endl; 
+    BinomialQueue<int> input_queue2;
+    TestTime(input_filename,TestFlagOne,input_queue2,ROUTINE_C);
+    ContinualDelete(input_queue2,flag);
 
   }
   //TestTime(input_filename, flag);

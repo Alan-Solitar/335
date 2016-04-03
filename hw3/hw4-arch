@@ -1,0 +1,24 @@
+int g=0; /*global variable*/
+
+int main() {
+     int u= fib(3);
+     printf("%d",g); /*print the number of times you called fib */
+} 
+
+int fib(int n){
+     g+=1 /*increase global variable every time you have a funtion call */
+     if (n==0)
+       return 0;
+    else if (n==1)
+       return 1;
+    else 
+       return fib(n-1) +fib(n-2);
+}
+
+#global scope
+addi gp gp,4;
+addi t0, zero, 1
+sw 0, 0(t0)
+
+#start main
+t0 

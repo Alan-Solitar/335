@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "dsexceptions.h"
+#include "math.h"
 using namespace std;
 
 // Binomial queue class
@@ -87,7 +88,15 @@ class BinomialQueue {
     BinomialQueue one_item_queue{std::move(x)}; 
     Merge(one_item_queue); 
   }
+   void InsertMerge2(const Comparable & x) { 
+    BinomialQueue one_item_queue{x}; 
+    MergeTwo(one_item_queue); 
+  }
 
+  void InsertMerge2(Comparable && x) { 
+    BinomialQueue one_item_queue{std::move(x)}; 
+    MergeTwo(one_item_queue); 
+  }
 
   void InsertEfficiently(const Comparable & x) {
     /*
@@ -138,38 +147,26 @@ class BinomialQueue {
 
     current_size_+=1;
     int i = 0;
-
     if (current_size_ > Capacity()) {
-
       int old_number_of_trees = the_trees_.size();
-
       int new_number_of_trees = the_trees_.size()*2;
-
       the_trees_.resize(new_number_of_trees);
 
       for (int i = old_number_of_trees; i < new_number_of_trees; ++i) {
-
         the_trees_[i] = nullptr;
       }
 
-      }
-
-    //BinomialNode *carry = nullptr;
+    }
 
     BinomialNode *t1 = nullptr;
-
     BinomialNode *t2 = one_item_queue.the_trees_[0];
-
     while(the_trees_[i]!=nullptr) {
-
         t2 = CombineTrees(t2,the_trees_[i]);
         the_trees_[i]= nullptr;
         ++i;
-      }
-
+    }
     the_trees_[i] = t2;
     one_item_queue.the_trees_[0] = nullptr;
-
   }
 
   void InsertEfficiently(const Comparable && x) {
@@ -232,7 +229,7 @@ class BinomialQueue {
       int new_number_of_trees = max(the_trees_.size(), rhs.the_trees_.size()) + 1;
       the_trees_.resize(new_number_of_trees);
       for (int i = old_number_of_trees; i < new_number_of_trees; ++i)
-	the_trees_[i] = nullptr;
+        the_trees_[i] = nullptr;
     }
 
     BinomialNode *carry = nullptr;
@@ -245,7 +242,7 @@ class BinomialQueue {
       which_case += t2 == nullptr ? 0 : 2;
       which_case += carry == nullptr ? 0 : 4;
       
-      switch (which_case) {
+    switch (which_case) {
       case 0:  // No trees.
       case 1:  // Only this tree.
 	break;
@@ -287,7 +284,74 @@ class BinomialQueue {
     if( this == &rhs )    // Avoid aliasing problems
       return;
 
-   }
+    current_size_ += rhs.current_size_;
+
+    if (current_size_ > Capacity()) {
+      int old_number_of_trees = the_trees_.size();
+      int new_number_of_trees = max(the_trees_.size(), rhs.the_trees_.size()) + 1;
+      the_trees_.resize(new_number_of_trees);
+      for (int i = old_number_of_trees; i < new_number_of_trees; ++i)
+        the_trees_[i] = nullptr;
+    }
+
+    BinomialNode *carry = nullptr;
+    int rhs_size_counter = rhs.current_size_;
+
+    for (int i = 0, j = 1; j <= current_size_; ++i, j *= 2) {
+
+      if(carry == nullptr && rhs_size_counter==0) {
+        cout<<"breaking"<<endl;
+        break;
+      }
+
+      BinomialNode *t1 = the_trees_[i];
+      BinomialNode *t2 = i < rhs.the_trees_.size() ? rhs.the_trees_[ i ] : nullptr;
+      
+      int which_case = t1 == nullptr ? 0 : 1;
+      which_case += t2 == nullptr ? 0 : 2;
+      which_case += carry == nullptr ? 0 : 4;
+      
+    switch (which_case) {
+      case 0:  // No trees.
+      case 1:  // Only this tree.
+  break;
+      case 2:  // Only rhs tree.
+  the_trees_[i] = t2;
+  rhs.the_trees_[i] = nullptr;
+  rhs_size_counter=-pow(2,i);
+  break;
+      case 4:  // Only carry tree.
+  the_trees_[i] = carry;
+  carry = nullptr;
+  break;
+      case 3:  // this and rhs trees.
+  carry = CombineTrees(t1, t2);
+  the_trees_[i] = rhs.the_trees_[i] = nullptr;
+  rhs_size_counter-=pow(2,i);
+  break;
+      case 5:  // this and carry trees.
+  carry = CombineTrees(t1, carry);
+  the_trees_[i] = nullptr;
+  break;
+      case 6:  // rhs and carry trees.
+  carry = CombineTrees(t2, carry);
+  rhs.the_trees_[i] = nullptr;
+  rhs_size_counter-=pow(2,i);
+  break;
+      case 7: // this, rhs and carry trees.
+  the_trees_[i] = carry;
+  carry = CombineTrees(t1, t2);
+  rhs.the_trees_[i] = nullptr;
+  rhs_size_counter-=pow(2,i);
+  break;
+      }
+    }
+    
+    // Invalidate rhs tree.
+    for (auto & root : rhs.the_trees_)
+      root = nullptr;
+    rhs.current_size_ = 0;
+  }
 
   private:
   struct BinomialNode {
