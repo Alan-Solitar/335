@@ -6,7 +6,7 @@
 #include <chrono>
 
 using namespace std;
-enum Routine {ROUTINE_A,ROUTINE_B, ROUTINE_C};
+enum Routine {ROUTINE_A,ROUTINE_B, ROUTINE_C, ROUTINE_GENERAL};
 
 void TestFlagZero(const string input_filename, BinomialQueue<int> &q, Routine r) {
 
@@ -32,26 +32,46 @@ void TestFlagZero(const string input_filename, BinomialQueue<int> &q, Routine r)
 }
 
 
-void ContinualDelete(BinomialQueue<int> &q, int flag) {
-    int num=0;
-    //cout << "flag is " <<flag;
-    if(flag==0) {
-      while(!q.IsEmpty()) {
-        num = q.FindMin();
-        q.DeleteMin();
-        cout << "Deleted " <<num<<endl;
-     }
-    } else {
-      int i=0, counter=10;
-        while(i++ < counter) {
-        if(!q.IsEmpty()) {
+void ContinualDelete(BinomialQueue<int> &q, int flag, Routine r = ROUTINE_GENERAL) {
+  int num=0;
+  if(r ==ROUTINE_GENERAL) {
+      if(flag==0) {
+        while(!q.IsEmpty()) {
+          num = q.FindMin();
           q.DeleteMin();
-          num= q.FindMin();
           cout << "Deleted " <<num<<endl;
-      }
-      }
-     } 
+          }
+      } else {
+        int i=0, counter=10;
+        while(i++ < counter) {
+          if(!q.IsEmpty()) {
+            q.DeleteMin();
+            num= q.FindMin();
+            cout << "Deleted " <<num<<endl;
+          }
+        }
+      } 
+    } else if (r==ROUTINE_C) {
+      if(flag==0) {
+          while(!q.IsEmpty()) {
+          num = q.FindMin();
+          q.DeleteMinTwo();
+          cout << "Deleted " <<num<<endl;
+          }
+      } else {
+        int i=0, counter=10;
+        while(i++ < counter) {
+          if(!q.IsEmpty()) {
+            q.DeleteMinTwo();
+            num= q.FindMin();
+            cout << "Deleted " <<num<<endl;
+          }
+        }
+      } 
+
+
     }
+}
    
 void TestFlagOne(const string input_filename, BinomialQueue<int> &q, Routine r) {
   string line; 

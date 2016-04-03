@@ -99,53 +99,10 @@ class BinomialQueue {
   }
 
   void InsertEfficiently(const Comparable & x) {
-    /*
-    ++current_size_;
-      if (current_size_ > Capacity()) {
-        size_t old_number_of_trees = the_trees_.size();
-        the_trees_.resize(old_number_of_trees*2);
-        for (size_t i = old_number_of_trees; i < old_number_of_trees*2; ++i)
-          the_trees_[i] = nullptr;
-      }
-    BinomialNode *item_to_insert = new BinomialNode{x, nullptr, nullptr};
-  int i = 0;
-  while (the_trees_[i] != nullptr) {
-    item_to_insert = CombineTrees(item_to_insert, the_trees_[i]);
-    the_trees_[i] = nullptr;
-    ++i;
-  }
-  the_trees_[i] = item_to_insert;
-*/
-    
-   // BinomialQueue one_item_queue{x}; 
-  /*
-    ++current_size_;
-    if (current_size_ > Capacity()) {
-      size_t old_number_of_trees = the_trees_.size();
-      size_t new_number_of_trees = the_trees_.size()*2;
-      the_trees_.resize(new_number_of_trees);
-      for (size_t i = old_number_of_trees; i < new_number_of_trees; ++i) {
-        the_trees_[i] = nullptr;
-      }
-
-
-    BinomialNode *t2 = new BinomialNode{x, nullptr, nullptr};
-    for(int i=0 ;i<the_trees_.size();i++) {
-      if(the_trees_[i]==nullptr) {
-        the_trees_[i] = t2;
-        break;
-        cout<<"\nWill never happen"<<endl;
-      } else {
-        t2 = CombineTrees(t2,the_trees_[i]);
-        the_trees_[i]= nullptr;
-      }
-    }
-  }
-  */
 
     BinomialQueue one_item_queue{x}; 
-
     current_size_+=1;
+
     int i = 0;
     if (current_size_ > Capacity()) {
       int old_number_of_trees = the_trees_.size();
@@ -208,6 +165,37 @@ class BinomialQueue {
     Merge(deleted_queue);
   }
 
+   void DeleteMinTwo() {
+    Comparable x;
+    DeleteMin(x);
+  }
+  void DeleteMinTwo(Comparable & min_item) {
+    if (IsEmpty())
+      throw UnderflowException{};
+
+    const int min_index = FindMinIndex( );
+    min_item = the_trees_[min_index]->element_;
+
+    BinomialNode *old_root = the_trees_[min_index];
+    BinomialNode *deleted_tree = old_root->left_child_;
+    delete old_root;
+    
+    // Construct H''
+    BinomialQueue deleted_queue;
+    deleted_queue.the_trees_.resize(min_index + 1);
+    deleted_queue.current_size_ = (1 << min_index) - 1;
+    for (int j = min_index - 1; j >= 0; --j) {
+      deleted_queue.the_trees_[j] = deleted_tree;
+      deleted_tree = deleted_tree->next_sibling_;
+      deleted_queue.the_trees_[j]->next_sibling_ = nullptr;
+    }
+
+    // Construct H'
+    the_trees_[min_index] = nullptr;
+    current_size_ -= deleted_queue.current_size_ + 1;
+
+    MergeTwo(deleted_queue);
+  }
   // Make the priority queue logically empty.
   void MakeEmpty() {
     current_size_ = 0;
@@ -297,12 +285,6 @@ class BinomialQueue {
     int rhs_size_counter = rhs.current_size_;
 
     for (int i = 0, j = 1; j <= current_size_; ++i, j *= 2) {
-
-     // if(carry == nullptr && rhs_size_counter==0) {
-     //   cout<<"breaking"<<endl;
-      //  break;
-     // }
-
       BinomialNode *t1 = the_trees_[i];
       BinomialNode *t2 = i < rhs.the_trees_.size() ? rhs.the_trees_[ i ] : nullptr;
       
