@@ -84,7 +84,7 @@ void TestFlagOne(const string input_filename, BinomialQueue<int> &q, Routine r) 
   BinomialQueue<int> bq1;
   BinomialQueue<int> bq2;
   if(r==ROUTINE_A) {
-    for(size_t i=0; i <number_of_lines/4; ++i) {
+    for(int i=0; i <number_of_lines/4; ++i) {
       reader >> num;
       bq1.Insert(num);
     }
@@ -94,7 +94,7 @@ void TestFlagOne(const string input_filename, BinomialQueue<int> &q, Routine r) 
     bq1.Merge(bq2);
     q = bq1;
   } else if (r==ROUTINE_B) {
-    for(size_t i=0; i <number_of_lines/4; ++i) {
+    for(int i=0; i <number_of_lines/4; ++i) {
       reader >> num;
       bq1.InsertEfficiently(num);
     }
@@ -105,7 +105,7 @@ void TestFlagOne(const string input_filename, BinomialQueue<int> &q, Routine r) 
     q = bq1;
 
   } else {
-     for(size_t i=0; i <number_of_lines/4; ++i) {
+     for(int i=0; i <number_of_lines/4; ++i) {
       reader >> num;
       bq1.InsertMerge2(num);
     }
