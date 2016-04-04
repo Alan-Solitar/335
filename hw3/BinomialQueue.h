@@ -274,6 +274,9 @@ class BinomialQueue {
     if( this == &rhs )    // Avoid aliasing problems
       return;
 
+    if(current_size_ <rhs.current_size_) {
+      std::swap(*this,rhs);
+    }
     current_size_ += rhs.current_size_;
 
     if (current_size_ > Capacity()) {

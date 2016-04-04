@@ -29,6 +29,7 @@ void TestFlagZero(const string input_filename, BinomialQueue<int> &q, Routine r)
     }
 
   }
+  reader.close();
 }
 
 
@@ -119,6 +120,7 @@ void TestFlagOne(const string input_filename, BinomialQueue<int> &q, Routine r) 
     bq2.MergeTwo(bq1);
     q = bq2; 
     }
+    reader.close();
 }
 //will call any function passed to it
 template<typename function>
