@@ -115,7 +115,6 @@ class BinomialQueue {
 
     }
 
-    BinomialNode *t1 = nullptr;
     BinomialNode *t2 = one_item_queue.the_trees_[0];
     while(the_trees_[i]!=nullptr) {
         t2 = CombineTrees(t2,the_trees_[i]);
@@ -282,12 +281,19 @@ class BinomialQueue {
     }
 
     BinomialNode *carry = nullptr;
+    //counter to keep track of elements in rhs
     int rhs_size_counter = rhs.current_size_;
 
     for (int i = 0, j = 1; j <= current_size_; ++i, j *= 2) {
       BinomialNode *t1 = the_trees_[i];
       BinomialNode *t2 = i < rhs.the_trees_.size() ? rhs.the_trees_[ i ] : nullptr;
       
+      //if rhs has no elements(no more trees) and carry is nullptr 
+      //we can stop merging
+      if(carry==nullptr && rhs_size_counter==0 ) {
+        break;
+        cout << "break" <<endl;
+      }
       int which_case = t1 == nullptr ? 0 : 1;
       which_case += t2 == nullptr ? 0 : 2;
       which_case += carry == nullptr ? 0 : 4;
