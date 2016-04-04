@@ -102,6 +102,7 @@ class BinomialQueue {
 
   void InsertEfficiently(const Comparable & x) {
 
+    //create a one_item_queue;
     BinomialQueue one_item_queue{x}; 
     current_size_+=1;
 
@@ -116,15 +117,16 @@ class BinomialQueue {
       }
 
     }
-
     BinomialNode *t2 = one_item_queue.the_trees_[0];
+    //if nullptr, we can place it. Otherwise, we must combine trees
     while(the_trees_[i]!=nullptr) {
         t2 = CombineTrees(t2,the_trees_[i]);
         the_trees_[i]= nullptr;
         ++i;
     }
+    //place the tree
     the_trees_[i] = t2;
-    one_item_queue.the_trees_[0] = nullptr;
+    one_item_queue.the_trees_[0] = t2 = nullptr;
   }
 
   void InsertEfficiently(const Comparable && x) {
@@ -168,7 +170,7 @@ class BinomialQueue {
 
    void DeleteMinTwo() {
     Comparable x;
-    DeleteMin(x);
+    DeleteMinTwo(x);
   }
   void DeleteMinTwo(Comparable & min_item) {
     if (IsEmpty())

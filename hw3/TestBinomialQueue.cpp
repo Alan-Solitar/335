@@ -83,6 +83,7 @@ void TestFlagOne(const string input_filename, BinomialQueue<int> &q, Routine r) 
   reader.seekg(0,ios::beg);
   BinomialQueue<int> bq1;
   BinomialQueue<int> bq2;
+  //Part A
   if(r==ROUTINE_A) {
     for(int i=0; i <number_of_lines/4; ++i) {
       reader >> num;
@@ -93,6 +94,7 @@ void TestFlagOne(const string input_filename, BinomialQueue<int> &q, Routine r) 
     } 
     bq1.Merge(bq2);
     q = bq1;
+    //Part B
   } else if (r==ROUTINE_B) {
     for(int i=0; i <number_of_lines/4; ++i) {
       reader >> num;
@@ -104,7 +106,9 @@ void TestFlagOne(const string input_filename, BinomialQueue<int> &q, Routine r) 
     bq1.Merge(bq2);
     q = bq1;
 
+    //Part c
   } else {
+
      for(int i=0; i <number_of_lines/4; ++i) {
       reader >> num;
       bq1.InsertMerge2(num);
@@ -116,7 +120,7 @@ void TestFlagOne(const string input_filename, BinomialQueue<int> &q, Routine r) 
     q = bq2; 
     }
 }
-
+//will call any function passed to it
 template<typename function>
 void TestTime(const string input_filename, function func, BinomialQueue<int> &q,Routine r) {
   cout << "Test Timing" << endl;

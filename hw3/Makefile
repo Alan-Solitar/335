@@ -67,9 +67,35 @@ run1double:
 run1chaining: 	
 		./$(PROGRAM_0) words.txt query_words.txt chaining
 
+run0binomial5:
+		./$(PROGRAM_1) 5_numbers.txt 0
 
+run0binomial20:
+		./$(PROGRAM_1) 20_numbers.txt 0
 
+run0binomial100:
+		./$(PROGRAM_1) 100_numbers.txt 0
 
+run0binomial1000:
+		./$(PROGRAM_1) 1000_numbers.txt 0
+
+run0binomial10000:
+		./$(PROGRAM_1) 10000_numbers.txt 0
+
+run1binomial5:
+		./$(PROGRAM_1) 5_numbers.txt 1
+
+run1binomial20:
+		./$(PROGRAM_1) 20_numbers.txt 1
+
+run1binomial100:
+		./$(PROGRAM_1) 100_numbers.txt 1
+
+run1binomial1000:
+		./$(PROGRAM_1) 1000_numbers.txt 1
+
+run1binomial10000:
+		./$(PROGRAM_1) 10000_numbers.txt 1
 
 #Clean obj files
 
