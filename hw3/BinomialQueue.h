@@ -24,7 +24,9 @@ using namespace std;
 template <typename Comparable>
 class BinomialQueue {
  public:
-  
+  int getSize() {
+    return current_size_;
+  }  
   // Default constructor.
   BinomialQueue(): the_trees_(1) {
     for (auto & root : the_trees_)

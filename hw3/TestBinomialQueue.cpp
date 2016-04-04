@@ -43,9 +43,10 @@ void ContinualDelete(BinomialQueue<int> &q, int flag, Routine r = ROUTINE_GENERA
           }
       } else {
         int i=0, counter=10;
+        cout <<"Size: " <<q.getSize()<<endl;
         while(i++ < counter && !q.IsEmpty()) {
-            q.DeleteMin();
             num= q.FindMin();
+            q.DeleteMin();
             cout << "Deleted " <<num<<endl;
         }
       } 
@@ -57,10 +58,11 @@ void ContinualDelete(BinomialQueue<int> &q, int flag, Routine r = ROUTINE_GENERA
           cout << "Deleted " <<num<<endl;
           }
       } else {
+        cout<< q.getSize();
         int i=0, counter=10;
         while(i++ < counter && !q.IsEmpty()) {
-            q.DeleteMinTwo();
             num= q.FindMin();
+            q.DeleteMinTwo();
             cout << "Deleted " <<num<<endl;
         }
       } 
