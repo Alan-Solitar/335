@@ -16,12 +16,15 @@ int fib(int n){
 }
 
 #global scope
-addi gp gp,4;
 addi t0, zero, 1
-sw 0, 0(t0)
+sw $zero, 0(t0)
 
 #start main
-t0
+
+addi a0, a0, 3 
+jal fib
+addi S0, $zero, v0
+
 #if
 bne a0 zero elif
 addi v0 0

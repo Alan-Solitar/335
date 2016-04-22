@@ -1,0 +1,35 @@
+1a). This describes words that start with an a, and any number of a's or b's following'
+a(a+b)*
+1b). All words with at least two a's.
+1C). string with alternating strings of a's and b's of one or more
+
+2a).ab*
+S->aB
+B->bB|E
+
+2b).a*b*
+S->AB
+A->aA|E
+B->bB|E
+
+2C).(baa+abb)*
+S->X
+X->XX|baa|abb|E|
+
+2D).ab(bb*+aab)*
+S->abX
+X->aab|bY|E
+Y->bY|E
+
+3.(a+b)*baa(a+b)*+ a(a+b)*
+
+4. Language with words with more a's than b's
+S->aSbS|bSaS|E
+
+S->aS|SA|aX|Xa
+X->aXbX|bXaX|E
+
+5. 
+S->ABS|(ABS)|(ABS)*|E
+A-> a|b|e
+B-> +|*|e
