@@ -12,7 +12,7 @@ class DoubleHashTable: public HashTable<HashedObj> {
 protected:
 
 int FindPos(const HashedObj & x) override {
-  int R=7;
+  int R=13; //13 worked the best in my tests
   int offset = hash2(x,R);
   int current_pos = this->InternalHash(x);
   this->number_probes_=1;
@@ -30,10 +30,6 @@ int FindPos(const HashedObj & x) override {
 }
 private:
 	int hash2(const string &key, int R) {
-		//size_t hash_value = 0;
-		//for (char ch : key)
-		//hash_value = 37 * hash_value + ch;
-		//return 7 - hash_value %7;
     static hash<HashedObj> hf;
     return R - (hf(key) % R);
 	}

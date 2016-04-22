@@ -29,6 +29,7 @@ void TestFlagZero(const string input_filename, BinomialQueue<int> &q, Routine r)
     }
 
   }
+  reader.close();
 }
 
 
@@ -43,9 +44,10 @@ void ContinualDelete(BinomialQueue<int> &q, int flag, Routine r = ROUTINE_GENERA
           }
       } else {
         int i=0, counter=10;
+        cout <<"Size: " <<q.getSize()<<endl;
         while(i++ < counter && !q.IsEmpty()) {
-            q.DeleteMin();
             num= q.FindMin();
+            q.DeleteMin();
             cout << "Deleted " <<num<<endl;
         }
       } 
@@ -57,10 +59,11 @@ void ContinualDelete(BinomialQueue<int> &q, int flag, Routine r = ROUTINE_GENERA
           cout << "Deleted " <<num<<endl;
           }
       } else {
+        cout<< q.getSize();
         int i=0, counter=10;
         while(i++ < counter && !q.IsEmpty()) {
-            q.DeleteMinTwo();
             num= q.FindMin();
+            q.DeleteMinTwo();
             cout << "Deleted " <<num<<endl;
         }
       } 
@@ -81,8 +84,9 @@ void TestFlagOne(const string input_filename, BinomialQueue<int> &q, Routine r) 
   reader.seekg(0,ios::beg);
   BinomialQueue<int> bq1;
   BinomialQueue<int> bq2;
+  //Part A
   if(r==ROUTINE_A) {
-    for(size_t i=0; i <number_of_lines/4; ++i) {
+    for(int i=0; i <number_of_lines/4; ++i) {
       reader >> num;
       bq1.Insert(num);
     }
@@ -91,8 +95,9 @@ void TestFlagOne(const string input_filename, BinomialQueue<int> &q, Routine r) 
     } 
     bq1.Merge(bq2);
     q = bq1;
+    //Part B
   } else if (r==ROUTINE_B) {
-    for(size_t i=0; i <number_of_lines/4; ++i) {
+    for(int i=0; i <number_of_lines/4; ++i) {
       reader >> num;
       bq1.InsertEfficiently(num);
     }
@@ -102,8 +107,10 @@ void TestFlagOne(const string input_filename, BinomialQueue<int> &q, Routine r) 
     bq1.Merge(bq2);
     q = bq1;
 
+    //Part c
   } else {
-     for(size_t i=0; i <number_of_lines/4; ++i) {
+
+     for(int i=0; i <number_of_lines/4; ++i) {
       reader >> num;
       bq1.InsertMerge2(num);
     }
@@ -113,8 +120,9 @@ void TestFlagOne(const string input_filename, BinomialQueue<int> &q, Routine r) 
     bq2.MergeTwo(bq1);
     q = bq2; 
     }
+    reader.close();
 }
-
+//will call any function passed to it
 template<typename function>
 void TestTime(const string input_filename, function func, BinomialQueue<int> &q,Routine r) {
   cout << "Test Timing" << endl;
