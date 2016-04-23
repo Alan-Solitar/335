@@ -11,8 +11,16 @@ void CreateGraph(AdjacencyList graph, const string &words_filename {
   int num_vertices=0;
   reader >>num_vertices;
   graph.CreateVertices(num_vertices);
+  int vertex_label=0;
   while(getline(reader,line)) {
     sstream stream(line);
+    int vertex_label << stream;
+    int adj_vertex_label;
+    int edge_weight;
+    while(adj_vertex_label << stream) {
+    	edge_weight << stream;
+    } 
+
   }
   reader.close();
 }
