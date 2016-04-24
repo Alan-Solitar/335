@@ -3,6 +3,7 @@
 #include <utility>
 #include <vector>
 #include "AdjacencyList.h"
+
 using namespace std;
 
 class Vertex {
@@ -14,7 +15,7 @@ private:
 	bool visited_;
 	bool known_;
 public:
-	bool add_edge(Vertex *, double weight);
+	bool AddEdge(Vertex *, double weight);
 
 
 };

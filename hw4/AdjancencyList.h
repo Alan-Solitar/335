@@ -11,7 +11,7 @@ private:
 	vector<Vertex> vertices_;
 public:
 	void CreateVertices(int num_vertices);
-	void add_edge(int vertex_label, double weight);
+	void AddEdge(int vertex_label, double weight);
 	
 };
 

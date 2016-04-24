@@ -3,6 +3,6 @@
 Vertex::Vertex() {
 	
 }
-bool add_edge(Vertex * vertex, double weight) {
+bool AddEdge(Vertex * vertex, double weight) {
 	pair<Vertex *, double> edge(vertex, weight);
 }
