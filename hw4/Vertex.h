@@ -1,5 +1,6 @@
 #ifndef VERTEX_H
-#define AVERTEX_H
+#define VERTEX_H
+
 #include <utility>
 #include <vector>
 #include "AdjacencyList.h"
@@ -16,7 +17,7 @@ private:
 	bool known_;
 public:
 	bool AddEdge(Vertex *, double weight);
-
+	void setLabel(int label);
 
 };
 

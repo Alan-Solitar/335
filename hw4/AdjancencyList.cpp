@@ -2,7 +2,7 @@
 
 void AdjacenyList::CreateVertices(int num_vertices) {
 	for(int i=0;i<num_vertices;++i) {
-		int* vertex = new Vertex;
+		int* vertex = new Vertex(i+1);
 		vertices_.push_back(vertex);
 	}
 
@@ -11,7 +11,7 @@ void AdjacenyList::CreateVertices(int num_vertices) {
 void AdjacencyList::AddEdge(int origin_vertex, int dest_vertex double weight) {
 	Vertex * v1 = vertices[origin_vertex-1];
 	Vertex * v2 = vertices[dest_vertex-1];
-	v1->
+	v1->AddEdge(v2, weight);
 }
 
 void AdjacencyList::CheckEdge(int origin_vertex, int dest_vertex) {
