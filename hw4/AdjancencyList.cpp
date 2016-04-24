@@ -8,13 +8,13 @@ void AdjacenyList::CreateVertices(int num_vertices) {
 
 }
 
-void AddEdge(int origin_vertex, int dest_vertex double weight) {
+void AdjacencyList::AddEdge(int origin_vertex, int dest_vertex double weight) {
 	Vertex * v1 = vertices[origin_vertex-1];
 	Vertex * v2 = vertices[dest_vertex-1];
 	v1->
 }
 
-void CheckEdge(int origin_vertex, int dest_vertex) {
+void AdjacencyList::CheckEdge(int origin_vertex, int dest_vertex) {
 	Vertex * vert = vertices_[origin_vertex + 1];
 	for(auto &i: vert->adj_) {
 		if(i.first->label_==dest_vertex) {
