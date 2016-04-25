@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include "AdjacencyList.h"
+#include "Vertex.h"
 
 using namespace std;
 
@@ -9,19 +10,16 @@ void CreateGraph(AdjacencyList &graph, const string &graph_filename) {
   ifstream reader(graph_filename);
   string line = "";
   int num_vertices=0;
-  reader >>num_vertices;
+  reader >> num_vertices;
   graph.CreateVertices(num_vertices);
-  int vertex_label=0;
+  int vertex_label, adj_vertex_label, edge_weight;
   while(getline(reader,line)) {
-    sstream stream(line);
-    int vertex_label << stream;
-    int adj_vertex_label;
-    int edge_weight;
-    while(adj_vertex_label << stream) {
-    	edge_weight << stream;
+    stringstream stream(line);
+    stream >> vertex_label;
+    while(stream >> adj_vertex_label) {
+    	stream >> edge_weight;
     	graph.AddEdge(vertex_label, adj_vertex_label,edge_weight);
     } 
-
   }
   reader.close();
 }

@@ -8,10 +8,12 @@ using namespace std;
 
 class AdjacencyList {
 private:
-	vector<Vertex> vertices_;
+	vector<Vertex* > vertices_;
 public:
 	void CreateVertices(int num_vertices);
-	void AddEdge(int vertex_label, double weight);
+	void AddEdge(int origin_vertex, int dest_vertex, double weight);
+	void CheckEdge(int origin_vertex, int dest_vertex);
+	size_t GetSize();
 	
 };
 
