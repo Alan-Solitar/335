@@ -22,6 +22,7 @@ void CreateGraph(AdjacencyList &graph, const string &graph_filename) {
     } 
   }
   reader.close();
+  cout <<"we're done creating"<<endl;
 }
 
 void QueryGraph(AdjacencyList &graph, const string &query_filename ) {
@@ -41,6 +42,7 @@ int main(int argc, char **argv) {
 	const string graph_filename = argv[1];
 	const string query_filename = argv[2];
   	AdjacencyList graph;
+  	cout <<"Start testing"<<endl;
   	CreateGraph(graph,graph_filename);
   	QueryGraph(graph,query_filename);
  }
