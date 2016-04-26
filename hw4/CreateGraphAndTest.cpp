@@ -32,11 +32,9 @@ void QueryGraph(AdjacencyList &graph, const string &query_filename ) {
 	string line = "";
 	cout <<"about to check edges"<<endl;
 
-	while(getline(reader,line)) {
-		reader >> origin_label;
+	while(reader >> origin_label) {
 		reader >> dest_label;
 		graph.CheckEdge(origin_label,dest_label);
-		cout <<"we're checking"<<endl;
 	}
 	reader.close();
 }
