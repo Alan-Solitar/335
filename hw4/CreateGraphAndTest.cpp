@@ -12,7 +12,8 @@ void CreateGraph(AdjacencyList &graph, const string &graph_filename) {
   int num_vertices=0;
   reader >> num_vertices;
   graph.CreateVertices(num_vertices);
-  int vertex_label, adj_vertex_label, edge_weight;
+  int vertex_label, adj_vertex_label;
+  double edge_weight;
   while(getline(reader,line)) {
     stringstream stream(line);
     stream >> vertex_label;
@@ -28,9 +29,14 @@ void CreateGraph(AdjacencyList &graph, const string &graph_filename) {
 void QueryGraph(AdjacencyList &graph, const string &query_filename ) {
 	ifstream reader(query_filename);
 	int origin_label, dest_label;
-	while(reader >> origin_label) {
+	string line = "";
+	cout <<"about to check edges"<<endl;
+
+	while(getline(reader,line)) {
+		reader >> origin_label;
 		reader >> dest_label;
 		graph.CheckEdge(origin_label,dest_label);
+		cout <<"we're checking"<<endl;
 	}
 	reader.close();
 }

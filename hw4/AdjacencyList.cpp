@@ -18,10 +18,16 @@ void AdjacencyList::AddEdge(int origin_vertex, int dest_vertex, double weight) {
 
 void AdjacencyList::CheckEdge(int origin_vertex, int dest_vertex) {
 	Vertex * vert = vertices_[origin_vertex + 1];
+	bool edge_found = false;
 	for(auto &i: vert->adj_) {
 		if(i.first->label_==dest_vertex) {
-			cout << "Edge Exists: Weight = " << i.second << endl;
+			edge_found = true;
+			cout << "Edge " <<origin_vertex << " " <<dest_vertex <<
+				"Found: Weight = " << i.second << endl;
 		}
+	}
+	if(!edge_found) {
+		cout << "Edge " <<origin_vertex << " " <<dest_vertex << " Not Found";
 	}
 }
 
