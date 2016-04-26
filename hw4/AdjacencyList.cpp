@@ -17,7 +17,7 @@ void AdjacencyList::AddEdge(int origin_vertex, int dest_vertex, double weight) {
 }
 
 void AdjacencyList::CheckEdge(int origin_vertex, int dest_vertex) {
-	Vertex * vert = vertices_[origin_vertex + 1];
+	Vertex * vert = vertices_[origin_vertex - 1];
 	bool edge_found = false;
 	for(auto &i: vert->adj_) {
 		if(i.first->label_==dest_vertex) {
