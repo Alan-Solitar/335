@@ -12,8 +12,10 @@ friend class AdjacencyList;
 private:
 	vector<pair<Vertex *, double>> adj_;
 	int label_;
+	double distance;
 	bool visited_;
-	bool known_;
+	bool distance_known_;
+
 public:
 	Vertex(int label);
 	bool AddEdge(Vertex * vertex, double weight);

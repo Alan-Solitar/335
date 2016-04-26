@@ -34,3 +34,10 @@ void AdjacencyList::CheckEdge(int origin_vertex, int dest_vertex) {
 size_t AdjacencyList::GetSize() {
 	return vertices_.size();
 }
+
+void AdjacencyList::Dijstra(int starting_vertex, int dest_vertex) {
+	Vertex* current = vertices_[starting_vertex-1];
+	for( auto &i:vert->adj_) {
+		
+	}
+}
