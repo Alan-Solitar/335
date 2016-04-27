@@ -9,7 +9,12 @@
 
 
 Dijkstra(int starting_vertex, AdjacencyList &graph ) {
-	
+	priority_queue<Vertex *> vertex_queue;
+	Vertex* current = vertices_[starting_vertex-1];
+	if(Size()==0) {
+		//do something
+	}
+
 
 }
 RunAll() {
