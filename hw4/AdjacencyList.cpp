@@ -61,23 +61,13 @@ for(; ;) {
 if(!sucess) break;  
 
 	for(auto &i: v->adj_) {
-		if(v.distance_) {
+		if(v.distance_ + i.second < i.distance_) {
 			i.first->distance_ = v.distance_ + i.second; 
+			vertex_queue.insert(i);
 		}
-
 	}
-
-
-
 }
-
-
-	bool found_known = false;    
-while(!P.isEmpty()&& !found_known) {
-	v=P.deleteMin();    
-    if(!v.known)   
-     success=true;    
-}    
+       
 if(!found_known) break;    
 
 Vertex* AdjacencyList::FindMinDistVertex() {

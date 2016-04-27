@@ -12,9 +12,10 @@ friend class AdjacencyList;
 private:
 	vector<pair<Vertex *, double>> adj_;
 	int label_;
-	double distance;
+	double distance_;
 	bool visited_;
 	bool distance_known_;
+	Vertex * previous_;
 
 public:
 	Vertex(int label);
