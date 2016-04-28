@@ -29,3 +29,7 @@ void Vertex::ResetVertexBools() {
 	visited_=false;
 	previous_ = nullptr;
 }
+
+void bool operator >(const Vertex &other) {
+	return distance_ > other.distance_;
+}

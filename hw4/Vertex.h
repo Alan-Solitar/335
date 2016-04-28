@@ -23,6 +23,7 @@ public:
 	void SetVisted();
 	void SetKnown();
 	void ResetVertexBools();
+	bool operator >(const Vertex &other);
 
 };
 
