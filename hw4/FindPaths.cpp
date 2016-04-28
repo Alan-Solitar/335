@@ -1,5 +1,4 @@
 #include "AdjacencyList.h"
-#include "Vertex.h"
 #include <queue>
 #include <fstream>
 #include <sstream>

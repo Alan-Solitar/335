@@ -50,36 +50,37 @@ void AdjacencyList::Dijkstras(int starting_vertex, int dest_vertex) {
 	start->distance_known_=true;
 
 	priority_queue<Vertex*> vertex_queue;
-	vertex_queue.push(starting_vertex);
+	vertex_queue.push(start);
 	
 	for(; ;) {
 		Vertex * v;
 		//find smallest unkown distance vertex
 		bool success = false;    
 		while(!vertex_queue.empty() && !success) {
-		v=vertex_queue.pop();    
+		v=vertex_queue.top();
+		vertex_queue.pop();    
 		if(!v->distance_known_)   
 		success=true;    
 		}    
 		if(!success) break;  
 
 		for(auto &i: v->adj_) {
-			if(v.distance_ + i.second < i.distance_) {
-				i.first->distance_ = v.distance_ + i.second; 
-				vertex_queue.push(i);
+			if(v->distance_ + i.second < i.first->distance_) {
+				i.first->distance_ = v->distance_ + i.second; 
+				vertex_queue.push(i.first);
 			}
 		}
 	}  
 	PrintPath(starting_vertex,dest_vertex);
 }
-void AdjacencyList::PrintPath(int starting_vertex, dest_vertex) {
+void AdjacencyList::PrintPath(int starting_vertex, int dest_vertex) {
 	vector<int> path;
-	Vertex current = vertices_[dest_vertex-1];
-	path.push(dest_vertex);
+	Vertex * current = vertices_[dest_vertex-1];
+	path.push_back(dest_vertex);
 	while(current->label_ != starting_vertex) {
-		path.push(current->label);
+		path.push_back(current->label_);
 		cout << current->label_;
-		current = current->previous;
+		current = current->previous_;
 	}
 	cout << endl;
 	

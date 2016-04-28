@@ -24,7 +24,7 @@ void Vertex::SetVisted() {
 void Vertex::SetKnown() {
 	distance_known_=true;
 }
-void ResetVertexBools() {
+void Vertex::ResetVertexBools() {
 	distance_known_=false;
 	visited_=false;
 	previous_ = nullptr;

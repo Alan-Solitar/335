@@ -22,7 +22,7 @@ public:
 	bool AddEdge(Vertex * vertex, double weight);
 	void SetVisted();
 	void SetKnown();
-	//void setLabel(int label);
+	void ResetVertexBools();
 
 };
 

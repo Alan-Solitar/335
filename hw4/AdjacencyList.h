@@ -19,6 +19,7 @@ public:
 	void AddEdge(int origin_vertex, int dest_vertex, double weight);
 	void CheckEdge(int origin_vertex, int dest_vertex);
 	void Dijkstras(int starting_vertex, int dest_vertex);
+	void PrintPath(int starting_vertex, int dest_vertex);
 	size_t GetSize();
 	
 };
