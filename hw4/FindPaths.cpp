@@ -8,17 +8,15 @@
 
 
 //Run Dijktras on a graph for all destination vertices
-RunDijkstras(AdjacencyList &graph, int starting_vertex ) {
-	priority_queue<Vertex *> vertex_queue;
-	Vertex* current = vertices_[starting_vertex-1];
-	int size = graph.Size();
-	if(size == 0 {
+void RunDijkstras(AdjacencyList &graph, int starting_vertex ) {
+	int size = graph.GetSize();
+	if(size == 0) {
 		cout << "Graph is empty: Please create a graph before running Dijkstras" << endl;
 	} 
 	else {
 		for(int i=1;i<=size;++i) {
 			//i is destination vertex
-			graph.Dijkstras(starting_vertex, i)
+			graph.Dijkstras(starting_vertex, i);
 		}
 
 	}

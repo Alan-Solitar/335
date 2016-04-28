@@ -1,5 +1,7 @@
 #include "AdjacencyList.h"
 #include <iostream>
+#include <queue>
+
 
 using namespace std;
 void AdjacencyList::CreateVertices(int num_vertices) {
@@ -38,33 +40,34 @@ size_t AdjacencyList::GetSize() {
 void AdjacencyList::Dijkstras(int starting_vertex, int dest_vertex) {
 	//initialize all vertices
 	for(auto &i:vertices_) {
-		i.visited_=false;
-		i.distance=INFINITY;
+		i->visited_=false;
+		i->distance_=INFINITY;
 	}
 	Vertex* start = vertices_[starting_vertex-1];
 	//need some sort of outer loop
-	start->distance = 0;
+	start->distance_ = 0;
 	start->visited_=true;
 	start->distance_known_=true;
 
 	priority_queue<Vertex*> vertex_queue;
-	vertex_queue.insert(starting_vertex);
+	vertex_queue.push(starting_vertex);
 	
 for(; ;) {
-	Vertex v*;
+	Vertex * v;
 	//find smallest unkown distance vertex
 	bool success = false;    
-	while(!vertex_queue.isEmpty()&& !success) {
-	v=vertex_queue.deleteMin();    
+	while(!vertex_queue.empty() && !success) {
+	v=vertex_queue.pop();    
     if(!v->distance_known_)   
      success=true;    
 }    
-if(!sucess) break;  
+if(!success) break;  
 
 	for(auto &i: v->adj_) {
 		if(v.distance_ + i.second < i.distance_) {
 			i.first->distance_ = v.distance_ + i.second; 
-			vertex_queue.insert(i);
+			vertex_queue.push(i);
 		}
 	}
 }  
+}
