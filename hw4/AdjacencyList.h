@@ -11,6 +11,7 @@ using namespace std;
 class AdjacencyList {
 private:
 	vector<Vertex* > vertices_;
+	void PrintPath();
 	
 public:
 	const static int INFINITY = numeric_limits<int>::max();
