@@ -35,7 +35,7 @@ size_t AdjacencyList::GetSize() {
 	return vertices_.size();
 }
 
-void AdjacencyList::Dijkstra(int starting_vertex, int dest_vertex) {
+void AdjacencyList::Dijkstras(int starting_vertex, int dest_vertex) {
 	//initialize all vertices
 	for(auto &i:vertices_) {
 		i.visited_=false;
@@ -68,7 +68,3 @@ if(!sucess) break;
 		}
 	}
 }  
-
-Vertex* AdjacencyList::FindMinDistVertex() {
-
-}

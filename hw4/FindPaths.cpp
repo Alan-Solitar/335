@@ -7,19 +7,24 @@
 #include <stdlib.h>
 
 
-
-Dijkstra(int starting_vertex, AdjacencyList &graph ) {
+//Run Dijktras on a graph for all destination vertices
+RunDijkstras(AdjacencyList &graph, int starting_vertex ) {
 	priority_queue<Vertex *> vertex_queue;
 	Vertex* current = vertices_[starting_vertex-1];
-	if(Size()==0) {
-		//do something
+	int size = graph.Size();
+	if(size == 0 {
+		cout << "Graph is empty: Please create a graph before running Dijkstras" << endl;
+	} 
+	else {
+		for(int i=1;i<=size;++i) {
+			//i is destination vertex
+			graph.Dijkstras(starting_vertex, i)
+		}
+
 	}
-
-
 }
-RunAll() {
 
-}
+//Create graph object from file
 void CreateGraph(AdjacencyList &graph, const string &graph_filename) {
   ifstream reader(graph_filename);
   string line = "";
@@ -48,5 +53,6 @@ int main(int argc, char **argv) {
 	const string graph_filename = argv[1];
 	const int starting_vertex = atoi(argv[2]);
 	AdjacencyList graph;
-	cout << AdjacencyList::INFINITY;
+	CreateGraph(graph, graph_filename);
+	RunDijkstras(graph,starting_vertex);
 }

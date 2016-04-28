@@ -17,7 +17,7 @@ public:
 	void CreateVertices(int num_vertices);
 	void AddEdge(int origin_vertex, int dest_vertex, double weight);
 	void CheckEdge(int origin_vertex, int dest_vertex);
-	void Dijstra(int starting_vertex, int dest_vertex);
+	void Dijkstras(int starting_vertex, int dest_vertex);
 	size_t GetSize();
 	
 };
