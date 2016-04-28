@@ -36,22 +36,23 @@ size_t AdjacencyList::GetSize() {
 }
 
 void AdjacencyList::Dijkstra(int starting_vertex, int dest_vertex) {
-
+	//initialize all vertices
 	for(auto &i:vertices_) {
 		i.visited_=false;
 		i.distance=INFINITY;
 	}
-	Vertex* current = vertices_[starting_vertex-1];
+	Vertex* start = vertices_[starting_vertex-1];
 	//need some sort of outer loop
-	current->distance = 0;
-	current->visited_=true;
-	current->distance_known_=true;
+	start->distance = 0;
+	start->visited_=true;
+	start->distance_known_=true;
 
 	priority_queue<Vertex*> vertex_queue;
 	vertex_queue.insert(starting_vertex);
 	
 for(; ;) {
 	Vertex v*;
+	//find smallest unkown distance vertex
 	bool success = false;    
 	while(!vertex_queue.isEmpty()&& !success) {
 	v=vertex_queue.deleteMin();    
@@ -66,9 +67,7 @@ if(!sucess) break;
 			vertex_queue.insert(i);
 		}
 	}
-}
-       
-if(!found_known) break;    
+}  
 
 Vertex* AdjacencyList::FindMinDistVertex() {
 
