@@ -13,11 +13,11 @@ void RunDijkstras(AdjacencyList &graph, int starting_vertex ) {
 		cout << "Graph is empty: Please create a graph before running Dijkstras" << endl;
 	} 
 	else {
+		cout <<"starting dijkstras"<<endl;
 		for(int i=1;i<=size;++i) {
 			//i is destination vertex
 			graph.Dijkstras(starting_vertex, i);
 		}
-
 	}
 }
 

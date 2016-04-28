@@ -68,6 +68,7 @@ void AdjacencyList::Dijkstras(int starting_vertex, int dest_vertex) {
 			if(v->distance_ + i.second < i.first->distance_) {
 				i.first->distance_ = v->distance_ + i.second; 
 				vertex_queue.push(i.first);
+				i.first->previous_ = v;
 			}
 		}
 	}  
