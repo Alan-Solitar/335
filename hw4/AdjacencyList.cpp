@@ -49,7 +49,7 @@ void AdjacencyList::Dijkstras(int starting_vertex, int dest_vertex) {
 	start->visited_=true;
 	start->distance_known_=true;
 
-	priority_queue<Vertex*> vertex_queue;
+	priority_queue<Vertex*, vector<Vertex*>, compareVertex> vertex_queue;
 	vertex_queue.push(start);
 	
 	for(; ;) {

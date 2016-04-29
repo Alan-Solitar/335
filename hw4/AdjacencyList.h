@@ -12,6 +12,12 @@ class AdjacencyList {
 private:
 	vector<Vertex* > vertices_;
 	void PrintPath();
+	struct compareVertex {
+		bool operator()(const Vertex* lhs, const Vertex* rhs) const {
+    	return lhs->distance_ > rhs->distance_ ;
+  }
+};
+
 	
 public:
 	const static int INFINITY = numeric_limits<int>::max();
