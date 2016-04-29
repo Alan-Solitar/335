@@ -47,17 +47,19 @@ void AdjacencyList::Dijkstras(int starting_vertex, int dest_vertex) {
 	//need some sort of outer loop
 	start->distance_ = 0;
 	start->visited_=true;
-	start->distance_known_=true;
+	start->distance_known_=false;
 
 	priority_queue<Vertex*, vector<Vertex*>, compareVertex> vertex_queue;
 	vertex_queue.push(start);
-	
+	cout <<"before loop" << endl;
 	for(; ;) {
 		Vertex * v;
 		//find smallest unkown distance vertex
 		bool success = false;    
 		while(!vertex_queue.empty() && !success) {
+
 		v=vertex_queue.top();
+		cout << "label: " <<v->label_ <<endl;
 		vertex_queue.pop();    
 		if(!v->distance_known_)   
 		success=true;    
@@ -78,7 +80,8 @@ void AdjacencyList::PrintPath(int starting_vertex, int dest_vertex) {
 	vector<int> path;
 	Vertex * current = vertices_[dest_vertex-1];
 	path.push_back(dest_vertex);
-	while(current->label_ != starting_vertex) {
+	cout <<"start printing"<<endl;
+	while(current!=nullptr) {
 		path.push_back(current->label_);
 		cout << current->label_;
 		current = current->previous_;

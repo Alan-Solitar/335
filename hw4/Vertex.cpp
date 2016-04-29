@@ -7,6 +7,7 @@ Vertex::Vertex(int label) {
 	label_ = label;
 	distance_known_ = false;
 	visited_ = false;
+	previous_=nullptr;
 }
 bool Vertex::AddEdge(Vertex * vertex, double weight) {
 	cout << "adding" <<this->label_ <<" "<< vertex->label_ << " "<<weight<<endl;
