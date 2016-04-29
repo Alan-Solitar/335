@@ -9,6 +9,7 @@ class UnionFind {
 private:
 	vector<int> vertices_;
 public:
+	Union(int max_vertices)
 	int find(int x);
 	void Union(int vert1, int vert2);
 

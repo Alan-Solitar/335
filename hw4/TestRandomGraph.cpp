@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <ctime>
 #include "AdjacencyList.h"
+#include "UnionFind.h"
 
 using namespace std;
 
@@ -12,9 +13,6 @@ graph.AddEdge(i1,i2,0);
 graph.AddEdge(i2,i,0);
 
 
-
-
-
 int main(int argc, char **argv) {
 	if (argc != 2) {
 		cout << "Usage: " << argv[0] << " <maximum_number_of_nodes>" << endl;
@@ -23,3 +21,4 @@ int main(int argc, char **argv) {
 	const int MAX_NODES = argv[1];
 	AdjacencyList graph;
 	graph.CreateVertices(MAX_NODES);
+	UnionFind(MAX_NODES);
