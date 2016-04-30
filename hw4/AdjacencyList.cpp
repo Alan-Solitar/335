@@ -34,7 +34,7 @@ void AdjacencyList::CheckEdge(int origin_vertex, int dest_vertex) {
 	}
 }
 
-bool AdjacencyList::CheckForEdge(int origin_vertex, int dest_vertex) {
+bool AdjacencyList::HasEdge(int origin_vertex, int dest_vertex) {
 	Vertex * vert = vertices_[origin_vertex - 1];
 	bool edge_found = false;
 	for(auto &i: vert->adj_) {
