@@ -13,8 +13,10 @@ int UnionFind::find(int x) {
 }
 
 void UnionFind::Union(int vert1, int vert2) {
-	if(vertices_[vert1] < vertices_[vert2]) {
-		vertices_[vert1] = vert2;
+	int root1 = find(vert1);
+	int root2 = find(vert2);
+	if(vertices_[root1] < vertices_[root]) {
+		vertices_[root1] = root2;
 	}
 	else {
 		if(vertices_[root1] ==vertices_[root2]) {

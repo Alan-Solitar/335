@@ -11,6 +11,7 @@ const int i1 = rand() % maximum_value + 1;
 const int i2 = rand() % maximum_value + 1;
 graph.AddEdge(i1,i2,0);
 graph.AddEdge(i2,i,0);
+disjoint.
 
 
 int main(int argc, char **argv) {
@@ -21,4 +22,4 @@ int main(int argc, char **argv) {
 	const int MAX_NODES = argv[1];
 	AdjacencyList graph;
 	graph.CreateVertices(MAX_NODES);
-	UnionFind(MAX_NODES);
+	UnionFind disjoint(MAX_NODES);
