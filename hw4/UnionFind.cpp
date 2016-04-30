@@ -6,10 +6,10 @@ UnionFind::UnionFind(int max_vertices) {
 	}
 }
 int UnionFind::find(int x) {
-	if(s[x] <0)
+	if(vertices_[x] <0)
 		return x;
 	else
-		return s[x] = find(s[x]);
+		return vertices_[x] = find(vertices_[x]);
 }
 
 void UnionFind::Union(int vert1, int vert2) {
