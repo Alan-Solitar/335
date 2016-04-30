@@ -11,7 +11,10 @@ using namespace std;
 class AdjacencyList {
 private:
 	vector<Vertex* > vertices_;
-	int num_edges;
+	int num_edges_;
+	int num_vertices_;
+	int min_out_degree_;
+	int max_out_degree_;
 	void PrintPath();
 	struct compareVertex {
 		bool operator()(const Vertex* lhs, const Vertex* rhs) const {
@@ -29,6 +32,9 @@ public:
 	void Dijkstras(int starting_vertex, int dest_vertex);
 	void PrintPath(int starting_vertex, int dest_vertex);
 	size_t GetSize();
+	int GetMinOutDegree();
+	int GetMaxOutDegree();
+	double GetAverageOutDegree();
 	
 };
 

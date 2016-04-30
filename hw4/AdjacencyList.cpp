@@ -5,7 +5,8 @@
 
 using namespace std;
 void AdjacencyList::CreateVertices(int num_vertices) {
-	num_edges = 0;
+	num_edges_ = 0;
+	num_vertices_ = num_vertices;
 	for(int i=0;i<num_vertices;++i) {
 		Vertex* vertex = new Vertex(i+1);
 		this->vertices_.push_back(vertex);
@@ -17,6 +18,10 @@ void AdjacencyList::AddEdge(int origin_vertex, int dest_vertex, double weight) {
 	Vertex * v1 = vertices_[origin_vertex-1];
 	Vertex * v2 = vertices_[dest_vertex-1];
 	v1->AddEdge(v2, weight);
+	if(v1->out_degree_ > max_out_degree_) {
+		max_out_degree_ = v1->out_degree_;
+	}
+	}
 }
 
 void AdjacencyList::CheckEdge(int origin_vertex, int dest_vertex) {
@@ -100,4 +105,24 @@ void AdjacencyList::PrintPath(int starting_vertex, int dest_vertex) {
 	}
 	cout << endl;
 	
+}
+
+int GetMinOutDegree {
+	for(auto &i: vertices_) {
+		if(i.out_degree_ < min_out_degree_) {
+			min_out_degree_ = i.out_degree_;
+		}
+	}
+}
+
+int GetMaxOutDegree() {
+	return max_out_degree_;
+}
+
+double GetAverageOutDegree() {
+	int sum = 0;
+	for(auto &i:vertices_) {
+			sum+=i.out_degree_;
+	}
+	return sum/num_vertices_;
 }
