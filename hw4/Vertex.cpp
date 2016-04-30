@@ -10,9 +10,10 @@ Vertex::Vertex(int label) {
 	previous_=nullptr;
 }
 bool Vertex::AddEdge(Vertex * vertex, double weight) {
-	cout << "adding" <<this->label_ <<" "<< vertex->label_ << " "<<weight<<endl;
+	//cout << "adding" <<this->label_ <<" "<< vertex->label_ << " "<<weight<<endl;
 	pair<Vertex *, double> edge(vertex, weight);
 	adj_.push_back(edge);
+	++out_degree_;
 }
 /*
 void Vertex::SetLabel(int label) {
