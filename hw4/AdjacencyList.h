@@ -11,6 +11,7 @@ using namespace std;
 class AdjacencyList {
 private:
 	vector<Vertex* > vertices_;
+	int num_edges;
 	void PrintPath();
 	struct compareVertex {
 		bool operator()(const Vertex* lhs, const Vertex* rhs) const {

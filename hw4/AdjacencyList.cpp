@@ -5,6 +5,7 @@
 
 using namespace std;
 void AdjacencyList::CreateVertices(int num_vertices) {
+	num_edges = 0;
 	for(int i=0;i<num_vertices;++i) {
 		Vertex* vertex = new Vertex(i+1);
 		this->vertices_.push_back(vertex);

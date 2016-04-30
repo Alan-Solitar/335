@@ -5,14 +5,14 @@
 
 using namespace std;
 
+GenerateAndAdd() {
 srand(time(0)); //use current time as seed for random generator
-const int maximum_value = 1000;
 const int i1 = rand() % maximum_value + 1;
 const int i2 = rand() % maximum_value + 1;
 graph.AddEdge(i1,i2,0);
 graph.AddEdge(i2,i,0);
-disjoint.
-
+disjoint.Union(i1,i2);
+}
 
 int main(int argc, char **argv) {
 	if (argc != 2) {
