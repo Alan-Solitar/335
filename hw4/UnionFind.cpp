@@ -1,7 +1,7 @@
 #include "UnionFind.h"
 
-UnionFind::UnionFind(max_vertices) {
-	for(int i=0;i<=max_vertices;++=i) {
+UnionFind::UnionFind(int max_vertices) {
+	for(int i=0;i<=max_vertices;++i) {
 		vertices_.push_back(-1);
 	}
 }

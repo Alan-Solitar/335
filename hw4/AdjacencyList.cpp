@@ -21,7 +21,6 @@ void AdjacencyList::AddEdge(int origin_vertex, int dest_vertex, double weight) {
 	if(v1->out_degree_ > max_out_degree_) {
 		max_out_degree_ = v1->out_degree_;
 	}
-	}
 }
 
 void AdjacencyList::CheckEdge(int origin_vertex, int dest_vertex) {
@@ -109,8 +108,8 @@ void AdjacencyList::PrintPath(int starting_vertex, int dest_vertex) {
 
 int AdjacencyList::GetMinOutDegree() {
 	for(auto &i: vertices_) {
-		if(i.out_degree_ < min_out_degree_) {
-			min_out_degree_ = i.out_degree_;
+		if(i->out_degree_ < min_out_degree_) {
+			min_out_degree_ = i->out_degree_;
 		}
 	}
 }
@@ -122,7 +121,7 @@ int AdjacencyList::GetMaxOutDegree() {
 double AdjacencyList::GetAverageOutDegree() {
 	int sum = 0;
 	for(auto &i:vertices_) {
-			sum+=i.out_degree_;
+			sum+=i->out_degree_;
 	}
 	return sum/num_vertices_;
 }

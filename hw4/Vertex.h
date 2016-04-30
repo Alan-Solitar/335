@@ -15,7 +15,7 @@ private:
 	double distance_;
 	bool visited_;
 	bool distance_known_;
-	bool out_degree_
+	int out_degree_;
 	Vertex * previous_;
 
 public:
