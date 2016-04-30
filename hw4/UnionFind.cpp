@@ -25,3 +25,7 @@ void UnionFind::Union(int vert1, int vert2) {
 		vertices_[root2] = root1;
 	}
 }
+
+int UnionFind::GetNumberOfSets() {
+		return number_of_sets_;
+}

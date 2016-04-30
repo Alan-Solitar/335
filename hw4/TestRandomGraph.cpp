@@ -16,8 +16,12 @@ GenerateAndAdd() {
 		disjoint.Union(i1,i2);
 }
 
-PrintStatistics() {
-	cout << "Number of Edges: " <<graph.num_edges <<endl;
+PrintStatistics(AdjacencyList &graph) {
+	cout << "Number Of Edges: " <<graph.num_edges <<endl;
+	cout << "Smallest Out Degree: " << graph.GetMinOutDegree() << endl;
+	cout << "Smallest Out Degree: " << graph.GetMinOutDegree() << endl;
+	cout << "Largest Out Degree: " << graph.GetMaxOutDegree() << endl;
+	cout << "Average Out Degree: " << graph.GetAverageOutDegree() << endl;
 }
 
 

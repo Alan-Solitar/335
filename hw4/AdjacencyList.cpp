@@ -107,7 +107,7 @@ void AdjacencyList::PrintPath(int starting_vertex, int dest_vertex) {
 	
 }
 
-int GetMinOutDegree {
+int AdjacencyList::GetMinOutDegree() {
 	for(auto &i: vertices_) {
 		if(i.out_degree_ < min_out_degree_) {
 			min_out_degree_ = i.out_degree_;
@@ -115,11 +115,11 @@ int GetMinOutDegree {
 	}
 }
 
-int GetMaxOutDegree() {
+int AdjacencyList::GetMaxOutDegree() {
 	return max_out_degree_;
 }
 
-double GetAverageOutDegree() {
+double AdjacencyList::GetAverageOutDegree() {
 	int sum = 0;
 	for(auto &i:vertices_) {
 			sum+=i.out_degree_;
