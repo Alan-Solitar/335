@@ -125,3 +125,7 @@ double AdjacencyList::GetAverageOutDegree() {
 	}
 	return sum/num_vertices_;
 }
+
+int AdjacencyList::GetNumEdges() {
+	return num_edges_;
+}

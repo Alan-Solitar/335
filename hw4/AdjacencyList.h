@@ -35,6 +35,7 @@ public:
 	int GetMinOutDegree();
 	int GetMaxOutDegree();
 	double GetAverageOutDegree();
+	int GetNumEdges();
 	
 };
 
