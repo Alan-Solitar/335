@@ -67,7 +67,7 @@ run2ten:
 		./$(PROGRAM_2) 10
 
 run2:
-		./$(PROGRAM_2) 20
+		./$(PROGRAM_2) 9
 #Clean obj files
 
 clean:
