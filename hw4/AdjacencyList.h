@@ -30,7 +30,7 @@ public:
 	void CheckEdge(int origin_vertex, int dest_vertex);
 	bool HasEdge(int origin_vertex, int dest_vertex);
 	void Dijkstras(int starting_vertex, int dest_vertex);
-	void PrintPath(int starting_vertex, int dest_vertex, double path_weight);
+	void PrintPath(int starting_vertex, int dest_vertex);
 	size_t GetSize();
 	int GetMinOutDegree();
 	int GetMaxOutDegree();
@@ -38,5 +38,5 @@ public:
 	int GetNumEdges();
 	
 };
-
+#include "AdjacencyList.cpp"
 #endif

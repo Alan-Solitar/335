@@ -8,20 +8,23 @@ using namespace std;
 
 void GenerateAndAdd(AdjacencyList &graph, UnionFind &disjoint,const int maximum_value) {
 	srand(time(0)); //use current time as seed for random generator
-	const int i1 = rand() % maximum_value + 1;
-	const int i2 = rand() % maximum_value + 1;
-	while(disjoint.GetNumberOfSets() > 1)
-		if(!graph.HasEdge(i1,i2)) {
+	while(disjoint.GetNumberOfSets() > 1) {
+		const int i1 = rand() % maximum_value + 1;
+		const int i2 = rand() % maximum_value + 1;
+		if(!graph.HasEdge(i1,i2) && i1!=i2) {
 			graph.AddEdge(i1,i2,0);
 			graph.AddEdge(i2,i1,0);
+			cout<<"did it fault"<<endl;
 			disjoint.Union(i1,i2);
+		}
+		cout<< i1 << " " <<i2 <<" still running for some reason: " <<disjoint.GetNumberOfSets()<<endl;
 	}
 }
 void PrintStatistics(AdjacencyList &graph) {
-	cout << "Number Of Edges: " <<graph.GetNumEdges() <<endl;
-	cout << "Smallest Out Degree: " << graph.GetMinOutDegree() << endl;
-	cout << "Largest Out Degree: " << graph.GetMaxOutDegree() << endl;
-	cout << "Average Out Degree: " << graph.GetAverageOutDegree() << endl;
+	cout << "Number Of Edges: " <<graph.GetNumEdges()/2 <<endl;
+	cout << "Smallest Out Degree: " << graph.GetMinOutDegree()/2 << endl;
+	cout << "Largest Out Degree: " << graph.GetMaxOutDegree()/2 << endl;
+	cout << "Average Out Degree: " << graph.GetAverageOutDegree()/2 << endl;
 }
 
 

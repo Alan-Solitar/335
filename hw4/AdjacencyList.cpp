@@ -56,7 +56,6 @@ size_t AdjacencyList::GetSize() {
 
 void AdjacencyList::Dijkstras(int starting_vertex, int dest_vertex) {
 
-	double path_weight = 0;
 	//initialize all vertices
 	for(auto &i:vertices_) {
 		i->visited_=false;
@@ -93,13 +92,13 @@ void AdjacencyList::Dijkstras(int starting_vertex, int dest_vertex) {
 		}
 	}  
 
-	PrintPath(starting_vertex,dest_vertex, path_weight);
+	PrintPath(starting_vertex,dest_vertex);
 }
-void AdjacencyList::PrintPath(int starting_vertex, int dest_vertex, double path_weight) {
+void AdjacencyList::PrintPath(int starting_vertex, int dest_vertex) {
 	vector<int> path;
 	Vertex * current = vertices_[dest_vertex-1];
 	path.push_back(dest_vertex);
-	double weight=0;
+	double path_weight=0;
 	while(current!=nullptr) {
 		path.push_back(current->label_);
 		path_weight+=current->previous_weight_;

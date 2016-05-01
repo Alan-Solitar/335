@@ -28,5 +28,6 @@ public:
 	bool operator >(const Vertex &other);
 
 };
+#include "Vertex.cpp"
 
 #endif

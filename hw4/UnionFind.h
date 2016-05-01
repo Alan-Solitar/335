@@ -18,4 +18,6 @@ public:
 	
 };
 
+#include "UnionFind.cpp"
+
 #endif

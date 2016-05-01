@@ -13,11 +13,13 @@ Vertex::Vertex(int label) {
 
 }
 bool Vertex::AddEdge(Vertex * vertex, double weight) {
-	//cout << "adding" <<this->label_ <<" "<< vertex->label_ << " "<<weight<<endl;
+	bool added = false;
 	pair<Vertex *, double> edge(vertex, weight);
 	adj_.push_back(edge);
+	added=true;
 	++out_degree_;
 	++vertex->out_degree_;
+	return added;
 }
 /*
 void Vertex::SetLabel(int label) {
