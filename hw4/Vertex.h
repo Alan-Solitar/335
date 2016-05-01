@@ -17,6 +17,7 @@ private:
 	bool distance_known_;
 	int out_degree_;
 	Vertex * previous_;
+	double previous_weight_;
 
 public:
 	Vertex(int label);

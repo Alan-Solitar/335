@@ -13,7 +13,6 @@ void RunDijkstras(AdjacencyList &graph, int starting_vertex ) {
 		cout << "Graph is empty: Please create a graph before running Dijkstras" << endl;
 	} 
 	else {
-		cout <<"starting dijkstras"<<endl;
 		for(int i=1;i<=size;++i) {
 			//i is destination vertex
 			graph.Dijkstras(starting_vertex, i);
@@ -39,7 +38,6 @@ void CreateGraph(AdjacencyList &graph, const string &graph_filename) {
     } 
   }
   reader.close();
-  cout <<"we're done creating"<<endl;
 }
 
 int main(int argc, char **argv) {

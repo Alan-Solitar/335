@@ -18,6 +18,7 @@ void AdjacencyList::AddEdge(int origin_vertex, int dest_vertex, double weight) {
 	Vertex * v1 = vertices_[origin_vertex-1];
 	Vertex * v2 = vertices_[dest_vertex-1];
 	v1->AddEdge(v2, weight);
+	++num_edges_;
 	if(v1->out_degree_ > max_out_degree_) {
 		max_out_degree_ = v1->out_degree_;
 	}
@@ -54,6 +55,8 @@ size_t AdjacencyList::GetSize() {
 }
 
 void AdjacencyList::Dijkstras(int starting_vertex, int dest_vertex) {
+
+	double path_weight = 0;
 	//initialize all vertices
 	for(auto &i:vertices_) {
 		i->visited_=false;
@@ -67,7 +70,6 @@ void AdjacencyList::Dijkstras(int starting_vertex, int dest_vertex) {
 
 	priority_queue<Vertex*, vector<Vertex*>, compareVertex> vertex_queue;
 	vertex_queue.push(start);
-	cout <<"before loop" << endl;
 	for(; ;) {
 		Vertex * v;
 		//find smallest unkown distance vertex
@@ -75,7 +77,6 @@ void AdjacencyList::Dijkstras(int starting_vertex, int dest_vertex) {
 		while(!vertex_queue.empty() && !success) {
 
 		v=vertex_queue.top();
-		cout << "label: " <<v->label_ <<endl;
 		vertex_queue.pop();    
 		if(!v->distance_known_)   
 		success=true;    
@@ -87,22 +88,29 @@ void AdjacencyList::Dijkstras(int starting_vertex, int dest_vertex) {
 				i.first->distance_ = v->distance_ + i.second; 
 				vertex_queue.push(i.first);
 				i.first->previous_ = v;
+				i.first->previous_weight_ = i.second;
 			}
 		}
 	}  
-	PrintPath(starting_vertex,dest_vertex);
+
+	PrintPath(starting_vertex,dest_vertex, path_weight);
 }
-void AdjacencyList::PrintPath(int starting_vertex, int dest_vertex) {
+void AdjacencyList::PrintPath(int starting_vertex, int dest_vertex, double path_weight) {
 	vector<int> path;
 	Vertex * current = vertices_[dest_vertex-1];
 	path.push_back(dest_vertex);
-	cout <<"start printing"<<endl;
+	double weight=0;
 	while(current!=nullptr) {
 		path.push_back(current->label_);
-		cout << current->label_;
+		path_weight+=current->previous_weight_;
 		current = current->previous_;
+		
 	}
-	cout << endl;
+	cout << dest_vertex << ": ";
+	for(int i = path.size()-1; i>0;--i) {
+		cout << path[i] << ",";
+	}
+	cout << " Weight: " <<path_weight << endl;
 	
 }
 
@@ -112,6 +120,7 @@ int AdjacencyList::GetMinOutDegree() {
 			min_out_degree_ = i->out_degree_;
 		}
 	}
+	return min_out_degree_;
 }
 
 int AdjacencyList::GetMaxOutDegree() {

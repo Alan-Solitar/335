@@ -8,6 +8,7 @@ Vertex::Vertex(int label) {
 	distance_known_ = false;
 	visited_ = false;
 	previous_=nullptr;
+	previous_weight_ = 0;
 	out_degree_=0;
 
 }
@@ -16,6 +17,7 @@ bool Vertex::AddEdge(Vertex * vertex, double weight) {
 	pair<Vertex *, double> edge(vertex, weight);
 	adj_.push_back(edge);
 	++out_degree_;
+	++vertex->out_degree_;
 }
 /*
 void Vertex::SetLabel(int label) {
