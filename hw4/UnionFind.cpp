@@ -8,6 +8,8 @@ UnionFind::UnionFind(int max_vertices) {
 	}
 }
 int UnionFind::find(int x) {
+	cout << "x is:" <<x <<endl;
+	cout << "vertices[x] is: " <<vertices_[x] <<endl;
 	if(vertices_[x] < 0)
 		return x;
 	else if(vertices_[x] < vertices_.size() && vertices_[x] >=0)
