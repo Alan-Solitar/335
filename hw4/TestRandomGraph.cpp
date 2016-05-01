@@ -35,4 +35,6 @@ int main(int argc, char **argv) {
 	AdjacencyList graph;
 	graph.CreateVertices(MAX_NODES);
 	UnionFind disjoint(MAX_NODES);
+	GenerateAndAdd(graph,disjoint,MAX_NODES);
+	PrintStatistics(graph)
 }
