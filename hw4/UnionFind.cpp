@@ -26,7 +26,6 @@ void UnionFind::Union(int vert1, int vert2) {
 	if(root1==root2) {
 		return;
 	}
-	cout << "set:" <<number_of_sets_<<endl;
 	number_of_sets_--;
 	if(vertices_[root1] < vertices_[root2]) {
 		vertices_[root1] = root2;

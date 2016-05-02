@@ -19,8 +19,6 @@ bool Vertex::AddEdge(Vertex * vertex, double weight) {
 	adj_.push_back(edge);
 	added=true;
 	++out_degree_;
-	cout << "inAddEdge: "<<label_ << ", " <<vertex->label_ <<" " <<out_degree_ <<endl;
-	//++vertex->out_degree_;
 	return added;
 }
 
