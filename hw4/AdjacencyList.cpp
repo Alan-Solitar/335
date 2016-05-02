@@ -5,8 +5,11 @@
 
 using namespace std;
 void AdjacencyList::CreateVertices(int num_vertices) {
+	//initialize
 	num_edges_ = 0;
 	num_vertices_ = num_vertices;
+	min_out_degree_=0;
+	max_out_degree_ = 0;
 	for(int i=0;i<num_vertices;++i) {
 		Vertex* vertex = new Vertex(i+1);
 		this->vertices_.push_back(vertex);
@@ -103,7 +106,7 @@ void AdjacencyList::PrintPath(int starting_vertex, int dest_vertex) {
 		path.push_back(current->label_);
 		path_weight+=current->previous_weight_;
 		current = current->previous_;
-		
+	
 	}
 	cout << dest_vertex << ": ";
 	for(int i = path.size()-1; i>0;--i) {
