@@ -17,7 +17,6 @@ void GenerateAndAdd(AdjacencyList &graph, UnionFind &disjoint,const int maximum_
 			cout<<"did it fault"<<endl;
 			disjoint.Union(i1,i2);
 		}
-		cout<< i1 << " " <<i2 <<" still running for some reason: " <<disjoint.GetNumberOfSets()<<endl;
 	}
 }
 void PrintStatistics(AdjacencyList &graph) {

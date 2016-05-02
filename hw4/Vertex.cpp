@@ -21,11 +21,7 @@ bool Vertex::AddEdge(Vertex * vertex, double weight) {
 	++vertex->out_degree_;
 	return added;
 }
-/*
-void Vertex::SetLabel(int label) {
-	label_ = label;
-}
-*/
+
 void Vertex::SetVisted() {
 	visited_=true;
 }

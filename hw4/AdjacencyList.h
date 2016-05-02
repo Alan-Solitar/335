@@ -25,13 +25,19 @@ private:
 	
 public:
 	const static int INFINITY = numeric_limits<int>::max();
+	//intialize vertices
 	void CreateVertices(int num_vertices);
 	void AddEdge(int origin_vertex, int dest_vertex, double weight);
+	//Function to check edges and print out corresponding weights
 	void CheckEdge(int origin_vertex, int dest_vertex);
 	bool HasEdge(int origin_vertex, int dest_vertex);
+	//run priority queue without decrease key dijkstras
 	void Dijkstras(int starting_vertex, int dest_vertex);
+	//print out the min path found by dijkstras
 	void PrintPath(int starting_vertex, int dest_vertex);
+	//return number of vertices in graph
 	size_t GetSize();
+	//various functions to get out degrees and number of edges
 	int GetMinOutDegree();
 	int GetMaxOutDegree();
 	double GetAverageOutDegree();
