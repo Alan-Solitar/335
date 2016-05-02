@@ -21,10 +21,10 @@ void GenerateAndAdd(AdjacencyList &graph, UnionFind &disjoint,const int maximum_
 }
 
 void PrintStatistics(AdjacencyList &graph) {
-	cout << "Number Of Edges: " <<graph.GetNumEdges()/2 <<endl;
-	cout << "Smallest Out Degree: " << graph.GetMinOutDegree()/2 << endl;
-	cout << "Largest Out Degree: " << graph.GetMaxOutDegree()/2 << endl;
-	cout << "Average Out Degree: " << graph.GetAverageOutDegree()/2 << endl;
+	cout << "Number Of Edges: " << graph.GetNumEdges()/2 <<endl;
+	cout << "Smallest Out Degree: " << graph.GetMinOutDegree() << endl;
+	cout << "Largest Out Degree: " << graph.GetMaxOutDegree() << endl;
+	cout << "Average Out Degree: " << (double)graph.GetAverageOutDegree()/2 << endl;
 }
 
 
@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
 	AdjacencyList graph;
 	graph.CreateVertices(MAX_NODES);
 	UnionFind disjoint(MAX_NODES);
-	
+
 	GenerateAndAdd(graph,disjoint,MAX_NODES);
 	PrintStatistics(graph);
 }

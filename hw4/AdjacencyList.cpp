@@ -117,7 +117,10 @@ void AdjacencyList::PrintPath(int starting_vertex, int dest_vertex) {
 }
 
 int AdjacencyList::GetMinOutDegree() {
+	min_out_degree_ = vertices_[0]->out_degree_;
+	cout<<"min: " <<min_out_degree_<<endl; 
 	for(auto &i: vertices_) {
+		cout <<i->label_ << " " <<i->out_degree_<<endl;
 		if(i->out_degree_ < min_out_degree_) {
 			cout <<i->label_ << " " <<i->out_degree_<<endl;
 			min_out_degree_ = i->out_degree_;

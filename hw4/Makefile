@@ -52,10 +52,10 @@ all:
 
 
 run0graph1: 	
-		./$(PROGRAM_0) Graph1.txt AdjacencyQueries.txt
+		./$(PROGRAM_0) Graph1.txt AdjacencyQueries1.txt
 
 run0graph2: 	
-		./$(PROGRAM_0) Graph2.txt AdjacencyQueries.txt
+		./$(PROGRAM_0) Graph2.txt AdjacencyQueries2.txt
 
 run1: 	
 		./$(PROGRAM_1) Graph2.txt 1
