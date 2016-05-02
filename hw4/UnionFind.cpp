@@ -1,5 +1,7 @@
 #include "UnionFind.h"
 #include <iostream>
+#include <stdexcept>
+
 
 UnionFind::UnionFind(int max_vertices) {
 	number_of_sets_ = max_vertices;
@@ -8,10 +10,12 @@ UnionFind::UnionFind(int max_vertices) {
 	}
 }
 int UnionFind::find(int x) {
-	if(vertices_[x] < 0 || vertices_[x] ==x)
+	if(vertices_[x] < 0 || vertices_[x] == x)
 		return x;
-	else if(vertices_[x] < vertices_.size() && vertices_[x] >=0)
+	else if(vertices_[x] < (int)vertices_.size())
 		return vertices_[x] = find(vertices_[x]);
+	else
+		throw std::invalid_argument( "invalid index" );
 }
 
 void UnionFind::Union(int vert1, int vert2) {

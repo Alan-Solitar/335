@@ -34,6 +34,3 @@ void Vertex::ResetVertexBools() {
 	previous_ = nullptr;
 }
 
-bool Vertex::operator>(const Vertex &other) {
-	return distance_ > other.distance_;
-}

@@ -24,8 +24,10 @@ public:
 	bool AddEdge(Vertex * vertex, double weight);
 	void SetVisted();
 	void SetKnown();
+	//reset booleans to default values
 	void ResetVertexBools();
-	bool operator >(const Vertex &other);
+
+	
 
 };
 #include "Vertex.cpp"
