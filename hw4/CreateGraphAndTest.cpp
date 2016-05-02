@@ -6,6 +6,8 @@
 
 using namespace std;
 
+//Written by Alan Solitar
+
 void CreateGraph(AdjacencyList &graph, const string &graph_filename) {
   ifstream reader(graph_filename);
   string line = "";
