@@ -5,7 +5,7 @@
 #include <vector>
 
 using namespace std;
-class AdjacencyList;
+class AdjacencyList; //forward delcaration
 class Vertex {
 
 friend class AdjacencyList;
@@ -26,8 +26,6 @@ public:
 	void SetKnown();
 	//reset booleans to default values
 	void ResetVertexBools();
-
-	
 
 };
 #include "Vertex.cpp"

@@ -6,6 +6,7 @@
 
 using namespace std;
 
+//Generate random numbers and add the corresponding edges
 void GenerateAndAdd(AdjacencyList &graph, UnionFind &disjoint,const int maximum_value) {
 	srand(time(0)); //use current time as seed for random generator
 	while(disjoint.GetNumberOfSets() > 1) {
@@ -14,11 +15,11 @@ void GenerateAndAdd(AdjacencyList &graph, UnionFind &disjoint,const int maximum_
 		if(!graph.HasEdge(i1,i2) && i1!=i2) {
 			graph.AddEdge(i1,i2,0);
 			graph.AddEdge(i2,i1,0);
-			cout<<"did it fault"<<endl;
 			disjoint.Union(i1,i2);
 		}
 	}
 }
+
 void PrintStatistics(AdjacencyList &graph) {
 	cout << "Number Of Edges: " <<graph.GetNumEdges()/2 <<endl;
 	cout << "Smallest Out Degree: " << graph.GetMinOutDegree()/2 << endl;
@@ -33,9 +34,11 @@ int main(int argc, char **argv) {
 		return 0;
 	}
 	const int MAX_NODES = atoi(argv[1]);
+	//declare and initialize structures
 	AdjacencyList graph;
 	graph.CreateVertices(MAX_NODES);
 	UnionFind disjoint(MAX_NODES);
+	
 	GenerateAndAdd(graph,disjoint,MAX_NODES);
 	PrintStatistics(graph);
 }
