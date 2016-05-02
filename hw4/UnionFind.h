@@ -3,7 +3,9 @@
 
 #include <vector>
 #include "Vertex.h"
+
 using namespace std;
+//Written by Alan Solitar
 
 class UnionFind {
 private:

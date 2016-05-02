@@ -5,6 +5,7 @@
 #include <iostream>
 #include <stdlib.h>
 
+//Written by Alan Solitar
 
 //Run Dijktras on a graph for all destination vertices
 void RunDijkstras(AdjacencyList &graph, int starting_vertex ) {

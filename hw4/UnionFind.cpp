@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stdexcept>
 
+//Written by Alan Solitar
 
 UnionFind::UnionFind(int max_vertices) {
 	number_of_sets_ = max_vertices;

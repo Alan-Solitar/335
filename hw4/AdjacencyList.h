@@ -8,6 +8,8 @@
 
 using namespace std;
 
+//Written by Alan Solitar
+
 class AdjacencyList {
 private:
 	vector<Vertex* > vertices_;

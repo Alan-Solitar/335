@@ -6,6 +6,8 @@
 
 using namespace std;
 
+//Written by Alan Solitar
+
 //Generate random numbers and add the corresponding edges
 void GenerateAndAdd(AdjacencyList &graph, UnionFind &disjoint,const int maximum_value) {
 	srand(time(0)); //use current time as seed for random generator

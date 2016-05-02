@@ -2,6 +2,7 @@
 #include "AdjacencyList.h"
 #include <iostream>
 
+//Written by Alan Solitar
 
 Vertex::Vertex(int label) {
 	label_ = label;
