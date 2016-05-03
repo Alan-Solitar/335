@@ -6,7 +6,8 @@
    I have included a few runnable options for the make file
    make run0graph1
    make run0graph2
-   makerun1
+   makerun1graph1
+   makerun1graph2
    makerun2
    makerun2five
    makerun2ten

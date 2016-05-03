@@ -57,7 +57,10 @@ run0graph1:
 run0graph2: 	
 		./$(PROGRAM_0) Graph2.txt AdjacencyQueries2.txt
 
-run1: 	
+run1graph1: 	
+		./$(PROGRAM_1) Graph1.txt 1
+
+run1graph2: 
 		./$(PROGRAM_1) Graph2.txt 1
 
 run2five: 	

@@ -46,10 +46,10 @@ int main(int argc, char **argv) {
 		cout << "Usage: " << argv[0] << " <graphfilename> <starting_vertex>" << endl;
 		return 0;
 	}
-	cout <<"\ngraph_filename is "<< graph_filename<<endl;
-    cout <<"starting vertex is "<< starting_vertex<<endl;
 	const string graph_filename = argv[1];
 	const int starting_vertex = atoi(argv[2]);
+	cout <<"\ngraph_filename is "<< graph_filename<<endl;
+    cout <<"starting vertex is "<< starting_vertex<< "\n" <<endl;
 	AdjacencyList graph;
 	CreateGraph(graph, graph_filename);
 	RunDijkstras(graph,starting_vertex);
