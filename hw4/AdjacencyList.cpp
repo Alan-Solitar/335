@@ -11,6 +11,7 @@ void AdjacencyList::CreateVertices(int num_vertices) {
 	num_vertices_ = num_vertices;
 	min_out_degree_=0;
 	max_out_degree_ = 0;
+	//vertex 1 is at index 0, etc...
 	for(int i=0;i<num_vertices;++i) {
 		Vertex* vertex = new Vertex(i+1);
 		this->vertices_.push_back(vertex);
