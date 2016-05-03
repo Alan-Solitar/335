@@ -69,8 +69,22 @@ run2five:
 run2ten:
 		./$(PROGRAM_2) 10
 
-run2:
-		./$(PROGRAM_2) 9
+run2twenty:
+		./$(PROGRAM_2) 20
+
+run2fifty:
+		./$(PROGRAM_2) 50
+
+run2hundred:
+		./$(PROGRAM_2) 100
+
+run2thousand:
+		./$(PROGRAM_2) 1000
+		
+run2hundredthousand:
+		./$(PROGRAM_2) 100000
+
+
 #Clean obj files
 
 clean:
