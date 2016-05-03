@@ -104,13 +104,14 @@ void AdjacencyList::PrintPath(int starting_vertex, int dest_vertex) {
 	Vertex * current = vertices_[dest_vertex-1];
 	path.push_back(dest_vertex);
 	double path_weight=0;
+	//loop through to find path and weight of path
 	while(current!=nullptr) {
 		path.push_back(current->label_);
 		path_weight+=current->previous_weight_;
 		current = current->previous_;
-	
 	}
 	cout << dest_vertex << ": ";
+	//print out path on screen
 	for(int i = path.size()-1; i>0;--i) {
 		cout << path[i] << ",";
 	}

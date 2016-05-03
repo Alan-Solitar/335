@@ -8,6 +8,7 @@ using namespace std;
 
 //Written by Alan Solitar
 
+//Create graph from input file
 void CreateGraph(AdjacencyList &graph, const string &graph_filename) {
   ifstream reader(graph_filename);
   string line = "";
@@ -27,6 +28,7 @@ void CreateGraph(AdjacencyList &graph, const string &graph_filename) {
   reader.close();
 }
 
+//Test graph for the presence of certain edges
 void QueryGraph(AdjacencyList &graph, const string &query_filename ) {
 	ifstream reader(query_filename);
 	int origin_label, dest_label;
@@ -47,8 +49,8 @@ int main(int argc, char **argv) {
 	const string graph_filename = argv[1];
 	const string query_filename = argv[2];
   	AdjacencyList graph;
-  	cout <<"\ngraph_filename is"<< graph_filename<<endl;
-    cout <<"query_filename is"<< query_filename<<endl;
+  	cout <<"\ngraph_filename is "<< graph_filename<<endl;
+    cout <<"query_filename is "<< query_filename<<endl;
 
   	CreateGraph(graph,graph_filename);
   	QueryGraph(graph,query_filename);

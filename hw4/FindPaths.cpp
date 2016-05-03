@@ -46,6 +46,8 @@ int main(int argc, char **argv) {
 		cout << "Usage: " << argv[0] << " <graphfilename> <starting_vertex>" << endl;
 		return 0;
 	}
+	cout <<"\ngraph_filename is "<< graph_filename<<endl;
+    cout <<"starting vertex is "<< starting_vertex<<endl;
 	const string graph_filename = argv[1];
 	const int starting_vertex = atoi(argv[2]);
 	AdjacencyList graph;
