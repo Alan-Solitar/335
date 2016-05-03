@@ -36,6 +36,7 @@ int main(int argc, char **argv) {
 		return 0;
 	}
 	const int MAX_NODES = atoi(argv[1]);
+	cout << "Max Number of Nodes is " << MAX_NODES << "\n" << endl;
 	//declare and initialize structures
 	AdjacencyList graph;
 	graph.CreateVertices(MAX_NODES);
