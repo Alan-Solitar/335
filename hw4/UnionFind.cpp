@@ -6,6 +6,7 @@
 
 UnionFind::UnionFind(int max_vertices) {
 	number_of_sets_ = max_vertices;
+	//initialize with height of -1
 	for(int i=0;i<=max_vertices;++i) {
 		vertices_.push_back(-1);
 	}
@@ -23,6 +24,7 @@ void UnionFind::Union(int vert1, int vert2) {
 	int root1 = find(vert1);
 	int root2 = find(vert2);
 
+	//same set
 	if(root1==root2) {
 		return;
 	}
