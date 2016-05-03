@@ -25,14 +25,13 @@ void CreateGraph(AdjacencyList &graph, const string &graph_filename) {
     } 
   }
   reader.close();
-  cout <<"we're done creating"<<endl;
 }
 
 void QueryGraph(AdjacencyList &graph, const string &query_filename ) {
 	ifstream reader(query_filename);
 	int origin_label, dest_label;
 	string line = "";
-	cout <<"about to check edges"<<endl;
+	cout <<"\nStarting Query: "<<endl;
 
 	while(reader >> origin_label) {
 		reader >> dest_label;
@@ -48,7 +47,9 @@ int main(int argc, char **argv) {
 	const string graph_filename = argv[1];
 	const string query_filename = argv[2];
   	AdjacencyList graph;
-  	cout <<"Start testing"<<endl;
+  	cout <<"\ngraph_filename is"<< graph_filename<<endl;
+    cout <<"query_filename is"<< query_filename<<endl;
+
   	CreateGraph(graph,graph_filename);
   	QueryGraph(graph,query_filename);
  }
