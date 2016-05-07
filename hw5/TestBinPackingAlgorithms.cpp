@@ -19,12 +19,40 @@ for (int i = 0; i < N; ++i) {
 
 int number_of_bins_next_fit(vector<double> random_numbers) {
 	double current_capacity = 0;
-	int number_of_bins = 0;
-	for(auto &i: random_numbers) {
-
+	int number_of_bins = 1;
+	if(random_numbers.size()==0) {
+		return 0;
 	}
+	for(auto &num: random_numbers) {
+		if(num+=current_capacity > 1) {
+			current_capacity=num;
+			++number_of_bins;
+		}
+		else {
+			current_capacity+=num;
+		}
+	}
+	return number_of_bins;
 }
 int number_of_bins_first_fit(vector<double> random_numbers) {
+	vector<double> bins;
+	bins.push_back(0);
+	bool placed = false;
+
+	if(random_numbers.size()==0) {
+		return 0;
+	}
+	for(auto&num: random_numbers) {
+		for(&bin:bins) {
+			if(bin +num < 1) {
+				bin+=num;
+				placed = true;
+			}
+		}
+		if(!placed) {
+			bins.push_back(num);
+		}
+	}
 
 }
 
