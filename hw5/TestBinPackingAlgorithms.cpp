@@ -27,6 +27,8 @@ int NextFitBinPacking(vector<double> random_numbers) {
 	if(random_numbers.size()==0) {
 		return 0;
 	}
+	//try to add number to bin
+	//if you cannot, put it in a new bin
 	for(auto &num: random_numbers) {
 		if(num + current_capacity > 1) {
 			current_capacity=num;
@@ -39,13 +41,16 @@ int NextFitBinPacking(vector<double> random_numbers) {
 	return number_of_bins;
 }
 int FirstFitBinPacking(vector<double> &random_numbers) {
+	//each cell holds capacity of bin
 	vector<double> bins;
+	//initialize first bin
 	bins.push_back(0);
 	bool placed = false;
 
 	if(random_numbers.size()==0) {
 		return 0;
 	}
+	//for each number go through bins until a spot is found
 	for(auto&num: random_numbers) {
 		for(auto &bin:bins) {
 			if(bin +num < 1) {
@@ -53,6 +58,7 @@ int FirstFitBinPacking(vector<double> &random_numbers) {
 				placed = true;
 			}
 		}
+		//no spot found - create new bin
 		if(!placed) {
 			bins.push_back(num);
 			}
